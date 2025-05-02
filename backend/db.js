@@ -5,39 +5,20 @@ require('dotenv').config();
 
 let pool;
 
-try {
-  console.log('🔧 Intentando conectar a la base de datos con:');
-  console.log({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USER,
-    password: '********', // No muestres la contraseña real
-    database: process.env.DB_NAME
-  });
+(async () => {
+  try {
+    console.log('🔧 Conectando con MYSQL_URL:', process.env.MYSQL_URL);
 
-  pool = mysql.createPool({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
-  });
+    // Crear pool usando la URL completa
+    pool = await mysql.createPool(process.env.MYSQL_URL);
 
-  // 🧪 Probar la conexión al iniciarse
-  pool.getConnection()
-    .then(conn => {
-      console.log('✅ Conexión a la base de datos MySQL establecida correctamente');
-      conn.release();
-    })
-    .catch(err => {
-      console.error('❌ Error al probar la conexión con la base de datos:', err.message);
-    });
-
-} catch (error) {
-  console.error('❌ Error al crear el pool de conexión:', error.message);
-}
+    // Probar la conexión
+    const conn = await pool.getConnection();
+    console.log('✅ Conectado exitosamente a MySQL');
+    conn.release();
+  } catch (error) {
+    console.error('❌ Error al conectar con MySQL:', error.message);
+  }
+})();
 
 module.exports = pool;
