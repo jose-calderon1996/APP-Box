@@ -1,11 +1,9 @@
-// 🛠️ backend/db.js
-
-const mysql = require('mysql2/promise'); // 👈 AQUÍ la diferencia
+const mysql = require('mysql2/promise');
 require('dotenv').config();
 
-// Creamos un Pool de conexiones (con soporte a Promesas)
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
+  port: process.env.DB_PORT,           // ✅ Añadir esto
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
