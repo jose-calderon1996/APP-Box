@@ -1,0 +1,90 @@
+/* Fondo general oscuro */
+.pagina-registro {
+    --background: #0e0e0e;
+    color: #ffffff;
+  }
+  
+  /* Contenedor del contenido */
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  /* Mensaje de bienvenida */
+  .mensaje-inicial {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  
+  .mensaje-inicial h2 {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #ff5252; /* 🔴 rojo para el título principal */
+    margin-bottom: 10px;
+  }
+  
+  .mensaje-inicial p {
+    font-size: 1em;
+    color: #bdbdbd;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .marca {
+    color: #ff5252; /* 🔴 también en span marca */
+    font-weight: bold;
+  }
+  
+  /* Tarjeta de formulario */
+  ion-card.form-card {
+    background: #1a1a1a;
+    border-radius: 16px;
+    box-shadow: 0 0 15px rgba(255, 82, 82, 0.4); /* 🔴 sombra roja */
+    padding: 10px 0 25px 0;
+  }
+  
+  /* Inputs personalizados */
+  ion-item.item-dark {
+    --background: #2a2a2a;
+    --color: #ffffff;
+    --highlight-color-focused: #ff5252; /* 🔴 foco rojo */
+    border-radius: 10px;
+    margin: 12px 16px;
+  }
+  
+  ion-label {
+    color: #aaaaaa !important;
+  }
+  
+  /* Botón rojo llamativo */
+  .boton-verde {
+    --background: #ff5252; /* 🔴 color principal del botón */
+    --background-hover: #ff1744;
+    --color: #ffffff;
+    font-weight: bold;
+    border-radius: 12px;
+    margin: 24px 16px 0;
+    height: 50px;
+    font-size: 1.1em;
+  }
+  
+  /* Pie de página */
+  .footer-text {
+    text-align: center;
+    font-size: 0.8em;
+    color: #888;
+    margin-top: 35px;
+  }
+  
+  /* Título del header */
+  .titulo-header {
+    text-align: center;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  ion-input {
+    color: #ff5252 !important; /* 🔴 texto escrito en rojo */
+  }
+    

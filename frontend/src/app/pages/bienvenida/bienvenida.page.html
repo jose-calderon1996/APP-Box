@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Bienvenido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding fondo-fitness">
+
+  <div class="container-bienvenida">
+    <!-- Ícono o logo fitness -->
+    <ion-icon name="barbell-outline" class="fitness-icon"></ion-icon>
+
+    <h2>Mi Coach Personal</h2>
+    <p class="eslogan">💥 Entrena. Mejora. Supera tus límites. 💥</p>
+
+    <!-- Botones -->
+    <ion-button expand="block" color="danger" routerLink="/login">
+      <ion-icon slot="start" name="log-in-outline"></ion-icon>
+      Iniciar sesión
+    </ion-button>
+
+    <ion-button expand="block" color="success" routerLink="/registro-dueno">
+      <ion-icon slot="start" name="person-add-outline"></ion-icon>
+      ¿Eres dueño de un Box? Regístrate aquí
+    </ion-button>
+
+    <!-- Versión o mensaje -->
+    <p class="footer-version">Versión 1.0.0 | #StrongTogether</p>
+  </div>
+
+</ion-content>

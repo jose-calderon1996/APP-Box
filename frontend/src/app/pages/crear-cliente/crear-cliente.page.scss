@@ -1,0 +1,30 @@
+.card-rojo {
+    border: 2px solid #b00020;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(176, 0, 32, 0.2);
+    background-color: #121212;
+    color: white;
+  }
+  
+  .titulo-rojo {
+    color: #b00020;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .boton-rojo {
+    --background: #b00020;
+    --color: #ffffff;
+    font-weight: bold;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    padding: 14px;
+    --box-shadow: 0 4px 10px rgba(176, 0, 32, 0.3);
+  }
+  
+  ion-item {
+    --color: white;
+  }
+  

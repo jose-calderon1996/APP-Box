@@ -1,0 +1,62 @@
+.fondo-fitness {
+    --background: linear-gradient(to bottom, #1e1e1e, #111);
+    color: white;
+  }
+  
+  .container-bienvenida {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    gap: 20px;
+    text-align: center;
+    padding-top: 30px;
+  }
+  
+  .icono-fitness {
+    font-size: 64px;
+    color: #ff0000;
+    animation: pulse 1.5s infinite;
+    display: inline-block;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.85; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .eslogan {
+    font-size: 16px;
+    color: #ccc;
+    margin: 0 20px 30px;
+  }
+  
+  ion-button {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .boton-fitness {
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  /* Tarjeta con borde rojo y sombra */
+/* Tarjeta con borde rojo y sombra */
+.tarjeta-roja {
+  background: #1a1a1a;
+  border-radius: 16px;
+  box-shadow: 0 0 15px rgba(255, 82, 82, 0.4); /* 💥 borde/sombra roja */
+  padding: 20px;
+  width: 100%;
+  max-width: 340px;
+  margin-top: 10px;
+}
+

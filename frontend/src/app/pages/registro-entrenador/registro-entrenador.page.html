@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registrar Entrenador</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card class="card-rojo">
+    <ion-card-header>
+      <ion-card-title class="titulo-rojo">Nuevo Entrenador</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form (ngSubmit)="registrarEntrenador()">
+        <ion-item>
+          <ion-label position="floating">Nombre completo</ion-label>
+          <ion-input class="input-rojo" [(ngModel)]="nombre" name="nombre" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Correo electrónico</ion-label>
+          <ion-input class="input-rojo" [(ngModel)]="correo" name="correo" type="email" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input class="input-rojo" [(ngModel)]="password" name="password" type="password" required></ion-input>
+        </ion-item>
+
+        <ion-button expand="full" class="boton-rojo" type="submit">
+          <ion-icon name="person-add" slot="start"></ion-icon>
+          Registrar Entrenador
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

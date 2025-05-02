@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title class="ion-text-center">Registrar Mi Progreso</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form (submit)="guardarProgreso()" class="formulario-progreso">
+
+    <ion-card class="card-formulario">
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Ingresa tu peso y foto</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <ion-item>
+          <ion-label position="floating">Peso Actual (kg)</ion-label>
+          <ion-input type="number" [(ngModel)]="peso" name="peso" required></ion-input>
+        </ion-item>
+
+        <div class="subir-foto">
+          <label class="custom-file-upload">
+            📷 Elegir Foto
+            <input type="file" (change)="cargarImagen($event)" accept="image/*" hidden />
+          </label>
+          <p *ngIf="imagen" class="nombre-archivo">✔️ {{ imagen?.name }}</p>
+        </div>
+
+        <ion-button expand="block" type="submit" color="success" [disabled]="cargando">
+          {{ cargando ? 'Guardando...' : 'Guardar Progreso' }}
+        </ion-button>
+
+      </ion-card-content>
+    </ion-card>
+
+  </form>
+
+</ion-content>

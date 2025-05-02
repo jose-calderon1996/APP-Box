@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title class="ion-text-center">📈 Mi Historial de Progreso</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- 🔥 TÍTULO -->
+  <h2 class="seccion-titulo">📊 Evolución de Peso</h2>
+
+  <!-- 🔥 GRÁFICO DE LÍNEA -->
+  <div class="grafico-container">
+    <canvas baseChart
+      [data]="lineChartData"
+      [options]="lineChartOptions"
+      [type]="lineChartType">
+    </canvas>
+  </div>
+
+  <!-- 🔥 TÍTULO -->
+  <h2 class="seccion-titulo">📷 Mis Fotos de Progreso</h2>
+
+  <!-- 🔥 GALERÍA DE FOTOS -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" sizeMd="4" sizeLg="3" *ngFor="let item of historial">
+        <ion-card class="card-progreso">
+          <div class="imagen-contenedor">
+            <img [src]="item.url_foto" alt="Foto Progreso" (click)="abrirImagen(item.url_foto)" />
+          </div>
+          <ion-card-header>
+            <ion-card-title>{{ item.peso }} kg</ion-card-title>
+            <ion-card-subtitle>{{ item.fecha | date:'dd/MM/yyyy' }}</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- 🔥 TÍTULO -->
+  <h2 class="seccion-titulo">🥧 Avance hacia mi Meta</h2>
+
+  <!-- 🔥 GRÁFICO DE PASTEL -->
+  <div class="grafico-pastel-container">
+    <canvas baseChart
+      [data]="pieChartData"
+      [options]="pieChartOptions"
+      [type]="pieChartType">
+    </canvas>
+  </div>
+
+  <!-- 🔥 TEXTO DE AVANCE -->
+  <div class="avance-texto">
+    <p><strong>Peso inicial:</strong> {{ pesoInicial }} kg</p>
+    <p><strong>Peso actual:</strong> {{ pesoActual }} kg</p>
+    <p><strong>Has perdido el</strong> {{ porcentajeAvance | number:'1.0-1' }}% del peso inicial</p>
+  </div>
+
+  <!-- 🔍 MODAL DE IMAGEN AMPLIADA -->
+  <ion-modal [isOpen]="!!imagenSeleccionada" (didDismiss)="cerrarImagen()">
+    <ng-template>
+      <ion-content scrollY="false" (click)="cerrarImagen()" class="ion-padding">
+        <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+          <img [src]="imagenSeleccionada"
+               style="max-width: 100%; max-height: 100%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);" />
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

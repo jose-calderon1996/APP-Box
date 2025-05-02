@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title>Detalle de Rutina</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card class="card-rojo">
+    <ion-card-header>
+      <ion-card-title class="titulo-rojo">{{ nombreRutina }}</ion-card-title>
+      <ion-card-subtitle class="subtitulo-rojo">Día: {{ diaEntrenamiento }}</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-list>
+    <ion-card *ngFor="let ejercicio of ejercicios" class="card-rojo ion-margin-bottom">
+      <ion-card-header>
+        <ion-card-title class="titulo-rojo">{{ ejercicio.nombre_ejercicio }}</ion-card-title>
+        <ion-card-subtitle class="subtitulo-rojo">
+          Series: {{ ejercicio.series }} | Reps: {{ ejercicio.repeticiones }}
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="4">
+              <ion-label position="stacked">Peso (kg)</ion-label>
+              <ion-input [(ngModel)]="ejercicio.peso" type="number" placeholder="Peso"></ion-input>
+            </ion-col>
+
+            <ion-col size="4">
+              <ion-label position="stacked">Series hechas</ion-label>
+              <ion-input [(ngModel)]="ejercicio.series_realizadas" type="number" placeholder="Series"></ion-input>
+            </ion-col>
+
+            <ion-col size="4">
+              <ion-label position="stacked">Reps hechas</ion-label>
+              <ion-input [(ngModel)]="ejercicio.repeticiones_realizadas" type="number" placeholder="Reps"></ion-input>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ion-label position="stacked">Fecha</ion-label>
+              <ion-input [(ngModel)]="ejercicio.fecha" type="date"></ion-input>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <ion-item class="ion-margin-top item-rojo">
+    <ion-label position="stacked">Comentario sobre la rutina (opcional)</ion-label>
+    <ion-textarea
+      [(ngModel)]="comentario"
+      placeholder="Escribe tus observaciones, molestias o cómo te sentiste en esta rutina...">
+    </ion-textarea>
+  </ion-item>
+
+  <ion-button expand="full" class="boton-rojo ion-margin-top" (click)="marcarRutinaRealizada()">
+    <ion-icon name="checkmark-done-outline" slot="start"></ion-icon>
+    Rutina Realizada
+  </ion-button>
+
+  <ion-button expand="full" class="boton-rojo ion-margin-top" (click)="guardarRegistroEjercicios()">
+    <ion-icon name="save-outline" slot="start"></ion-icon>
+    Guardar Registro de Ejercicios
+  </ion-button>
+
+</ion-content>
+/////

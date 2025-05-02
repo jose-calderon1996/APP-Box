@@ -1,0 +1,52 @@
+.card-rojo {
+    border: 2px solid #b00020;
+    border-radius: 12px;
+    background-color: #121212;
+    color: white;
+    box-shadow: 0 4px 8px rgba(176, 0, 32, 0.2);
+  }
+  
+  .titulo-rojo {
+    color: #b00020;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .boton-rojo {
+    --background: #b00020;
+    --color: #ffffff;
+    border-radius: 8px;
+    margin-top: 12px;
+  }
+  
+  /* 🔴 Estilo del acordeón */
+  .acordeon-rojo ion-item.acordeon-header {
+    border: 1px solid #b00020;
+    background-color: #1a1a1a;
+    color: white;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+  
+  .acordeon-content {
+    border: 1px solid #b00020;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    background-color: #1a1a1a;
+    color: white;
+  }
+  .boton-rutina-roja {
+    --background: #b00020;
+    --color: #ffffff;
+    margin-top: 14px;
+    padding: 16px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 10px;
+    height: 56px;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    --box-shadow: 0 4px 10px rgba(176, 0, 32, 0.3);
+  }
+  
+    

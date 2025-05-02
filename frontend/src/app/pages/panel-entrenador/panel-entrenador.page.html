@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Panel del Entrenador</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="boton-rojo" routerLink="/crear-cliente">
+        <ion-icon name="person-add" slot="start"></ion-icon>
+        Añadir Cliente
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <h1>Bienvenido, {{ nombre }}</h1>
+
+  <!-- Card con cantidad de clientes -->
+  <ion-card class="card-rojo">
+    <ion-card-header>
+      <ion-card-title class="titulo-rojo">Clientes Asociados</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div *ngIf="cantidadClientes > 0; else noClientes">
+        <p>Tienes <strong>{{ cantidadClientes }}</strong> clientes asociados.</p>
+      </div>
+
+      <ng-template #noClientes>
+        <div>Aún no tienes clientes asociados.</div>
+      </ng-template>
+    </ion-card-content>
+  </ion-card>
+
+  <h3 style="margin-top: 20px;">Mis asociados:</h3>
+
+  <!-- Acordeón de clientes -->
+  <ion-accordion-group class="acordeon-rojo" *ngIf="clientes.length > 0">
+    <ion-accordion *ngFor="let cliente of clientes">
+      <ion-item slot="header" class="acordeon-header">
+        <ion-label class="cliente-nombre">{{ cliente.nombre }}</ion-label>
+      </ion-item>
+
+      <div class="ion-padding acordeon-content" slot="content">
+        <div *ngIf="rutinasClientes && rutinasClientes[cliente.id_cliente] && rutinasClientes[cliente.id_cliente].length > 0; else noRutinas">
+          <strong>Rutinas asignadas:</strong>
+          <ion-list>
+            <ion-item *ngFor="let rutina of rutinasClientes[cliente.id_cliente]">
+              <ion-label>
+                {{ rutina.nombre_rutina }} <br>
+                <small>Fecha: {{ rutina.fecha_asignada | date:'yyyy-MM-dd' }}</small>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+
+        <ng-template #noRutinas>
+          <p><i>No tiene rutinas asignadas.</i></p>
+        </ng-template>
+
+        <ion-button expand="block" size="small" class="boton-rutina-roja" (click)="irACrearRutina(cliente.id_cliente)">
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          Asignar nueva rutina
+        </ion-button>
+        
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+
+  <!-- Botón cerrar sesión abajo -->
+  <ion-button class="boton-rojo" expand="full" (click)="cerrarSesion()" style="margin-top: 30px;">
+    <ion-icon name="log-out-outline" slot="start"></ion-icon>
+    Cerrar sesión
+  </ion-button>
+
+</ion-content>

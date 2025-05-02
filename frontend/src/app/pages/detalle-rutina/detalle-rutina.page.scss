@@ -1,0 +1,51 @@
+ion-content {
+    background-color: #1a1a1a;
+    color: white;
+  }
+  
+  /* Estilo para las tarjetas */
+  .card-rojo {
+    border: 2px solid #b00020;
+    border-radius: 12px;
+    background-color: #121212;
+    color: white;
+    box-shadow: 0 4px 10px rgba(176, 0, 32, 0.2);
+  }
+  
+  /* Título en rojo */
+  .titulo-rojo {
+    color: #b00020;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  /* Subtítulo más claro y legible */
+  .subtitulo-rojo {
+    color: #f55;
+    font-size: 1rem;
+  }
+  
+  /* Botones rojos con íconos */
+  .boton-rojo {
+    --background: #b00020;
+    --color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 8px;
+    --box-shadow: 0 4px 10px rgba(176, 0, 32, 0.3);
+  }
+  
+  /* Item de comentario estilizado */
+  .item-rojo {
+    --border-color: #b00020;
+    --color: white;
+  }
+  
+  ion-textarea {
+    background-color: #1e1e1e;
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 1rem;
+  }
+  

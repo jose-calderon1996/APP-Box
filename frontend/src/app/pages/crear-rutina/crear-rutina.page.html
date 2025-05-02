@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Crear Rutina</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <h2>Selecciona una plantilla:</h2>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" *ngFor="let plantilla of plantillas">
+        <ion-card (click)="plantillaSeleccionada = plantilla.nombre" [color]="plantillaSeleccionada === plantilla.nombre ? 'success' : 'dark'">
+          <ion-card-header>
+            <ion-card-title style="font-size: 1.5rem; text-align: center;">{{ plantilla.nombre }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <h2>Selecciona el día de entrenamiento:</h2>
+
+  <ion-item>
+    <ion-label> Día </ion-label>
+    <ion-select [(ngModel)]="diaSeleccionado" interface="action-sheet" placeholder="Seleccionar día">
+      <ion-select-option *ngFor="let dia of diasSemana" [value]="dia">{{ dia }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button expand="full" color="success" class="ion-margin-top" (click)="asignarRutina()">
+    Asignar Rutina
+  </ion-button>
+
+</ion-content>

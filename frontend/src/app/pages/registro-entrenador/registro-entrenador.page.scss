@@ -1,0 +1,33 @@
+.card-rojo {
+    border: 2px solid #b00020;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(176, 0, 32, 0.2);
+    background-color: #121212; // fondo oscuro elegante
+  }
+  
+  .titulo-rojo {
+    color: #b00020;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .boton-rojo {
+    --background: #b00020;
+    --color: #ffffff;
+    margin-top: 16px;
+    border-radius: 8px;
+  }
+  
+  /* 🔴 Texto del input */
+  .input-rojo::part(native) {
+    color: #b00020 !important;
+    caret-color: #b00020 !important;
+  }
+  
+  /* 🔴 Línea inferior del input (borde inferior) */
+  ion-item {
+    --highlight-color-focused: #b00020;
+    --border-color: #b00020;
+    --color: #b00020;
+  }
+  
