@@ -16,17 +16,21 @@ export class RegistrarProgresoPage {
   peso: number = 0;
   imagen: File | null = null;
   cargando: boolean = false;
-  idCliente: number = 33; // Reemplazar con el ID real del usuario logueado
+
+  // 🧠 Reemplaza este ID con el real del usuario logueado si lo tienes
+  idCliente: number = 33;
 
   constructor(private http: HttpClient) {}
 
+  // 📸 Carga la imagen seleccionada
   cargarImagen(event: any) {
     this.imagen = event.target.files[0];
   }
 
+  // 💾 Envía peso + imagen al backend
   guardarProgreso() {
     if (!this.imagen || !this.peso) {
-      alert('Debes ingresar el peso y seleccionar una foto.');
+      alert('⚠️ Debes ingresar el peso y seleccionar una foto.');
       return;
     }
 
@@ -37,7 +41,8 @@ export class RegistrarProgresoPage {
     formData.append('peso', this.peso.toString());
     formData.append('imagen', this.imagen);
 
-    this.http.post('http://localhost:3000/api/subir-foto-progreso', formData)
+    // 🌐 Cambia la URL si ya estás usando el backend en Render
+    this.http.post('https://app-box-gesb.onrender.com/api/subir-foto-progreso', formData)
       .subscribe({
         next: (res: any) => {
           alert('✅ Progreso registrado con éxito');
@@ -47,7 +52,7 @@ export class RegistrarProgresoPage {
         },
         error: (err) => {
           console.error('❌ Error registrando progreso:', err);
-          alert('Error al registrar progreso');
+          alert('❌ Error al registrar progreso');
           this.cargando = false;
         }
       });
