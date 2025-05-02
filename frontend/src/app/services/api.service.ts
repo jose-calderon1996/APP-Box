@@ -6,18 +6,33 @@ import { firstValueFrom } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
+  // 🌐 Dirección base del backend en Render
   private URL = 'https://app-box-gesb.onrender.com/api';
-
 
   constructor(private http: HttpClient) {}
 
-  // Enviar datos por POST
+  // 📤 Enviar datos por POST
   async post(endpoint: string, data: any): Promise<any> {
-    return await firstValueFrom(this.http.post(this.URL + endpoint, data));
+    return await firstValueFrom(this.http.post(`${this.URL}/${endpoint}`, data));
   }
 
-  // Obtener datos por GET
+  // 📥 Obtener datos por GET
   async get(endpoint: string): Promise<any> {
-    return await firstValueFrom(this.http.get(this.URL + endpoint));
+    return await firstValueFrom(this.http.get(`${this.URL}/${endpoint}`));
+  }
+
+  // 🧩 Obtener datos con parámetros dinámicos (ej: /usuarios/5)
+  async getWithParams(endpoint: string, params: any): Promise<any> {
+    return await firstValueFrom(this.http.get(`${this.URL}/${endpoint}`, { params }));
+  }
+
+  // 🧨 Eliminar datos (DELETE)
+  async delete(endpoint: string): Promise<any> {
+    return await firstValueFrom(this.http.delete(`${this.URL}/${endpoint}`));
+  }
+
+  // 🔁 Actualizar datos (PUT)
+  async put(endpoint: string, data: any): Promise<any> {
+    return await firstValueFrom(this.http.put(`${this.URL}/${endpoint}`, data));
   }
 }
