@@ -1,4 +1,4 @@
-// 🔥 PRIMERO: Registramos los componentes de Chart.js
+// 🔰 Registramos los componentes de Chart.js
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
@@ -8,6 +8,7 @@ import { IonicModule, IonModal } from '@ionic/angular';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { ApiService } from '../../services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-historial-progreso',
@@ -19,11 +20,13 @@ import { ApiService } from '../../services/api.service';
 export class HistorialProgresoPage implements OnInit {
 
   historial: any[] = [];
-  idCliente: number = 33;
+  idCliente: number | null = null;
 
+  // 🖼️ Imagen seleccionada para ampliar en modal
   imagenSeleccionada: string | null = null;
   @ViewChild(IonModal) modal!: IonModal;
 
+  // 📈 Configuración del gráfico de línea (evolución de peso)
   lineChartData: ChartConfiguration['data'] = {
     labels: [],
     datasets: [
@@ -56,6 +59,7 @@ export class HistorialProgresoPage implements OnInit {
 
   lineChartType: ChartType = 'line';
 
+  // 🥧 Configuración del gráfico de pastel (avance hacia la meta)
   pieChartData: ChartConfiguration<'pie'>['data'] = {
     labels: ['Avance', 'Restante'],
     datasets: [{
@@ -77,28 +81,41 @@ export class HistorialProgresoPage implements OnInit {
   pesoActual: number = 0;
   porcentajeAvance: number = 0;
 
-  pesoInput: number = 0;
-  imagenSeleccionadaArchivo: File | null = null;
+  constructor(
+    private apiService: ApiService,
+    private authService: AuthService
+  ) {}
 
-  constructor(private apiService: ApiService) {}
-
+  // ✅ Se ejecuta al iniciar la vista
   ngOnInit() {
-    this.cargarHistorial();
-    this.cargarPesos();
+    const usuario = this.authService.getUsuarioActual();
+    this.idCliente = usuario?.id_usuario;
+
+    console.log('🟢 ID Cliente logueado:', this.idCliente); // Para depurar
+
+    if (this.idCliente) {
+      this.cargarHistorial();
+      this.cargarPesos();
+    } else {
+      console.warn('⚠️ No hay cliente logueado en el localStorage');
+    }
   }
 
+  // 🔃 Obtiene el historial del progreso desde el backend
   cargarHistorial() {
     this.apiService.get(`historial-progreso/${this.idCliente}`)
       .then((res) => {
+        console.log('📦 Historial recibido:', res); // DEBUG
         this.historial = res;
-        this.lineChartData.labels = res.map(item => this.formatearFecha(item.fecha));
-        this.lineChartData.datasets[0].data = res.map(item => item.peso);
+        this.lineChartData.labels = res.map((item: any) => this.formatearFecha(item.fecha));
+        this.lineChartData.datasets[0].data = res.map((item: any) => item.peso);
       })
       .catch((err) => {
-        console.error('Error cargando historial:', err);
+        console.error('❌ Error cargando historial:', err);
       });
   }
 
+  // ⚖️ Obtiene peso inicial y actual para calcular avance
   cargarPesos() {
     this.apiService.get(`peso-inicial/${this.idCliente}`)
       .then((res) => {
@@ -106,7 +123,7 @@ export class HistorialProgresoPage implements OnInit {
         this.verificarDatos();
       })
       .catch((err) => {
-        console.error('Error obteniendo peso inicial:', err);
+        console.error('❌ Error obteniendo peso inicial:', err);
       });
 
     this.apiService.get(`peso-actual/${this.idCliente}`)
@@ -115,73 +132,46 @@ export class HistorialProgresoPage implements OnInit {
         this.verificarDatos();
       })
       .catch((err) => {
-        console.error('Error obteniendo peso actual:', err);
+        console.error('❌ Error obteniendo peso actual:', err);
       });
   }
 
+  // 🧮 Verifica si ya se tienen ambos pesos para calcular avance
   verificarDatos() {
     if (this.pesoInicial > 0 && this.pesoActual > 0) {
       this.calcularAvance();
     }
   }
 
+  // 📊 Calcula el porcentaje de avance y actualiza el gráfico de pastel
   calcularAvance() {
     const diferencia = this.pesoInicial - this.pesoActual;
     this.porcentajeAvance = (diferencia / this.pesoInicial) * 100;
 
     this.pieChartData.datasets[0].data = [
-      parseFloat(this.porcentajeAvance.toFixed(1)), 
+      parseFloat(this.porcentajeAvance.toFixed(1)),
       parseFloat((100 - this.porcentajeAvance).toFixed(1))
     ];
   }
 
+  // 🖼️ Abre el modal para mostrar la imagen grande
   abrirImagen(url: string) {
     this.imagenSeleccionada = url;
     this.modal.present();
   }
 
+  // ❌ Cierra el modal de la imagen
   cerrarImagen() {
     this.modal.dismiss();
     this.imagenSeleccionada = null;
   }
 
+  // 🧾 Formatea fecha ISO a formato chileno dd/MM/yyyy
   formatearFecha(fechaISO: string): string {
     const fecha = new Date(fechaISO);
     const dia = fecha.getDate().toString().padStart(2, '0');
     const mes = (fecha.getMonth() + 1).toString().padStart(2, '0');
     const anio = fecha.getFullYear();
     return `${dia}/${mes}/${anio}`;
-  }
-
-  seleccionarImagen(event: any) {
-    const archivo = event.target.files[0];
-    if (archivo) {
-      this.imagenSeleccionadaArchivo = archivo;
-    }
-  }
-
-  subirProgreso() {
-    if (!this.pesoInput || !this.imagenSeleccionadaArchivo) {
-      alert('Debe ingresar el peso y seleccionar una imagen.');
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append('id_cliente', this.idCliente.toString());
-    formData.append('peso', this.pesoInput.toString());
-    formData.append('imagen', this.imagenSeleccionadaArchivo);
-
-    this.apiService.postFormData('subir-foto-progreso', formData)
-      .then(() => {
-        alert('✅ Progreso subido con éxito');
-        this.pesoInput = 0;
-        this.imagenSeleccionadaArchivo = null;
-        this.cargarHistorial();
-        this.cargarPesos();
-      })
-      .catch((err) => {
-        console.error('❌ Error registrando progreso:', err);
-        alert('Ocurrió un error al subir el progreso');
-      });
   }
 }

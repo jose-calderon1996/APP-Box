@@ -9,15 +9,16 @@ export class RolGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
-    const tipoUsuario = localStorage.getItem('tipo_usuario');
-    const tipoRequerido = route.data['tipo']; // existe solo en rutas protegidas
+    const usuario = localStorage.getItem('usuario');
+    const tipoUsuario = usuario ? JSON.parse(usuario).tipo_usuario : null;
+    const tipoRequerido = route.data['tipo']; // Para rutas protegidas con tipo
 
-    // 🔐 Rutas protegidas: valida tipo
+    // 🔐 Si se requiere un tipo específico
     if (tipoRequerido) {
       return tipoUsuario === tipoRequerido;
     }
 
-    // 🚀 Redirección automática desde /redirect
+    // 🔁 Si está en /redirect, lo enviamos según su rol
     switch (tipoUsuario) {
       case 'cliente':
         this.router.navigate(['/panel-cliente']);
@@ -32,6 +33,6 @@ export class RolGuard implements CanActivate {
         this.router.navigate(['/login']);
     }
 
-    return false; // evita que cargue la ruta dummy
+    return false; // Impide cargar la ruta /redirect
   }
 }

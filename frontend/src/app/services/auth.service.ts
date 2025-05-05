@@ -20,7 +20,6 @@ export class AuthService {
     const id_usuario = localStorage.getItem('id_usuario');
 
     if (id_usuario) {
-      // Registrar el logout en MySQL antes de cerrar sesión en Firebase
       this.http.post(`${this.baseUrl}/log-acceso/registrar-logout`, { id_usuario })
         .subscribe(
           () => console.log('✅ Logout registrado'),
@@ -28,7 +27,17 @@ export class AuthService {
         );
     }
 
-    // Cerrar sesión en Firebase
     return this.afAuth.signOut();
   }
+
+  // ✅ Método para obtener el usuario actual desde localStorage
+  getUsuarioActual() {
+    const usuario = localStorage.getItem('usuario');
+    return usuario ? JSON.parse(usuario) : null;
+  }
+  getIdUsuarioActual(): number | null {
+    const usuario = this.getUsuarioActual();
+    return usuario?.id_usuario ?? null;
+  }
+  
 }

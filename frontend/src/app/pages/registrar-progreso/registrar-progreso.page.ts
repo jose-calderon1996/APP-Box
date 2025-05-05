@@ -15,19 +15,33 @@ export class RegistrarProgresoPage {
 
   peso: number = 0;
   imagen: File | null = null;
+  imagenPreview: string | null = null;
   cargando: boolean = false;
-
-  // 🧠 Reemplaza este ID con el real del usuario logueado si lo tienes
-  idCliente: number = 33;
+  idCliente: number = 0;
 
   constructor(private http: HttpClient) {}
 
-  // 📸 Carga la imagen seleccionada
-  cargarImagen(event: any) {
-    this.imagen = event.target.files[0];
+  ngOnInit() {
+    const id = localStorage.getItem('id_usuario');
+    if (id) {
+      this.idCliente = parseInt(id);
+    } else {
+      alert('❌ No se encontró el ID del usuario logueado.');
+    }
   }
 
-  // 💾 Envía peso + imagen al backend
+  cargarImagen(event: any) {
+    this.imagen = event.target.files[0];
+
+    if (this.imagen) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagenPreview = reader.result as string;
+      };
+      reader.readAsDataURL(this.imagen);
+    }
+  }
+
   guardarProgreso() {
     if (!this.imagen || !this.peso) {
       alert('⚠️ Debes ingresar el peso y seleccionar una foto.');
@@ -41,13 +55,13 @@ export class RegistrarProgresoPage {
     formData.append('peso', this.peso.toString());
     formData.append('imagen', this.imagen);
 
-    // 🌐 Cambia la URL si ya estás usando el backend en Render
     this.http.post('https://app-box-gesb.onrender.com/api/subir-foto-progreso', formData)
       .subscribe({
-        next: (res: any) => {
+        next: () => {
           alert('✅ Progreso registrado con éxito');
           this.peso = 0;
           this.imagen = null;
+          this.imagenPreview = null;
           this.cargando = false;
         },
         error: (err) => {
