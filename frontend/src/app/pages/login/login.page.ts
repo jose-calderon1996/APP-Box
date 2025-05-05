@@ -30,6 +30,8 @@ export class LoginPage {
       alert('⚠️ Por favor, completa todos los campos.');
       return;
     }
+    // 🔁 Redirección a la ruta genérica, el guard decidirá dónde enviarlo
+    await this.router.navigate(['/redirect']);
 
     try {
       console.log('📨 Iniciando sesión con:', this.correo);
@@ -50,8 +52,7 @@ export class LoginPage {
         id_usuario: userData.id_usuario
       });
 
-      // 🔁 Redirección a la ruta genérica, el guard decidirá dónde enviarlo
-      await this.router.navigate(['/redirect']);
+      
 
     } catch (error) {
       console.error('❌ Error en el login:', error);
