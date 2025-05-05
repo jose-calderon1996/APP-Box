@@ -11,12 +11,49 @@
   <!-- Card de Rutinas -->
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Panel Cliente</ion-card-title>
+      <ion-card-title>
+        <ion-icon name="barbell-outline"></ion-icon>
+        Panel Cliente
+      </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-button expand="full" class="boton-rojo" (click)="irMisRutinas()">
+      <ion-button expand="full" class="boton-rojo" routerLink="/mis-rutinas">
         <ion-icon name="barbell-outline" slot="start"></ion-icon>
         Mis Rutinas Semanales
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Card Registra tu Progreso -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="fitness-outline"></ion-icon>
+        Registra tu Progreso
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Lleva un control de tu evolución física semana a semana. ¡Sube tu peso y fotos de progreso!</p>
+      <ion-button expand="full" class="boton-rojo" routerLink="/registrar-progreso">
+        <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+        Registrar Progreso
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Card Historial de Progreso -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="time-outline"></ion-icon>
+        Historial de Progreso
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Revisa tu historial de avances, incluyendo registros anteriores de peso, fotos y fechas.</p>
+      <ion-button expand="full" class="boton-rojo" routerLink="/historial-progreso">
+        <ion-icon name="list-outline" slot="start"></ion-icon>
+        Ver Historial
       </ion-button>
     </ion-card-content>
   </ion-card>
@@ -24,11 +61,13 @@
   <!-- Foro de Opiniones -->
   <ion-card>
     <ion-card-header>
-      <ion-card-title>¿Qué opinas de nuestro servicio?</ion-card-title>
+      <ion-card-title>
+        <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+        ¿Qué opinas de nuestro servicio?
+      </ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <p>¡Queremos conocer tu experiencia en nuestro box de CrossFit! Deja tu comentario o sugerencia para ayudarnos a mejorar.</p>
-
       <ion-button expand="full" class="boton-rojo" (click)="mostrarComentario = !mostrarComentario">
         <ion-icon [name]="mostrarComentario ? 'eye-off-outline' : 'chatbox-ellipses-outline'" slot="start"></ion-icon>
         {{ mostrarComentario ? 'Ocultar Foro' : 'Foro de Opiniones' }}
@@ -39,9 +78,11 @@
   <!-- Comentario -->
   <ion-card *ngIf="mostrarComentario">
     <ion-card-header>
-      <ion-card-title>Deja tu comentario</ion-card-title>
+      <ion-card-title>
+        <ion-icon name="create-outline"></ion-icon>
+        Deja tu comentario
+      </ion-card-title>
     </ion-card-header>
-
     <ion-card-content>
       <ion-textarea
         [(ngModel)]="comentario"
@@ -58,7 +99,6 @@
           (click)="puntuacion = star">
         </ion-icon>
       </ion-row>
-      
 
       <ion-button expand="full" class="boton-rojo" (click)="enviarComentario()">
         <ion-icon name="send-outline" slot="start"></ion-icon>

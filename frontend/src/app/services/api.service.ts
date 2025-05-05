@@ -11,7 +11,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  // 📤 Enviar datos por POST
+  // 📤 Enviar datos por POST (JSON)
   async post(endpoint: string, data: any): Promise<any> {
     return await firstValueFrom(this.http.post(`${this.URL}/${endpoint}`, data));
   }
@@ -34,5 +34,20 @@ export class ApiService {
   // 🔁 Actualizar datos (PUT)
   async put(endpoint: string, data: any): Promise<any> {
     return await firstValueFrom(this.http.put(`${this.URL}/${endpoint}`, data));
+  }
+
+  // 📦 Enviar archivos y otros datos con FormData
+  async postFormData(endpoint: string, formData: FormData): Promise<any> {
+    const response = await fetch(`${this.URL}/${endpoint}`, {
+      method: 'POST',
+      body: formData
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || 'Error al enviar formulario');
+    }
+
+    return await response.json();
   }
 }

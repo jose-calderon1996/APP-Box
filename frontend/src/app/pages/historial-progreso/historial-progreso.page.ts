@@ -5,27 +5,25 @@ Chart.register(...registerables);
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule, IonModal } from '@ionic/angular';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-historial-progreso',
   standalone: true,
-  imports: [CommonModule, IonicModule, HttpClientModule, BaseChartDirective],
+  imports: [CommonModule, IonicModule, BaseChartDirective],
   templateUrl: './historial-progreso.page.html',
   styleUrls: ['./historial-progreso.page.scss'],
 })
 export class HistorialProgresoPage implements OnInit {
 
   historial: any[] = [];
-  idCliente: number = 33; // 🔥 ID del cliente (simulado o real)
+  idCliente: number = 33;
 
-  // 📸 Modal para ampliar imagen
   imagenSeleccionada: string | null = null;
   @ViewChild(IonModal) modal!: IonModal;
 
-  // 🔥 Gráfico de evolución de peso (línea)
   lineChartData: ChartConfiguration['data'] = {
     labels: [],
     datasets: [
@@ -58,7 +56,6 @@ export class HistorialProgresoPage implements OnInit {
 
   lineChartType: ChartType = 'line';
 
-  // 🔥 Gráfico de pastel (avance)
   pieChartData: ChartConfiguration<'pie'>['data'] = {
     labels: ['Avance', 'Restante'],
     datasets: [{
@@ -76,68 +73,58 @@ export class HistorialProgresoPage implements OnInit {
 
   pieChartType: ChartType = 'pie';
 
-  // 🔥 Variables para cálculo de avance
   pesoInicial: number = 0;
   pesoActual: number = 0;
   porcentajeAvance: number = 0;
 
-  // 📸 Variables para formulario de subida
   pesoInput: number = 0;
   imagenSeleccionadaArchivo: File | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
     this.cargarHistorial();
     this.cargarPesos();
   }
 
-  // 🔥 Cargar historial para gráfico de línea y galería
   cargarHistorial() {
-    this.http.get<any[]>(`http://localhost:3000/api/historial-progreso/${this.idCliente}`)
-      .subscribe({
-        next: (res) => {
-          this.historial = res;
-          this.lineChartData.labels = res.map(item => this.formatearFecha(item.fecha));
-          this.lineChartData.datasets[0].data = res.map(item => item.peso);
-        },
-        error: (err) => {
-          console.error('Error cargando historial:', err);
-        }
+    this.apiService.get(`historial-progreso/${this.idCliente}`)
+      .then((res) => {
+        this.historial = res;
+        this.lineChartData.labels = res.map(item => this.formatearFecha(item.fecha));
+        this.lineChartData.datasets[0].data = res.map(item => item.peso);
+      })
+      .catch((err) => {
+        console.error('Error cargando historial:', err);
       });
   }
 
-  // 🔥 Cargar peso inicial y actual
   cargarPesos() {
-    this.http.get<any>(`http://localhost:3000/api/peso-inicial/${this.idCliente}`).subscribe({
-      next: (res) => {
+    this.apiService.get(`peso-inicial/${this.idCliente}`)
+      .then((res) => {
         this.pesoInicial = res.peso_inicial;
         this.verificarDatos();
-      },
-      error: (err) => {
+      })
+      .catch((err) => {
         console.error('Error obteniendo peso inicial:', err);
-      }
-    });
+      });
 
-    this.http.get<any>(`http://localhost:3000/api/peso-actual/${this.idCliente}`).subscribe({
-      next: (res) => {
+    this.apiService.get(`peso-actual/${this.idCliente}`)
+      .then((res) => {
         this.pesoActual = res.peso_actual;
         this.verificarDatos();
-      },
-      error: (err) => {
+      })
+      .catch((err) => {
         console.error('Error obteniendo peso actual:', err);
-      }
-    });
+      });
   }
 
-  // 🔥 Verificar si ambos pesos fueron cargados
   verificarDatos() {
     if (this.pesoInicial > 0 && this.pesoActual > 0) {
       this.calcularAvance();
     }
   }
 
-  // 🔥 Calcular el avance en porcentaje
   calcularAvance() {
     const diferencia = this.pesoInicial - this.pesoActual;
     this.porcentajeAvance = (diferencia / this.pesoInicial) * 100;
@@ -148,7 +135,6 @@ export class HistorialProgresoPage implements OnInit {
     ];
   }
 
-  // 📸 Abrir imagen en modal
   abrirImagen(url: string) {
     this.imagenSeleccionada = url;
     this.modal.present();
@@ -159,7 +145,6 @@ export class HistorialProgresoPage implements OnInit {
     this.imagenSeleccionada = null;
   }
 
-  // 🔥 Formatear fechas para que se vean bonitas
   formatearFecha(fechaISO: string): string {
     const fecha = new Date(fechaISO);
     const dia = fecha.getDate().toString().padStart(2, '0');
@@ -168,7 +153,6 @@ export class HistorialProgresoPage implements OnInit {
     return `${dia}/${mes}/${anio}`;
   }
 
-  // 📤 Captura imagen del input
   seleccionarImagen(event: any) {
     const archivo = event.target.files[0];
     if (archivo) {
@@ -176,7 +160,6 @@ export class HistorialProgresoPage implements OnInit {
     }
   }
 
-  // 📤 Subir imagen + peso al backend
   subirProgreso() {
     if (!this.pesoInput || !this.imagenSeleccionadaArchivo) {
       alert('Debe ingresar el peso y seleccionar una imagen.');
@@ -188,20 +171,17 @@ export class HistorialProgresoPage implements OnInit {
     formData.append('peso', this.pesoInput.toString());
     formData.append('imagen', this.imagenSeleccionadaArchivo);
 
-    this.http.post('http://localhost:3000/api/subir-foto-progreso', formData)
-
-      .subscribe({
-        next: () => {
-          alert('✅ Progreso subido con éxito');
-          this.pesoInput = 0;
-          this.imagenSeleccionadaArchivo = null;
-          this.cargarHistorial();
-          this.cargarPesos();
-        },
-        error: (err) => {
-          console.error('❌ Error registrando progreso:', err);
-          alert('Ocurrió un error al subir el progreso');
-        }
+    this.apiService.postFormData('subir-foto-progreso', formData)
+      .then(() => {
+        alert('✅ Progreso subido con éxito');
+        this.pesoInput = 0;
+        this.imagenSeleccionadaArchivo = null;
+        this.cargarHistorial();
+        this.cargarPesos();
+      })
+      .catch((err) => {
+        console.error('❌ Error registrando progreso:', err);
+        alert('Ocurrió un error al subir el progreso');
       });
   }
 }
