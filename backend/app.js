@@ -16,7 +16,7 @@ const rutinasRoutes = require('./routes/rutinas');
 const progresoClienteRoutes = require('./routes/progresoCliente');
 const resumenRoutes = require('./routes/resumen');
 const comentariosRoutes = require('./routes/comentarios');
-const testDbRoutes = require('./routes/test-db');
+
 
 
 // 🛡️ Middlewares
@@ -32,7 +32,6 @@ app.use('/api/rutinas', rutinasRoutes);
 app.use(progresoClienteRoutes);         // sin prefijo si ya lo tiene interno
 app.use('/api', resumenRoutes);
 app.use('/api', comentariosRoutes);
-app.use('/api', testDbRoutes);
 
 
 // 🛠️ Ruta base para prueba
