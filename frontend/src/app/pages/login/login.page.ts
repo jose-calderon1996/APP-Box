@@ -27,36 +27,43 @@ export class LoginPage {
     this.correo = this.correo.trim().toLowerCase();
 
     if (!this.correo || !this.password) {
-      alert('⚠️ Por favor, completa todos los campos.');
+      alert('Por favor, completa todos los campos.');
       return;
     }
-    // 🔁 Redirección a la ruta genérica, el guard decidirá dónde enviarlo
-    await this.router.navigate(['/redirect']);
 
     try {
       console.log('📨 Iniciando sesión con:', this.correo);
 
-      // 🔐 Iniciar sesión con Firebase
       const userCredential = await this.authService.iniciarSesion(this.correo, this.password);
       const uid = userCredential.user?.uid;
 
-      // 🔎 Obtener datos del usuario desde MySQL por UID
       const userData = await this.apiService.get(`usuarios/uid/${uid}`);
       console.log('🧠 userData recibido:', userData);
 
-      // 💾 Guardar todo el usuario en localStorage
-      localStorage.setItem('usuario', JSON.stringify(userData));
+      // Guardar datos en localStorage
+      localStorage.setItem('id_usuario', userData.id_usuario);
+      localStorage.setItem('tipo_usuario', userData.tipo_usuario);
+      localStorage.setItem('nombre', userData.nombre);
+      localStorage.setItem('correo', userData.correo);
 
-      // 📝 Registrar log de acceso en MySQL
+      await this.router.navigate(['/redirect']);
+
+      
+
+
+      // Registrar log de acceso
       await this.apiService.post('log-acceso/registrar', {
         id_usuario: userData.id_usuario
       });
 
       
 
+      // Redirección genérica, el guard se encarga del acceso
+      
+
     } catch (error) {
       console.error('❌ Error en el login:', error);
-      alert('❌ Correo o contraseña incorrectos.');
+      alert('Correo o contraseña incorrectos.');
     }
   }
 }

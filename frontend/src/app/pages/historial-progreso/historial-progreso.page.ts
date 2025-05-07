@@ -8,7 +8,6 @@ import { IonicModule, IonModal } from '@ionic/angular';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { ApiService } from '../../services/api.service';
-import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-historial-progreso',
@@ -82,24 +81,22 @@ export class HistorialProgresoPage implements OnInit {
   porcentajeAvance: number = 0;
 
   constructor(
-    private apiService: ApiService,
-    private authService: AuthService
+    private apiService: ApiService
   ) {}
 
   // ✅ Se ejecuta al iniciar la vista
   ngOnInit() {
-    const usuario = this.authService.getUsuarioActual();
-    this.idCliente = usuario?.id_usuario;
-
-    console.log('🟢 ID Cliente logueado:', this.idCliente); // Para depurar
-
-    if (this.idCliente) {
+    const id_usuario = localStorage.getItem('id_usuario');
+    if (id_usuario) {
+      this.idCliente = Number(id_usuario);
+      console.log('🟢 ID Cliente logueado:', this.idCliente);
       this.cargarHistorial();
       this.cargarPesos();
     } else {
       console.warn('⚠️ No hay cliente logueado en el localStorage');
     }
   }
+  
 
   // 🔃 Obtiene el historial del progreso desde el backend
   cargarHistorial() {
