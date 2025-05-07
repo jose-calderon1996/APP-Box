@@ -72,11 +72,7 @@ const routes: Routes = [
     canActivate: [RolGuard],
     data: { tipo: 'cliente' }
   },
-  {
-    path: 'redirect',
-    canActivate: [RolGuard],
-    loadComponent: () => import('./pages/bienvenida/bienvenida.page').then(m => m.BienvenidaPage)
-  },
+  
   {
     path: 'panel-dueno',
     loadComponent: () => import('./pages/panel-dueno/panel-dueno.page').then(m => m.PanelDuenoPage),

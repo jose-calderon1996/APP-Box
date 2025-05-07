@@ -11,4 +11,4 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './bienvenida.page.html',
   styleUrls: ['./bienvenida.page.scss'],
 })
-export class BienvenidaPage {}
+export class BienvenidaPage { }
