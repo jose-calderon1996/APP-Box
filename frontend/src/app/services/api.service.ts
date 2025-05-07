@@ -7,7 +7,9 @@ import { firstValueFrom } from 'rxjs';
 })
 export class ApiService {
   // 🌐 Dirección base del backend en Render
-  private URL = 'https://app-box-gesb.onrender.com/api';
+  
+  private URL = 'https://app-box-v10.onrender.com/api';
+
 
   constructor(private http: HttpClient) {}
 

@@ -4,7 +4,8 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private baseUrl = 'http://localhost:3000/api';
+  private baseUrl = 'https://app-box-v10.onrender.com/api';
+
 
 
   constructor(private afAuth: AngularFireAuth, private http: HttpClient) {}
