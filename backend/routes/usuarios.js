@@ -33,15 +33,14 @@ router.get('/uid/:uid', async (req, res) => {
 
   try {
     const [results] = await db.query('SELECT * FROM usuarios WHERE uid_firebase = ?', [uid]);
-    
-    console.log('🔍 Resultado de búsqueda por UID:', results);  // 🛠 LOG DE DEPURACIÓN
+
+    console.log('🔍 Resultado de búsqueda por UID:', results);
 
     if (results.length === 0) {
       return res.status(404).send({ error: 'Usuario no encontrado' });
     }
 
-    res.send(results[0]);  // 👈 Devuelve el primer resultado
-
+    res.send(results[0]);
   } catch (err) {
     console.error('❌ Error en consulta UID:', err);
     res.status(500).send({ error: 'Error interno al buscar usuario' });
@@ -77,6 +76,17 @@ router.post('/registrar-cliente', async (req, res) => {
   } catch (err) {
     console.error('❌ Error al registrar cliente:', err);
     res.status(500).json({ error: 'Error interno al registrar cliente', detalle: err });
+  }
+});
+
+// 🧾 Ruta para obtener todos los usuarios
+router.get('/', async (req, res) => {
+  try {
+    const [rows] = await db.query('SELECT * FROM usuarios');
+    res.json(rows);
+  } catch (error) {
+    console.error('❌ Error al obtener usuarios:', error);
+    res.status(500).json({ error: 'Error al obtener usuarios' });
   }
 });
 
