@@ -1,3 +1,4 @@
+// 📦 Módulo para conexión con MySQL
 const mysql = require('mysql2/promise');
 require('dotenv').config();  // Cargar las variables de entorno desde el archivo .env
 
@@ -13,13 +14,5 @@ const pool = mysql.createPool({
   connectTimeout: 10000               // Tiempo de espera para evitar un error de timeout
 });
 
-async function testConnection() {
-  try {
-    const [results] = await pool.query('SELECT 1');
-    console.log('Conexión exitosa a la base de datos');
-  } catch (err) {
-    console.error('Error al conectar con la base de datos:', err);
-  }
-}
-
-testConnection();
+// Exporta el pool para que lo puedas usar en otros archivos
+module.exports = pool;
