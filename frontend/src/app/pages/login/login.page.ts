@@ -48,7 +48,9 @@ export class LoginPage {
       localStorage.setItem('nombre', userData.nombre);
       localStorage.setItem('correo', userData.correo);
 
-      // 📝 Paso 4: Registrar log de acceso (no bloquea el flujo)
+      console.log('📌 Hasta acá llegó. Intentando registrar log y redirigir...');
+
+      // 📝 Paso 4: Registrar log de acceso (NO bloquea el flujo)
       this.apiService.post('log-acceso/registrar', {
         id_usuario: userData.id_usuario
       }).then(() => {
@@ -57,7 +59,7 @@ export class LoginPage {
         console.error('❌ Error registrando log de acceso:', err);
       });
 
-      // 🚀 Paso 5: Redirección según tipo de usuario
+      // 🚀 Paso 5: Redireccionar al panel correspondiente
       console.log('🎯 Tipo de usuario:', userData.tipo_usuario);
       switch (userData.tipo_usuario) {
         case 'cliente':
