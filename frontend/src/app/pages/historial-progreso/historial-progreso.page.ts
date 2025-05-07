@@ -21,11 +21,10 @@ export class HistorialProgresoPage implements OnInit {
   historial: any[] = [];
   idCliente: number | null = null;
 
-  // 🖼️ Imagen seleccionada para ampliar en modal
   imagenSeleccionada: string | null = null;
   @ViewChild(IonModal) modal!: IonModal;
 
-  // 📈 Configuración del gráfico de línea (evolución de peso)
+  // 📈 Configuración del gráfico de línea en rojo oscuro
   lineChartData: ChartConfiguration['data'] = {
     labels: [],
     datasets: [
@@ -34,10 +33,10 @@ export class HistorialProgresoPage implements OnInit {
         label: 'Evolución de Peso',
         fill: true,
         tension: 0.4,
-        borderColor: '#4CAF50',
-        backgroundColor: 'rgba(76, 175, 80, 0.3)',
-        pointBackgroundColor: '#2e7d32',
-        pointBorderColor: '#1b5e20',
+        borderColor: '#b00020',
+        backgroundColor: 'rgba(176, 0, 32, 0.2)',
+        pointBackgroundColor: '#b00020',
+        pointBorderColor: '#fff',
         pointRadius: 6,
         pointHoverRadius: 8,
       }
@@ -58,12 +57,14 @@ export class HistorialProgresoPage implements OnInit {
 
   lineChartType: ChartType = 'line';
 
-  // 🥧 Configuración del gráfico de pastel (avance hacia la meta)
+  // 🥧 Gráfico de pastel en rojo oscuro
   pieChartData: ChartConfiguration<'pie'>['data'] = {
     labels: ['Avance', 'Restante'],
     datasets: [{
       data: [0, 100],
-      backgroundColor: ['#4CAF50', '#e0e0e0'],
+      backgroundColor: ['#b00020', '#333'],
+      borderColor: ['#b00020', '#333'],
+      borderWidth: 1
     }]
   };
 
@@ -80,11 +81,8 @@ export class HistorialProgresoPage implements OnInit {
   pesoActual: number = 0;
   porcentajeAvance: number = 0;
 
-  constructor(
-    private apiService: ApiService
-  ) {}
+  constructor(private apiService: ApiService) {}
 
-  // ✅ Se ejecuta al iniciar la vista
   ngOnInit() {
     const id_usuario = localStorage.getItem('id_usuario');
     if (id_usuario) {
@@ -96,13 +94,11 @@ export class HistorialProgresoPage implements OnInit {
       console.warn('⚠️ No hay cliente logueado en el localStorage');
     }
   }
-  
 
-  // 🔃 Obtiene el historial del progreso desde el backend
   cargarHistorial() {
     this.apiService.get(`historial-progreso/${this.idCliente}`)
       .then((res) => {
-        console.log('📦 Historial recibido:', res); // DEBUG
+        console.log('📦 Historial recibido:', res);
         this.historial = res;
         this.lineChartData.labels = res.map((item: any) => this.formatearFecha(item.fecha));
         this.lineChartData.datasets[0].data = res.map((item: any) => item.peso);
@@ -112,7 +108,6 @@ export class HistorialProgresoPage implements OnInit {
       });
   }
 
-  // ⚖️ Obtiene peso inicial y actual para calcular avance
   cargarPesos() {
     this.apiService.get(`peso-inicial/${this.idCliente}`)
       .then((res) => {
@@ -133,14 +128,12 @@ export class HistorialProgresoPage implements OnInit {
       });
   }
 
-  // 🧮 Verifica si ya se tienen ambos pesos para calcular avance
   verificarDatos() {
     if (this.pesoInicial > 0 && this.pesoActual > 0) {
       this.calcularAvance();
     }
   }
 
-  // 📊 Calcula el porcentaje de avance y actualiza el gráfico de pastel
   calcularAvance() {
     const diferencia = this.pesoInicial - this.pesoActual;
     this.porcentajeAvance = (diferencia / this.pesoInicial) * 100;
@@ -151,19 +144,16 @@ export class HistorialProgresoPage implements OnInit {
     ];
   }
 
-  // 🖼️ Abre el modal para mostrar la imagen grande
   abrirImagen(url: string) {
     this.imagenSeleccionada = url;
     this.modal.present();
   }
 
-  // ❌ Cierra el modal de la imagen
   cerrarImagen() {
     this.modal.dismiss();
     this.imagenSeleccionada = null;
   }
 
-  // 🧾 Formatea fecha ISO a formato chileno dd/MM/yyyy
   formatearFecha(fechaISO: string): string {
     const fecha = new Date(fechaISO);
     const dia = fecha.getDate().toString().padStart(2, '0');

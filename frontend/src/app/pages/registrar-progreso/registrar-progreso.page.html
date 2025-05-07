@@ -1,16 +1,16 @@
 <ion-header>
-  <ion-toolbar color="success">
-    <ion-title class="ion-text-center">Registrar Mi Progreso</ion-title>
+  <ion-toolbar color="dark">
+    <ion-title class="titulo-rojo">Registrar Mi Progreso</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding fondo-oscuro">
 
   <form (submit)="guardarProgreso()" class="formulario-progreso">
 
-    <ion-card class="card-formulario">
+    <ion-card class="card-rojo">
       <ion-card-header>
-        <ion-card-title class="ion-text-center">Ingresa tu peso y foto</ion-card-title>
+        <ion-card-title class="titulo-rojo">Ingresa tu peso y foto</ion-card-title>
       </ion-card-header>
 
       <ion-card-content>
@@ -21,14 +21,14 @@
         </ion-item>
 
         <div class="subir-foto">
-          <label class="custom-file-upload">
+          <label class="custom-file-upload-rojo">
             📷 Elegir Foto
             <input type="file" (change)="cargarImagen($event)" accept="image/*" hidden />
           </label>
-          <p *ngIf="imagen" class="nombre-archivo">✔️ {{ imagen?.name }}</p>
+          <p *ngIf="imagen" class="nombre-archivo-rojo">✔️ {{ imagen?.name }}</p>
         </div>
 
-        <ion-button expand="block" type="submit" color="success" [disabled]="cargando">
+        <ion-button expand="block" type="submit" class="boton-rojo" [disabled]="cargando">
           {{ cargando ? 'Guardando...' : 'Guardar Progreso' }}
         </ion-button>
 
