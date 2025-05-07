@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
 import { ApiService } from '../../services/api.service';
-import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'app-login',
@@ -21,8 +20,7 @@ export class LoginPage {
   constructor(
     private authService: AuthService,
     private apiService: ApiService,
-    private router: Router,
-    private firebaseService: FirebaseService
+    private router: Router
   ) {}
 
   async login() {
@@ -59,28 +57,7 @@ export class LoginPage {
         console.error('❌ Error registrando log de acceso:', err);
       });
 
-      // 🔔 Paso 5: Obtener token FCM y enviar notificación
-      try {
-        const tokenFCM = await this.firebaseService.obtenerToken();
-        if (tokenFCM) {
-          const notificacion = {
-            id_usuario: userData.id_usuario,
-            token: tokenFCM,
-            titulo: 'Has iniciado sesión',
-            cuerpo: 'Buen entrenamiento 💪 No olvides explorar todas las funcionalidades',
-            tipo: 'inicio_sesion'
-          };
-
-          await this.apiService.post('notificaciones/enviar', notificacion);
-          console.log('✅ Notificación enviada correctamente');
-        } else {
-          console.warn('⚠️ No se pudo obtener el token FCM');
-        }
-      } catch (err) {
-        console.error('❌ Error al obtener token FCM o enviar notificación:', err);
-      }
-
-      // 🚀 Paso 6: Redirección según tipo de usuario
+      // 🚀 Paso 5: Redirección según tipo de usuario
       console.log('🎯 Tipo de usuario:', userData.tipo_usuario);
       switch (userData.tipo_usuario) {
         case 'cliente':
