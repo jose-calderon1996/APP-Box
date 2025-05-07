@@ -34,7 +34,7 @@ export class LoginPage {
     }
 
     try {
-      console.log('📨 Iniciando sesion con:', this.correo);
+      console.log('📨 Iniciando sesión con:', this.correo);
 
       // 🔐 Paso 1: Login con Firebase Authentication
       const userCredential = await this.authService.iniciarSesion(this.correo, this.password);
@@ -50,9 +50,7 @@ export class LoginPage {
       localStorage.setItem('nombre', userData.nombre);
       localStorage.setItem('correo', userData.correo);
 
-      console.log('📌 Hasta aca llego. Intentando registrar log y redirigir...');
-
-      // 📝 Paso 4: Registrar log de acceso (NO bloquea el flujo)
+      // 📝 Paso 4: Registrar log de acceso (no bloquea el flujo)
       this.apiService.post('log-acceso/registrar', {
         id_usuario: userData.id_usuario
       }).then(() => {
@@ -61,7 +59,28 @@ export class LoginPage {
         console.error('❌ Error registrando log de acceso:', err);
       });
 
-      // 🚀 Paso 5: Redireccionar al panel correspondiente
+      // 🔔 Paso 5: Obtener token FCM y enviar notificación
+      try {
+        const tokenFCM = await this.firebaseService.obtenerToken();
+        if (tokenFCM) {
+          const notificacion = {
+            id_usuario: userData.id_usuario,
+            token: tokenFCM,
+            titulo: 'Has iniciado sesión',
+            cuerpo: 'Buen entrenamiento 💪 No olvides explorar todas las funcionalidades',
+            tipo: 'inicio_sesion'
+          };
+
+          await this.apiService.post('notificaciones/enviar', notificacion);
+          console.log('✅ Notificación enviada correctamente');
+        } else {
+          console.warn('⚠️ No se pudo obtener el token FCM');
+        }
+      } catch (err) {
+        console.error('❌ Error al obtener token FCM o enviar notificación:', err);
+      }
+
+      // 🚀 Paso 6: Redirección según tipo de usuario
       console.log('🎯 Tipo de usuario:', userData.tipo_usuario);
       switch (userData.tipo_usuario) {
         case 'cliente':
@@ -82,32 +101,11 @@ export class LoginPage {
           break;
       }
 
-      console.log('✅ Redireccion completada');
-
-      // 🔔 Paso 6: Obtener token FCM y enviar notificacion
-      try {
-        const tokenFCM = await this.firebaseService.obtenerToken();
-        if (tokenFCM) {
-          const notificacion = {
-            id_usuario: userData.id_usuario,
-            token: tokenFCM,
-            titulo: 'Has iniciado sesion',
-            cuerpo: 'Buen entrenamiento 💪 No olvides explorar todas las funcionalidades',
-            tipo: 'inicio_sesion'
-          };
-
-          await this.apiService.post('notificaciones/enviar', notificacion);
-          console.log('✅ Notificacion enviada correctamente');
-        } else {
-          console.warn('⚠️ No se pudo obtener el token FCM');
-        }
-      } catch (err) {
-        console.error('❌ Error al obtener token FCM o enviar notificacion:', err);
-      }
+      console.log('✅ Redirección completada');
 
     } catch (error) {
       console.error('❌ Error en el login:', error);
-      alert('Correo o contrasena incorrectos o el usuario ha sido eliminado.');
+      alert('Correo o contraseña incorrectos o el usuario ha sido eliminado.');
     }
   }
 }
