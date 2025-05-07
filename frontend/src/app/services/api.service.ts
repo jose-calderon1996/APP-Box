@@ -38,16 +38,6 @@ export class ApiService {
 
   // 📦 Enviar archivos y otros datos con FormData
   async postFormData(endpoint: string, formData: FormData): Promise<any> {
-    const response = await fetch(`${this.URL}/${endpoint}`, {
-      method: 'POST',
-      body: formData
-    });
-
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.message || 'Error al enviar formulario');
-    }
-
-    return await response.json();
+    return await firstValueFrom(this.http.post(`${this.URL}/${endpoint}`, formData));
   }
 }
