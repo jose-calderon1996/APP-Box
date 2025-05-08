@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 
-declare var OneSignal: any; // 👉 Permite usar OneSignal sin errores de tipo
+declare var OneSignal: any; // 👈 Permite usar OneSignal sin error de tipo
 
 @Component({
   selector: 'app-root',
@@ -16,20 +16,27 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // 🆔 ID de tu app en OneSignal
+      if (typeof OneSignal === 'undefined') {
+        console.warn('❌ OneSignal no está definido. Solo funciona en APK real.');
+        return;
+      }
+
+      console.log('✅ OneSignal está definido. Inicializando...');
+
+      // 🆔 Tu App ID de OneSignal
       OneSignal.setAppId('d345ceb8-194d-4123-88dd-9680b46191f0');
 
-      // 🔔 Solicita permisos de notificación
+      // 🔔 Pedir permiso de notificaciones
       OneSignal.promptForPushNotificationsWithUserResponse((accepted: boolean) => {
         console.log('🔔 Permiso aceptado:', accepted);
       });
 
-      // 📬 Maneja notificaciones abiertas
+      // 📬 Manejar notificaciones abiertas
       OneSignal.setNotificationOpenedHandler((notification: any) => {
         console.log('📬 Notificación abierta:', notification);
       });
 
-      // 📲 Obtiene el Player ID del dispositivo
+      // 📲 Obtener Player ID
       OneSignal.getDeviceState((state: any) => {
         console.log('📲 Player ID:', state.userId);
       });
