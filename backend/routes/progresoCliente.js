@@ -12,6 +12,8 @@ const upload = multer({ storage });
 
 // 🚀 SUBIR FOTO Y REGISTRAR PROGRESO (peso + foto en Cloudinary)
 router.post('/api/subir-foto-progreso', upload.single('imagen'), async (req, res) => {
+  console.log('🚀 Entró a /api/subir-foto-progreso'); // 👈 log clave
+
   const { id_cliente, peso } = req.body;
   const archivo = req.file;
 
@@ -55,6 +57,7 @@ router.post('/api/subir-foto-progreso', upload.single('imagen'), async (req, res
         INSERT INTO progreso_cliente (id_cliente, peso, fecha)
         VALUES (?, ?, ?)
       `, [id_cliente, peso, fecha]);
+      console.log('✅ Insert en progreso_cliente exitoso');
     } catch (error) {
       console.error('❌ Error al insertar en progreso_cliente:', error);
       return res.status(500).json({
@@ -71,6 +74,7 @@ router.post('/api/subir-foto-progreso', upload.single('imagen'), async (req, res
         INSERT INTO fotos_progreso (id_usuario_cliente, peso, url_foto, fecha)
         VALUES (?, ?, ?, ?)
       `, [id_cliente, peso, url_foto, fecha]);
+      console.log('✅ Insert en fotos_progreso exitoso');
     } catch (error) {
       console.error('❌ Error al insertar en fotos_progreso:', error);
       return res.status(500).json({
@@ -94,4 +98,3 @@ router.post('/api/subir-foto-progreso', upload.single('imagen'), async (req, res
 });
 
 module.exports = router;
-///
