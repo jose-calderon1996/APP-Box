@@ -19,6 +19,9 @@ export class RegistrarProgresoPage {
   cargando: boolean = false;
   idCliente: number = 0;
 
+  // ✅ Cambia esta constante si alguna vez modificas la URL base del backend
+  private backendUrl = 'https://app-box-v10.onrender.com/api';
+
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
@@ -55,7 +58,9 @@ export class RegistrarProgresoPage {
     formData.append('peso', this.peso.toString());
     formData.append('imagen', this.imagen);
 
-    this.http.post('https://app-box-gesb.onrender.com/api/subir-foto-progreso', formData)
+    console.log('🌐 Enviando a:', `${this.backendUrl}/subir-foto-progreso`);
+
+    this.http.post(`${this.backendUrl}/subir-foto-progreso`, formData)
       .subscribe({
         next: () => {
           alert('✅ Progreso registrado con éxito');
