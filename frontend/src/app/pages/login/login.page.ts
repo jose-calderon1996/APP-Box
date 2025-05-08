@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
 import { ApiService } from '../../services/api.service';
 
+declare var OneSignal: any; // 👈 Para poder usar OneSignal sin error de tipo
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -34,7 +36,7 @@ export class LoginPage {
     try {
       console.log('📨 Iniciando sesión con:', this.correo);
 
-      // 🔐 Paso 1: Login con Firebase Authentication
+      // 🔐 Paso 1: Login con Firebase
       const userCredential = await this.authService.iniciarSesion(this.correo, this.password);
       const uid = userCredential.user?.uid;
 
@@ -48,9 +50,26 @@ export class LoginPage {
       localStorage.setItem('nombre', userData.nombre);
       localStorage.setItem('correo', userData.correo);
 
-      console.log('📌 Hasta acá llegó. Intentando registrar log y redirigir...');
+      // 📲 Paso 4: Obtener el player_id de OneSignal
+      let playerId = null;
+      await OneSignal.getDeviceState((state: any) => {
+        playerId = state.userId;
+        console.log('📲 Player ID obtenido:', playerId);
+      });
 
-      // 📝 Paso 4: Registrar log de acceso (NO bloquea el flujo)
+      // 🔔 Paso 5: Enviar notificación desde el backend
+      if (playerId) {
+        await this.apiService.post('notificaciones', {
+          titulo: 'Inicio de sesión exitoso',
+          mensaje: `Hola ${userData.nombre}, ¡bienvenido de nuevo!`,
+          playerIds: [playerId]
+        });
+        console.log('✅ Notificación enviada desde login');
+      } else {
+        console.warn('⚠️ No se obtuvo playerId, no se envió notificación');
+      }
+
+      // 📝 Paso 6: Registrar log de acceso
       this.apiService.post('log-acceso/registrar', {
         id_usuario: userData.id_usuario
       }).then(() => {
@@ -59,28 +78,21 @@ export class LoginPage {
         console.error('❌ Error registrando log de acceso:', err);
       });
 
-      // 🚀 Paso 5: Redireccionar al panel correspondiente
-      console.log('🎯 Tipo de usuario:', userData.tipo_usuario);
+      // 🚀 Paso 7: Redirección por tipo de usuario
       switch (userData.tipo_usuario) {
         case 'cliente':
-          console.log('➡️ Redirigiendo a /panel-cliente');
           await this.router.navigate(['/panel-cliente']);
           break;
         case 'entrenador':
-          console.log('➡️ Redirigiendo a /panel-entrenador');
           await this.router.navigate(['/panel-entrenador']);
           break;
         case 'dueño':
-          console.log('➡️ Redirigiendo a /panel-dueno');
           await this.router.navigate(['/panel-dueno']);
           break;
         default:
-          console.warn('❌ Tipo de usuario desconocido. Redirigiendo a login');
           await this.router.navigate(['/login']);
           break;
       }
-
-      console.log('✅ Redirección completada');
 
     } catch (error) {
       console.error('❌ Error en el login:', error);
