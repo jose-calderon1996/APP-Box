@@ -15,14 +15,12 @@ router.post('/api/subir-foto-progreso', upload.single('imagen'), async (req, res
   const { id_cliente, peso } = req.body;
   const archivo = req.file;
 
-  // Mostrar datos recibidos
   console.log('📥 Datos recibidos:', {
     id_cliente,
     peso,
     archivo: archivo?.originalname || 'archivo no recibido'
   });
 
-  // Validación básica
   if (!id_cliente || !peso || !archivo) {
     console.warn('⚠️ Faltan datos en la solicitud');
     return res.status(400).json({ message: 'Faltan datos o imagen' });
@@ -31,7 +29,7 @@ router.post('/api/subir-foto-progreso', upload.single('imagen'), async (req, res
   const fecha = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
 
   try {
-    // Subir a Cloudinary desde buffer
+    // Subir imagen a Cloudinary desde buffer
     const subirACloudinary = (archivo) => {
       return new Promise((resolve, reject) => {
         const stream = cloudinary.uploader.upload_stream(
@@ -50,30 +48,47 @@ router.post('/api/subir-foto-progreso', upload.single('imagen'), async (req, res
     const url_foto = resultado.secure_url;
     console.log('✅ Imagen subida con éxito:', url_foto);
 
-    // Insertar en progreso_cliente
+    // 🔹 INSERT en progreso_cliente
     console.log('📝 Insertando en progreso_cliente con:', { id_cliente, peso, fecha });
-    await db.query(`
-      INSERT INTO progreso_cliente (id_cliente, peso, fecha)
-      VALUES (?, ?, ?)
-    `, [id_cliente, peso, fecha]);
+    try {
+      await db.query(`
+        INSERT INTO progreso_cliente (id_cliente, peso, fecha)
+        VALUES (?, ?, ?)
+      `, [id_cliente, peso, fecha]);
+    } catch (error) {
+      console.error('❌ Error al insertar en progreso_cliente:', error);
+      return res.status(500).json({
+        message: 'Error al insertar en progreso_cliente',
+        error: error.message,
+        stack: error.stack
+      });
+    }
 
-    // Insertar en fotos_progreso
+    // 🔹 INSERT en fotos_progreso
     console.log('📝 Insertando en fotos_progreso con:', { id_cliente, peso, url_foto, fecha });
-    await db.query(`
-      INSERT INTO fotos_progreso (id_usuario_cliente, peso, url_foto, fecha)
-      VALUES (?, ?, ?, ?)
-    `, [id_cliente, peso, url_foto, fecha]);
+    try {
+      await db.query(`
+        INSERT INTO fotos_progreso (id_usuario_cliente, peso, url_foto, fecha)
+        VALUES (?, ?, ?, ?)
+      `, [id_cliente, peso, url_foto, fecha]);
+    } catch (error) {
+      console.error('❌ Error al insertar en fotos_progreso:', error);
+      return res.status(500).json({
+        message: 'Error al insertar en fotos_progreso',
+        error: error.message,
+        stack: error.stack
+      });
+    }
 
     console.log('✅ Registro de progreso completado');
     res.status(201).json({ message: 'Foto subida y progreso registrado', url: url_foto });
 
   } catch (error) {
-    console.error('❌ Error completo al subir progreso:', error);
+    console.error('❌ Error inesperado al subir progreso:', error);
     res.status(500).json({
-      message: 'Error al subir progreso',
+      message: 'Error inesperado al subir progreso',
       error: error.message,
-      stack: error.stack,
-      detalle: error
+      stack: error.stack
     });
   }
 });
