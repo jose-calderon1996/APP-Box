@@ -15,13 +15,14 @@ router.post('/api/subir-foto-progreso', upload.single('imagen'), async (req, res
   const { id_cliente, peso } = req.body;
   const archivo = req.file;
 
-  // Verificamos que llegan los datos correctamente
+  // Mostrar datos recibidos
   console.log('📥 Datos recibidos:', {
     id_cliente,
     peso,
     archivo: archivo?.originalname || 'archivo no recibido'
   });
 
+  // Validación básica
   if (!id_cliente || !peso || !archivo) {
     console.warn('⚠️ Faltan datos en la solicitud');
     return res.status(400).json({ message: 'Faltan datos o imagen' });
@@ -30,7 +31,7 @@ router.post('/api/subir-foto-progreso', upload.single('imagen'), async (req, res
   const fecha = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
 
   try {
-    // Subir imagen a Cloudinary desde buffer
+    // Subir a Cloudinary desde buffer
     const subirACloudinary = (archivo) => {
       return new Promise((resolve, reject) => {
         const stream = cloudinary.uploader.upload_stream(
@@ -50,14 +51,14 @@ router.post('/api/subir-foto-progreso', upload.single('imagen'), async (req, res
     console.log('✅ Imagen subida con éxito:', url_foto);
 
     // Insertar en progreso_cliente
-    console.log('📝 Insertando en progreso_cliente...');
+    console.log('📝 Insertando en progreso_cliente con:', { id_cliente, peso, fecha });
     await db.query(`
       INSERT INTO progreso_cliente (id_cliente, peso, fecha)
       VALUES (?, ?, ?)
     `, [id_cliente, peso, fecha]);
 
     // Insertar en fotos_progreso
-    console.log('📝 Insertando en fotos_progreso...');
+    console.log('📝 Insertando en fotos_progreso con:', { id_cliente, peso, url_foto, fecha });
     await db.query(`
       INSERT INTO fotos_progreso (id_usuario_cliente, peso, url_foto, fecha)
       VALUES (?, ?, ?, ?)
