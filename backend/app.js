@@ -16,7 +16,7 @@ const rutinasRoutes = require('./routes/rutinas');
 const progresoClienteRoutes = require('./routes/progresoCliente');
 const resumenRoutes = require('./routes/resumen');
 const comentariosRoutes = require('./routes/comentarios');
-const notificacionesRouter = require('./routes/notificaciones');
+
 
 
 // 🛡️ Middlewares
