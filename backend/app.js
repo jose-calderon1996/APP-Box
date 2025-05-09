@@ -32,7 +32,7 @@ app.use('/api/rutinas', rutinasRoutes);
 app.use(progresoClienteRoutes);         // sin prefijo si ya lo tiene interno
 app.use('/api', resumenRoutes);
 app.use('/api', comentariosRoutes);
-app.use('/api/notificaciones', notificacionesRouter);
+
 
 
 // 🛠️ Ruta base para prueba
