@@ -9,7 +9,7 @@ router.post('/crear-transaccion', async (req, res) => {
 
   const buyOrder = 'orden_' + Math.floor(Math.random() * 1000000);
   const sessionId = 'sesion_' + Math.floor(Math.random() * 1000000);
-  const returnUrl = 'https://app-box-v10.onrender.com/pago-confirmado';
+  const returnUrl = 'https://app-box-v10.onrender.com/pago-confirmado'; // cambios de redireccion a la ruta en render
 
 
   try {
