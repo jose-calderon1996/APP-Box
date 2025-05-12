@@ -5,24 +5,46 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <div *ngIf="estado === 'pendiente'">
-    <ion-spinner></ion-spinner>
+  <div *ngIf="estado === 'pendiente'" class="ion-text-center">
+    <ion-spinner name="dots"></ion-spinner>
     <p>Confirmando tu pago...</p>
   </div>
 
-  <div *ngIf="estado === 'aprobado'">
-    <h2 style="color: green">✅ ¡Pago aprobado!</h2>
-  </div>
+  <ion-card *ngIf="estado === 'aprobado'" color="success">
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">✅ ¡Pago aprobado!</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="ion-text-center">
+      <p>Gracias por tu compra. Tu suscripción ha sido activada correctamente.</p>
+      <ion-button routerLink="/home" expand="full" color="light">Ir al Inicio</ion-button>
+    </ion-card-content>
+  </ion-card>
 
-  <div *ngIf="estado === 'rechazado'">
-    <h2 style="color: red">❌ Pago rechazado</h2>
-  </div>
+  <ion-card *ngIf="estado === 'rechazado'" color="danger">
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">❌ Pago rechazado</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="ion-text-center">
+      <p>Hubo un problema con el pago. Por favor, intenta nuevamente.</p>
+      <ion-button routerLink="/pagar-transbank" expand="full" color="light">Reintentar</ion-button>
+    </ion-card-content>
+  </ion-card>
 
-  <div *ngIf="estado === 'error'">
-    <h2 style="color: red">⚠️ Error al confirmar el pago</h2>
-  </div>
+  <ion-card *ngIf="estado === 'error'" color="warning">
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">⚠️ Error</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="ion-text-center">
+      <p>No se pudo confirmar el pago.</p>
+    </ion-card-content>
+  </ion-card>
 
-  <div *ngIf="estado === 'sin token'">
-    <h2 style="color: red">⚠️ No se recibió token</h2>
-  </div>
+  <ion-card *ngIf="estado === 'sin token'" color="medium">
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">Token no recibido</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="ion-text-center">
+      <p>No se recibió el token de pago desde Transbank.</p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
