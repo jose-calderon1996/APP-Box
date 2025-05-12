@@ -9,7 +9,8 @@ router.post('/crear-transaccion', async (req, res) => {
 
   const buyOrder = 'orden_' + Math.floor(Math.random() * 1000000);
   const sessionId = 'sesion_' + Math.floor(Math.random() * 1000000);
-  const returnUrl = 'https://app-box-v10.onrender.com/pago-confirmado'; // cambios de redireccion a la ruta en render
+  const returnUrl = 'https://app-box-v10.onrender.com/pago-confirmado';
+
 
 
   try {
@@ -41,5 +42,15 @@ router.post('/confirmar-transaccion', async (req, res) => {
     res.status(500).json({ error: 'Error al confirmar el pago' });
   }
 });
+
+
+// 🔁 Redirecciona con token_ws a tu app Ionic
+router.get('/redirigir-app', (req, res) => {
+  const token = req.query.token_ws;
+
+  // Redirige a la app móvil o vista web con el token
+  res.redirect(`https://app-box-v10.web.app/pago-confirmado?token_ws=${token}`);
+});
+
 
 module.exports = router;
