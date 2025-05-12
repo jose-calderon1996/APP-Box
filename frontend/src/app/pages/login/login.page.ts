@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
 import { ApiService } from '../../services/api.service';
+import { LocalNotifications } from '@capacitor/local-notifications'; // Importar LocalNotifications
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,34 @@ export class LoginPage {
     private apiService: ApiService,
     private router: Router
   ) {}
+
+  // Solicitar permisos para notificaciones
+  async requestNotificationPermission() {
+    const permission = await LocalNotifications.requestPermissions();
+    if (permission.display === 'granted') {
+      console.log('Permiso concedido para notificaciones');
+    }
+  }
+
+  // Mostrar notificación después de un login exitoso
+  async showNotification() {
+    await LocalNotifications.schedule({
+      notifications: [
+        {
+          title: '¡Bienvenidos Bastardos!',
+          body: 'nesesito que se peguen sus commits o son gays?',
+          id: 1,
+          schedule: { at: new Date(Date.now() + 1000) }, // La notificación aparece después de 1 segundo
+          smallIcon: 'ic_stat_icon_config_sample', // Icono de la notificación
+        },
+      ],
+    });
+  }
+
+  // Llamar a la función para solicitar permisos al cargar la página
+  async ngOnInit() {
+    await this.requestNotificationPermission();
+  }
 
   async login() {
     this.correo = this.correo.trim().toLowerCase();
@@ -81,6 +110,9 @@ export class LoginPage {
       }
 
       console.log('✅ Redirección completada');
+
+      // Mostrar la notificación local después de login exitoso
+      await this.showNotification();
 
     } catch (error) {
       console.error('❌ Error en el login:', error);
