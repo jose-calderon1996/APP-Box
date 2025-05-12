@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { RolGuard } from './guards/rol.guard';
 import { PagarTransbankPage } from './pages/pagar-transbank/pagar-transbank.page';
+import { PagoConfirmadoPage } from './pages/pago-confirmado/pago-confirmado.page';
 
 const routes: Routes = [
   {
@@ -88,6 +89,10 @@ const routes: Routes = [
   {
     path: 'pagar-transbank',
     component: PagarTransbankPage, // 👈 Importamos directamente porque es standalone
+  },
+  {
+    path: 'pago-confirmado',
+    component: PagoConfirmadoPage, // 👈 standalone directo
   },
   
   

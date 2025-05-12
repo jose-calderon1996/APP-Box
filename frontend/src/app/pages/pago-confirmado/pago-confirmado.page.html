@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Resultado del Pago</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="estado === 'pendiente'">
+    <ion-spinner></ion-spinner>
+    <p>Confirmando tu pago...</p>
+  </div>
+
+  <div *ngIf="estado === 'aprobado'">
+    <h2 style="color: green">✅ ¡Pago aprobado!</h2>
+  </div>
+
+  <div *ngIf="estado === 'rechazado'">
+    <h2 style="color: red">❌ Pago rechazado</h2>
+  </div>
+
+  <div *ngIf="estado === 'error'">
+    <h2 style="color: red">⚠️ Error al confirmar el pago</h2>
+  </div>
+
+  <div *ngIf="estado === 'sin token'">
+    <h2 style="color: red">⚠️ No se recibió token</h2>
+  </div>
+</ion-content>
