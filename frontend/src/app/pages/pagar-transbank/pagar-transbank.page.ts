@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
-
 import { ApiService } from '../../services/api.service';
 
 @Component({
@@ -14,20 +13,23 @@ import { ApiService } from '../../services/api.service';
   styleUrls: ['./pagar-transbank.page.scss'],
 })
 export class PagarTransbankPage {
-  monto: number = 0; // Solo guarda el valor a pagar
+  monto: number = 0;
+  tipoSeleccionado: string = ''; // 👈 Esto se mostrará en el botón final
 
   constructor(private apiService: ApiService) {}
 
-  // Elegir una membresía (solo define el monto)
-  seleccionarMembresia(monto: number) {
+  // ✅ Función para seleccionar membresía y asignar el tipo
+  seleccionarMembresia(monto: number, tipo: string) {
     this.monto = monto;
+    this.tipoSeleccionado = tipo;
   }
 
-  // Enviar la solicitud de pago
+  // ✅ Lógica de redirección a Transbank
   async iniciarPago() {
     try {
       const respuesta = await this.apiService.post('pagos/crear-transaccion', {
         monto: this.monto
+        // También podrías enviar el tipo aquí si el backend lo necesita más adelante
       });
 
       const url = respuesta.url;
