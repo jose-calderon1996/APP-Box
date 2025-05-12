@@ -1,10 +1,11 @@
-const { IntegrationApiKeys, IntegrationCommerceCodes, Environment, WebpayPlus } = require('transbank-sdk');
+const { Options, IntegrationApiKeys, IntegrationCommerceCodes, Environment, WebpayPlus } = require('transbank-sdk');
 
+// ✅ Creamos la instancia de WebpayPlus con las opciones correctas
 const webpay = new WebpayPlus.Transaction(
-  new WebpayPlus.Options(
-    IntegrationCommerceCodes.WEBPAY_PLUS,  // '597055555532'
-    IntegrationApiKeys.WEBPAY,             // API key pública
-    Environment.Integration                // Ambiente sandbox
+  new Options(
+    IntegrationCommerceCodes.WEBPAY_PLUS, // 597055555532
+    IntegrationApiKeys.WEBPAY,            // API Key pública
+    Environment.Integration               // Modo sandbox
   )
 );
 
