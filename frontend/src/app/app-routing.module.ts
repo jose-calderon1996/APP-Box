@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { RolGuard } from './guards/rol.guard';
+import { PagarTransbankPage } from './pages/pagar-transbank/pagar-transbank.page';
 
 const routes: Routes = [
   {
@@ -83,6 +84,10 @@ const routes: Routes = [
   {
     path: 'calculo-imc',
     loadComponent: () => import('./pages/calculo-imc/calculo-imc.page').then(m => m.CalculoImcPage)
+  },
+  {
+    path: 'pagar-transbank',
+    component: PagarTransbankPage, // 👈 Importamos directamente porque es standalone
   },
   
   
