@@ -36,7 +36,7 @@ export class PagoConfirmadoPage {
           // Si fue exitoso, redirigimos a home después de 5 segundos
           if (this.estado === 'aprobado') {
             setTimeout(() => {
-              this.router.navigate(['/home']);
+              this.router.navigate(['/bienvenida']);
             }, 5000);
           }
 
