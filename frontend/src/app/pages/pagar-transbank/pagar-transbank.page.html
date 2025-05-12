@@ -1,24 +1,88 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Pagar con Transbank</ion-title>
+    <ion-title>Elige tu membresía</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Pago de prueba</ion-card-title>
+      <ion-card-title>Opciones disponibles</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      <ion-item>
-        <ion-label position="floating">Monto</ion-label>
-        <ion-input type="number" [(ngModel)]="monto"></ion-input>
-      </ion-item>
+      
+      <!-- Membresía mensual -->
+      <ion-card color="light">
+        <ion-card-header>
+          <ion-card-subtitle>Membresía Mensual</ion-card-subtitle>
+          <ion-card-title>$10.000</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          - 1 rutina mensual personalizada<br>
+          - Seguimiento básico<br>
+          - Acceso al panel de cliente
+        </ion-card-content>
+        <ion-button expand="full" color="success" (click)="seleccionarMembresia(10000, 'mensual')">
+          Seleccionar Mensual
+        </ion-button>
+      </ion-card>
 
-      <ion-button expand="full" (click)="iniciarPago()">
-        Ir a pagar
-      </ion-button>
+      <!-- Membresía trimestral -->
+      <ion-card color="light">
+        <ion-card-header>
+          <ion-card-subtitle>Membresía Trimestral</ion-card-subtitle>
+          <ion-card-title>$27.000</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          - 3 rutinas (1 por mes)<br>
+          - Subida de fotos<br>
+          - Estadísticas de progreso
+        </ion-card-content>
+        <ion-button expand="full" color="tertiary" (click)="seleccionarMembresia(27000, 'trimestral')">
+          Seleccionar Trimestral
+        </ion-button>
+      </ion-card>
+
+      <!-- Membresía semestral -->
+      <ion-card color="light">
+        <ion-card-header>
+          <ion-card-subtitle>Membresía Semestral</ion-card-subtitle>
+          <ion-card-title>$50.000</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          - Modificación de rutina cada 2 semanas<br>
+          - Retroalimentación mensual<br>
+          - Todo lo anterior
+        </ion-card-content>
+        <ion-button expand="full" color="warning" (click)="seleccionarMembresia(50000, 'semestral')">
+          Seleccionar Semestral
+        </ion-button>
+      </ion-card>
+
+      <!-- Membresía anual -->
+      <ion-card color="light">
+        <ion-card-header>
+          <ion-card-subtitle>Membresía Anual</ion-card-subtitle>
+          <ion-card-title>$90.000</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          - Rutinas ilimitadas<br>
+          - Acceso anticipado a funciones<br>
+          - Corrección técnica por video (futuro)
+        </ion-card-content>
+        <ion-button expand="full" color="danger" (click)="seleccionarMembresia(90000, 'anual')">
+          Seleccionar Anual
+        </ion-button>
+      </ion-card>
+
     </ion-card-content>
   </ion-card>
+
+  <!-- Botón para pagar -->
+  <ion-button expand="full" color="primary" [disabled]="!monto" (click)="iniciarPago()">
+    Pagar {{ tipoSeleccionado ? '(' + tipoSeleccionado + ')' : '' }}
+  </ion-button>
+
 </ion-content>

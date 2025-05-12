@@ -8,28 +8,31 @@ import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-pagar-transbank',
-  standalone: true, // 👈 Hacemos que sea standalone
-  imports: [CommonModule, FormsModule, IonicModule, RouterModule], // 👈 Importamos módulos necesarios
+  standalone: true,
+  imports: [CommonModule, FormsModule, IonicModule, RouterModule],
   templateUrl: './pagar-transbank.page.html',
   styleUrls: ['./pagar-transbank.page.scss'],
 })
 export class PagarTransbankPage {
-  monto: number = 10000; // Monto inicial por defecto
+  monto: number = 0; // Solo guarda el valor a pagar
 
   constructor(private apiService: ApiService) {}
 
-  // Función que inicia el flujo de pago
+  // Elegir una membresía (solo define el monto)
+  seleccionarMembresia(monto: number) {
+    this.monto = monto;
+  }
+
+  // Enviar la solicitud de pago
   async iniciarPago() {
     try {
-      // Hacemos POST al backend para crear la transacción
       const respuesta = await this.apiService.post('pagos/crear-transaccion', {
-        monto: this.monto,
+        monto: this.monto
       });
 
       const url = respuesta.url;
       const token = respuesta.token;
 
-      // Creamos formulario oculto y lo enviamos automáticamente
       const form = document.createElement('form');
       form.method = 'POST';
       form.action = url;
@@ -41,7 +44,7 @@ export class PagarTransbankPage {
 
       form.appendChild(input);
       document.body.appendChild(form);
-      form.submit(); // Redirige a la página oficial de Transbank (sandbox)
+      form.submit();
     } catch (error) {
       console.error('❌ Error al iniciar el pago:', error);
     }
