@@ -1,11 +1,11 @@
-// transbank.js
-const { WebpayPlus } = require('transbank-sdk');
+const { IntegrationApiKeys, IntegrationCommerceCodes, Environment, WebpayPlus } = require('transbank-sdk');
 
-// Configurar en modo integración (sandbox)
-WebpayPlus.configureForIntegration(
-  '597055555532', // Código de comercio público de prueba
-  '597055555532', // API Key pública de prueba
-  'https://webpay3gint.transbank.cl' // URL sandbox oficial
+const webpay = new WebpayPlus.Transaction(
+  new WebpayPlus.Options(
+    IntegrationCommerceCodes.WEBPAY_PLUS,  // '597055555532'
+    IntegrationApiKeys.WEBPAY,             // API key pública
+    Environment.Integration                // Ambiente sandbox
+  )
 );
 
-module.exports = WebpayPlus;
+module.exports = webpay;
