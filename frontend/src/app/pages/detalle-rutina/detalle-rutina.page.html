@@ -5,7 +5,6 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-
   <ion-card class="card-rojo">
     <ion-card-header>
       <ion-card-title class="titulo-rojo">{{ nombreRutina }}</ion-card-title>
@@ -21,7 +20,6 @@
           Series: {{ ejercicio.series }} | Reps: {{ ejercicio.repeticiones }}
         </ion-card-subtitle>
       </ion-card-header>
-
       <ion-card-content>
         <ion-grid>
           <ion-row>
@@ -70,5 +68,8 @@
     Guardar Registro de Ejercicios
   </ion-button>
 
+  <ion-button expand="block" color="secondary" routerLink="/panel-cliente">
+    <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+    Regresar
+  </ion-button>
 </ion-content>
-/////

@@ -1,24 +1,19 @@
 <ion-header>
-  <ion-toolbar color="dark">
+  <ion-toolbar color="success">
     <ion-title>Iniciar Sesión</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding fondo-fitness">
   <div class="container-bienvenida">
-
     <!-- Icono animado -->
     <ion-icon name="key-outline" class="icono-fitness"></ion-icon>
-
     <!-- Título -->
     <h2>Mi Coach Personal</h2>
-    <p class="eslogan">
-      Plataforma para <strong>Dueños</strong>, <strong>Entrenadores</strong> y <strong>Clientes</strong>
-    </p>
+    <p class="eslogan">Plataforma para <strong>Dueños</strong>, <strong>Entrenadores</strong> y <strong>Clientes</strong></p>
 
     <!-- 🔴 Tarjeta envolvente -->
     <div class="tarjeta-roja">
-
       <!-- Inputs -->
       <ion-item>
         <ion-icon name="mail-outline" slot="start"></ion-icon>
@@ -33,12 +28,15 @@
       </ion-item>
 
       <!-- Botón -->
-      <ion-button expand="block" color="danger" class="boton-fitness" (click)="login()">
+      <ion-button expand="block" color="danger" (click)="login()">
         <ion-icon slot="start" name="log-in-outline"></ion-icon>
         Iniciar sesión
       </ion-button>
-
     </div>
-    
+
+    <ion-button expand="block" color="secondary" routerLink="/bienvenida">
+      <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+      Regresar
+    </ion-button>
   </div>
 </ion-content>

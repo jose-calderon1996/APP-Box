@@ -1,11 +1,10 @@
 <ion-header>
-  <ion-toolbar color="success">
+  <ion-toolbar>
     <ion-title>Crear Cliente</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-
   <ion-card class="card-rojo">
     <ion-card-header>
       <ion-card-title class="titulo-rojo">
@@ -16,7 +15,6 @@
 
     <ion-card-content>
       <form (ngSubmit)="registrarCliente()">
-
         <ion-item>
           <ion-icon name="person-outline" slot="start"></ion-icon>
           <ion-label position="floating">Nombre</ion-label>
@@ -39,9 +37,12 @@
           <ion-icon name="person-add" slot="start"></ion-icon>
           Registrar Cliente
         </ion-button>
-
       </form>
     </ion-card-content>
   </ion-card>
 
+  <ion-button expand="block" color="secondary" routerLink="/panel-cliente">
+    <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+    Regresar
+  </ion-button>
 </ion-content>
