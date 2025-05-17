@@ -24,7 +24,7 @@ export class HistorialProgresoPage implements OnInit {
   imagenSeleccionada: string | null = null;
   @ViewChild(IonModal) modal!: IonModal;
 
-  // 📈 Configuración del gráfico de línea en rojo oscuro
+  // 📈 Configuración del gráfico de línea con colores azules
   lineChartData: ChartConfiguration['data'] = {
     labels: [],
     datasets: [
@@ -33,10 +33,10 @@ export class HistorialProgresoPage implements OnInit {
         label: 'Evolución de Peso',
         fill: true,
         tension: 0.4,
-        borderColor: '#b00020',
-        backgroundColor: 'rgba(176, 0, 32, 0.2)',
-        pointBackgroundColor: '#b00020',
-        pointBorderColor: '#fff',
+        borderColor: '#1e3a8a', // azul fuerte
+        backgroundColor: 'rgba(30, 58, 138, 0.2)', // azul con transparencia
+        pointBackgroundColor: '#1e3a8a',
+        pointBorderColor: '#ffffff',
         pointRadius: 6,
         pointHoverRadius: 8,
       }
@@ -57,13 +57,13 @@ export class HistorialProgresoPage implements OnInit {
 
   lineChartType: ChartType = 'line';
 
-  // 🥧 Gráfico de pastel en rojo oscuro
+  // 🥧 Gráfico de pastel con colores azules
   pieChartData: ChartConfiguration<'pie'>['data'] = {
     labels: ['Avance', 'Restante'],
     datasets: [{
       data: [0, 100],
-      backgroundColor: ['#b00020', '#333'],
-      borderColor: ['#b00020', '#333'],
+      backgroundColor: ['#3b82f6', '#cbd5e1'], // azul claro y gris suave
+      borderColor: ['#3b82f6', '#cbd5e1'],
       borderWidth: 1
     }]
   };

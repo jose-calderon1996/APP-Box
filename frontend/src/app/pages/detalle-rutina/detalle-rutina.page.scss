@@ -1,51 +1,114 @@
-ion-content {
-    background-color: #1a1a1a;
-    color: white;
+html, body, ion-app, ion-content {
+  background-color: #ffffff !important;
+  --background: #ffffff !important;
+  font-family: 'Inter', sans-serif;
+  color-scheme: light !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  html, body, ion-app, ion-content {
+    background-color: #ffffff !important;
+    --background: #ffffff !important;
+    filter: invert(0) hue-rotate(0deg) !important;
+    color-scheme: light !important;
   }
-  
-  /* Estilo para las tarjetas */
-  .card-rojo {
-    border: 2px solid #b00020;
-    border-radius: 12px;
-    background-color: #121212;
-    color: white;
-    box-shadow: 0 4px 10px rgba(176, 0, 32, 0.2);
+
+  img, video, canvas {
+    filter: none !important;
   }
-  
-  /* Título en rojo */
-  .titulo-rojo {
-    color: #b00020;
-    font-weight: bold;
-    font-size: 1.2rem;
-  }
-  
-  /* Subtítulo más claro y legible */
-  .subtitulo-rojo {
-    color: #f55;
-    font-size: 1rem;
-  }
-  
-  /* Botones rojos con íconos */
-  .boton-rojo {
-    --background: #b00020;
-    --color: white;
-    font-weight: bold;
-    font-size: 1rem;
-    border-radius: 8px;
-    --box-shadow: 0 4px 10px rgba(176, 0, 32, 0.3);
-  }
-  
-  /* Item de comentario estilizado */
-  .item-rojo {
-    --border-color: #b00020;
-    --color: white;
-  }
-  
-  ion-textarea {
-    background-color: #1e1e1e;
-    color: white;
-    border-radius: 8px;
-    padding: 10px;
-    font-size: 1rem;
-  }
-  
+}
+
+.pagina-panel {
+  --background: #ffffff !important;
+  background-color: #ffffff !important;
+  padding: 16px;
+}
+
+.fondo-blanco {
+  background-color: #ffffff !important;
+  --background: #ffffff !important;
+}
+
+.toolbar-ios {
+  --background: #ffffff;
+  --color: #1e3a8a;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.titulo-header {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e3a8a;
+  text-align: center;
+}
+
+.boton-rojo-header {
+  --color: #ef4444;
+  font-weight: 500;
+}
+
+.card-rojo {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  margin-bottom: 20px;
+}
+
+.titulo-rojo {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1e3a8a;
+  text-align: center;
+}
+
+.subtitulo-rojo {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+  text-align: center;
+}
+
+.boton-rojo {
+  --background: #3b82f6;
+  --color: #ffffff;
+  margin: 16px 12px;
+  font-weight: 500;
+  border-radius: 8px;
+  text-transform: none;
+}
+
+ion-list {
+  background-color: #ffffff !important;
+  --background: #ffffff !important;
+  padding: 0 8px;
+}
+
+/* ✍️ Estilo personalizado del textarea */
+.item-textarea {
+  --background: #ffffff;
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  margin: 24px 12px;
+  padding: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+}
+
+.item-textarea ion-label {
+  font-weight: 500;
+  color: #1e3a8a;
+  margin-bottom: 6px;
+}
+
+.item-textarea ion-textarea {
+  --background: #ffffff;
+  font-size: 14px;
+  color: #374151;
+}
+/* 🎯 Estilo de texto para todos los ion-input */
+ion-input {
+  color: #1e3a8a !important;
+  font-weight: 500;
+  font-size: 15px;
+}

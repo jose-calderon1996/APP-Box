@@ -1,52 +1,240 @@
-.card-rojo {
-    border: 2px solid #b00020;
-    border-radius: 12px;
-    background-color: #121212;
-    color: white;
-    box-shadow: 0 4px 8px rgba(176, 0, 32, 0.2);
-  }
-  
-  .titulo-rojo {
-    color: #b00020;
-    font-weight: bold;
-    text-align: center;
-  }
-  
-  .boton-rojo {
-    --background: #b00020;
-    --color: #ffffff;
-    border-radius: 8px;
-    margin-top: 12px;
-  }
-  
-  /* 🔴 Estilo del acordeón */
-  .acordeon-rojo ion-item.acordeon-header {
-    border: 1px solid #b00020;
-    background-color: #1a1a1a;
-    color: white;
-    border-radius: 8px;
-    margin-bottom: 8px;
-  }
-  
-  .acordeon-content {
-    border: 1px solid #b00020;
-    border-top: none;
-    border-radius: 0 0 8px 8px;
-    background-color: #1a1a1a;
-    color: white;
-  }
-  .boton-rutina-roja {
-    --background: #b00020;
-    --color: #ffffff;
-    margin-top: 14px;
-    padding: 16px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border-radius: 10px;
-    height: 56px;
-    text-transform: none;
-    letter-spacing: 0.5px;
-    --box-shadow: 0 4px 10px rgba(176, 0, 32, 0.3);
-  }
-  
-    
+.pagina-panel {
+  --background: #ffffff;
+  font-family: 'Inter', sans-serif;
+  padding: 16px;
+}
+
+/* HEADER */
+.toolbar-ios {
+  --background: #ffffff;
+  --color: #1e3a8a;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.titulo-header {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e3a8a;
+  text-align: center;
+  width: 100%;
+}
+
+.boton-agregar {
+  color: #3b82f6;
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+/* BIENVENIDA */
+.titulo-bienvenida {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1e3a8a;
+  text-align: center;
+  margin: 16px 0;
+}
+
+/* CARD CLIENTES ASOCIADOS */
+.card-panel {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.titulo-tarjeta {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e3a8a;
+  text-align: center;
+}
+
+.texto-cantidad {
+  font-size: 16px;
+  text-align: center;
+  color: #3b82f6;
+}
+
+/* LISTADO DE CLIENTES */
+.subtitulo {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e3a8a;
+  margin: 16px 0 12px;
+}
+
+.lista-clientes {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tarjeta-cliente {
+  background: #ffffff;
+  border: 1px solid #dbeafe;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.05);
+}
+
+.tarjeta-cliente h4 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e3a8a;
+}
+
+.tarjeta-cliente p {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: #374151;
+}
+
+/* TEXTO RUTINAS */
+.texto-chico {
+  font-size: 14px;
+  color: #1e3a8a;
+  margin-bottom: 6px;
+}
+
+.texto-secundario {
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 6px;
+  text-align: center;
+}
+
+/* BOTONES */
+.boton-azul {
+  --background: #3b82f6;
+  --color: #ffffff;
+  border-radius: 8px;
+  font-weight: 500;
+  margin-top: 10px;
+  text-transform: none;
+}
+
+.boton-cerrar {
+  --background: #ef4444;
+  --color: #ffffff;
+  border-radius: 8px;
+  font-weight: 500;
+  margin-top: 32px;
+  text-transform: none;
+}
+
+/* ICONOS */
+ion-icon {
+  color: #3b82f6;
+  font-size: 20px;
+}
+
+ion-footer {
+  --background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+}
+
+ion-footer ion-icon {
+  color: #3b82f6;
+  font-size: 22px;
+}
+/* Estilo para el listado de rutinas */
+ion-list {
+  background: transparent;
+  margin-top: 8px;
+}
+
+/* Quitar fondo negro y bordes de ion-item */
+ion-item {
+  --background: #ffffff;
+  --color: #374151;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  padding: 8px 12px;
+}
+
+/* Estilo del nombre de la rutina */
+ion-item ion-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e3a8a; /* azul igual a “Mis Asociados” */
+}
+
+ion-item small {
+  font-weight: normal;
+  color: #374151;
+  font-size: 13px;
+}
+.boton-cerrar-mejorado {
+  --background: #ef4444;
+  --color: #ffffff;
+  --border-radius: 20px;
+  font-weight: 500;
+  font-size: 14px;
+  margin-top: 32px;
+  height: 42px;
+  text-transform: none;
+}
+.boton-header {
+  --color: #3b82f6;
+  --border-color: #3b82f6;
+  --border-radius: 20px;
+  font-weight: 500;
+  font-size: 13px;
+  padding: 0 12px;
+  height: 32px;
+}
+.bienvenida-box {
+  background: #f0f8ff; /* celeste muy suave */
+  border: 1px solid #dbeafe;
+  padding: 16px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 4px rgba(59, 130, 246, 0.08);
+}
+
+.bienvenida-destacada {
+  background: #ffffff;
+  border: 1px solid #dbeafe;
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.06);
+}
+
+.saludo {
+  font-size: 18px;
+  font-weight: 500;
+  color: #1e3a8a;
+  margin-bottom: 8px;
+}
+
+.nombre-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #e0f2fe;
+  padding: 8px 16px;
+  border-radius: 20px;
+}
+
+.nombre-box ion-icon {
+  font-size: 20px;
+  color: #1e3a8a;
+}
+
+.nombre-usuario {
+  font-weight: 600;
+  font-size: 16px;
+  color: #1e3a8a;
+}
+.boton-rojo-header {
+  --color: #ef4444;
+  font-weight: 500;
+}
+

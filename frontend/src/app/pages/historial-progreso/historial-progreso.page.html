@@ -1,10 +1,26 @@
-<ion-header>
-  <ion-toolbar color="success">
-    <ion-title class="ion-text-center">📈 Mi Historial de Progreso</ion-title>
+<ion-header translucent="true">
+  <ion-toolbar class="toolbar-ios">
+
+    <!-- 🔙 Botón Volver -->
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/panel-cliente"></ion-back-button>
+    </ion-buttons>
+
+    <!-- 🧾 Título centrado -->
+    <ion-title class="titulo-header"> Historial</ion-title>
+
+    <!-- 🚪 Botón cerrar sesión (solo visual) -->
+    <ion-buttons slot="end">
+      <ion-button class="boton-rojo-header">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        <ion-label>Cerrar sesión</ion-label>
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="pagina-panel" fullscreen>
 
   <!-- 🔥 TÍTULO -->
   <h2 class="seccion-titulo">📊 Evolución de Peso</h2>
@@ -52,10 +68,15 @@
 
   <!-- 🔥 TEXTO DE AVANCE -->
   <div class="avance-texto">
-    <p><strong>Peso inicial:</strong> {{ pesoInicial }} kg</p>
-    <p><strong>Peso actual:</strong> {{ pesoActual }} kg</p>
-    <p><strong>Has perdido el</strong> {{ porcentajeAvance | number:'1.0-1' }}% del peso inicial</p>
-  </div>
+  <p><strong>Peso inicial:</strong> {{ pesoInicial }} kg</p>
+  <p><strong>Peso actual:</strong> {{ pesoActual }} kg</p>
+  <p>
+    <strong>Has perdido el</strong>
+    <span class="porcentaje">{{ porcentajeAvance | number:'1.0-1' }}%</span>
+    del peso inicial
+  </p>
+</div>
+
 
   <!-- 🔍 MODAL DE IMAGEN AMPLIADA -->
   <ion-modal [isOpen]="!!imagenSeleccionada" (didDismiss)="cerrarImagen()">

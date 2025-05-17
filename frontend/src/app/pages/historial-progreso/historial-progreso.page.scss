@@ -1,74 +1,126 @@
-/* 🌑 Fondo oscuro general */
-ion-content {
-  background-color: #121212;
-  color: white;
+.pagina-panel {
+  --background: #ffffff;
+  font-family: 'Inter', sans-serif;
+  padding: 16px;
 }
 
-/* 🔴 Títulos de sección */
-.seccion-titulo {
-  color: #b00020;
-  font-weight: bold;
-  font-size: 1.3rem;
-  margin-top: 20px;
-  margin-bottom: 10px;
+.toolbar-ios {
+  --background: #ffffff;
+  --color: #1e3a8a;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.titulo-header {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e3a8a;
   text-align: center;
 }
 
-/* 🔴 Tarjetas de fotos */
-.card-progreso {
-  background-color: #1a1a1a;
-  border: 2px solid #b00020;
-  border-radius: 12px;
-  color: white;
-  box-shadow: 0 4px 8px rgba(176, 0, 32, 0.2);
+/* Botón de cerrar sesión */
+.boton-rojo-header {
+  --color: #ef4444;
+  font-weight: 500;
 }
 
-/* 📷 Imagen dentro de la tarjeta */
-.imagen-contenedor {
-  width: 100%;
-  height: 180px;
-  overflow: hidden;
-  border-radius: 12px 12px 0 0;
-  background-color: #000;
+/* Secciones */
+.seccion-titulo {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e3a8a;
+  margin: 24px 0 12px;
+  text-align: center;
 }
 
-.imagen-contenedor img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* 🔺 Gráfico de línea y pastel en rojo */
+/* Gráficos */
 .grafico-container,
 .grafico-pastel-container {
-  background-color: #1a1a1a;
-  border-radius: 12px;
-  padding: 12px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(176, 0, 32, 0.1);
-  border: 1px solid #b00020;
-}
-
-/* 📈 Estilos de texto de avance */
-.avance-texto {
-  background-color: #1a1a1a;
-  color: white;
-  border: 1px solid #b00020;
-  border-radius: 10px;
+  margin-bottom: 32px;
+  background: #f9fafb;
   padding: 16px;
-  margin: 20px 0;
-  box-shadow: 0 4px 6px rgba(176, 0, 32, 0.2);
-  font-size: 0.95rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
 }
 
-/* 🖼️ Modal de imagen grande */
-ion-modal {
-  --background: rgba(0, 0, 0, 0.9);
-}
-
-/* 🔧 Ajustes generales */
-ion-card-title,
-ion-card-subtitle {
-  color: white;
+/* Tarjetas de progreso estilo polaroid con bordes cuadrados */
+.card-progreso {
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 0; /* Bordes cuadrados */
+  padding: 8px;
   text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.card-progreso:hover {
+  transform: scale(1.02);
+}
+
+.card-progreso img {
+  width: 100%;
+  border-radius: 0; /* Imagen también con bordes cuadrados */
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.card-progreso ion-card-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1e3a8a;
+}
+
+.card-progreso ion-card-subtitle {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* Texto de avance */
+.avance-texto {
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 32px;
+  text-align: center;
+}
+.avance-texto {
+  background: #f9fafb;
+  padding: 16px;
+  margin: 24px auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  max-width: 400px;
+  text-align: center;
+}
+
+.avance-texto p {
+  margin: 8px 0;
+  font-size: 15px;
+  color: #374151;
+}
+
+.avance-texto strong {
+  color: #1e3a8a;
+  font-weight: 600;
+}
+
+.avance-texto .porcentaje {
+  font-size: 16px;
+  font-weight: 600;
+  color: #10b981; /* verde éxito */
+}
+.seccion-titulo {
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+.grafico-container,
+.grafico-pastel-container,
+ion-grid {
+  margin-bottom: 32px;
+}
+.grafico-container {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
 }

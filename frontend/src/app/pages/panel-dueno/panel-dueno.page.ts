@@ -16,6 +16,8 @@ export class PanelDuenoPage implements OnInit {
   totalEntrenadores = 0;
   totalClientes = 0;
   comentarios: any[] = [];
+  mostrarTodos: boolean = false;
+
 
   constructor(private apiService: ApiService) {}
 
@@ -40,5 +42,7 @@ export class PanelDuenoPage implements OnInit {
       console.error('Error al obtener comentarios:', error);
     });
   }
+
+  
 
 }

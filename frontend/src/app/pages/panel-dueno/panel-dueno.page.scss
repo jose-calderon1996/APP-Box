@@ -1,0 +1,166 @@
+.pagina-panel {
+  --background: #ffffff;
+  font-family: 'Inter', sans-serif;
+  padding: 16px;
+}
+
+/* === HEADER === */
+.toolbar-ios {
+  --background: #ffffff;
+  --color: #1e3a8a;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+}
+
+.titulo-header {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e3a8a;
+  text-align: center;
+  width: 100%;
+}
+
+.boton-agregar {
+  color: #3b82f6;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* === CONTENIDO === */
+.contenedor-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 32px;
+}
+
+.card-panel {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.titulo-tarjeta {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e3a8a;
+  text-align: center;
+}
+
+/* === RESUMEN === */
+.resumen-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 12px;
+}
+
+.icono-panel {
+  font-size: 28px;
+  color: #3b82f6;
+  margin-bottom: 4px;
+}
+
+.etiqueta-panel {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.resumen-box h3 {
+  font-size: 20px;
+  color: #111827;
+  margin: 0;
+}
+
+/* === COMENTARIOS REDISEÑADOS === */
+.card-panel.comentarios {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+}
+
+.comentarios-container-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 8px;
+}
+
+.comentario-tarjeta {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+/* Encabezado */
+.comentario-encabezado {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.comentario-avatar ion-icon {
+  font-size: 36px;
+  color: #3b82f6;
+  margin-right: 12px;
+}
+
+.comentario-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.nombre-comentario {
+  font-weight: 600;
+  font-size: 15px;
+  color: #111827;
+}
+
+.fecha-comentario {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.comentario-texto {
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.comentario-estrellas {
+  display: flex;
+  gap: 4px;
+  font-size: 16px;
+}
+
+.ver-mas-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.btn-ver-mas {
+  color: #3b82f6;
+  font-size: 13px;
+  font-weight: 500;
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+.sin-comentarios {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 14px;
+  margin-top: 12px;
+}
+.boton-rojo-header {
+  --color: #ef4444; /* Rojo moderno */
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: none;
+  --padding-start: 8px;
+  --padding-end: 8px;
+}

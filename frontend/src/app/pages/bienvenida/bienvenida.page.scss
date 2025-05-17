@@ -1,52 +1,95 @@
-.fondo-fitness {
-    --background: linear-gradient(to bottom, #1e1e1e, #111);
-    color: white;
-  }
-  
-  .container-bienvenida {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    height: 100%;
-    text-align: center;
-    padding-top: 40px;
-  }
-  
-  .fitness-icon {
-    font-size: 64px;
-    color: #ff0000;
-    animation: pulse 1.5s infinite;
-  }
-  
-  h2 {
-    font-size: 28px;
-    font-weight: bold;
-    color: #fff;
-  }
-  
-  .eslogan {
-    font-size: 16px;
-    color: #ccc;
-    margin: 0 20px 20px;
-  }
-  
-  ion-button {
-    width: 90%;
-    max-width: 320px;
-    font-weight: bold;
-  }
-  
-  .footer-version {
-    margin-top: 40px;
-    font-size: 12px;
-    color: #aaa;
-  }
-  
-  @keyframes pulse {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.1); opacity: 0.85; }
-    100% { transform: scale(1); opacity: 1; }
-  }
-  
+/* Fondo blanco moderno */
+.pagina-bienvenida {
+  --background: #ffffff;
+  color: #1e3a8a;
+  font-family: 'Inter', sans-serif;
+  padding: 16px;
+}
+
+/* Toolbar estilo iOS */
+.toolbar-ios {
+  --background: #ffffff;
+  --color: #1e3a8a;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+.titulo-header {
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  color: #1e3a8a;
+}
+
+/* Contenedor central */
+.container-bienvenida {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  padding-top: 40px;
+}
+
+/* Ícono barbell animado */
+.icono-fitness {
+  font-size: 64px;
+  color: #3b82f6;
+  animation: pulse 1.5s infinite;
+}
+
+/* Título */
+h2 {
+  font-size: 26px;
+  font-weight: bold;
+  color: #1e3a8a;
+}
+
+/* Eslogan */
+.eslogan {
+  font-size: 14px;
+  color: #666666;
+  margin: 0 20px 10px;
+}
+
+/* Botones personalizados */
+ion-button {
+  width: 90%;
+  max-width: 320px;
+  font-weight: bold;
+  border-radius: 12px;
+}
+
+/* Estilos específicos por color */
+.boton-azul {
+  --background: #3b82f6;
+  --background-hover: #2563eb;
+  --color: #ffffff;
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+}
+
+.boton-verde {
+  --background: #10b981;
+  --background-hover: #059669;
+  --color: #ffffff;
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+}
+
+.boton-amarillo {
+  --background: #facc15;
+  --background-hover: #eab308;
+  --color: #000000;
+  box-shadow: 0 4px 10px rgba(234, 179, 8, 0.3);
+}
+
+/* Footer */
+.footer-version {
+  margin-top: 40px;
+  font-size: 12px;
+  color: #999999;
+}
+
+/* Animación */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.85; }
+  100% { transform: scale(1); opacity: 1; }
+}

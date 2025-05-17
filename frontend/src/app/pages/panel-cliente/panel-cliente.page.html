@@ -1,110 +1,132 @@
-<ion-header>
-  <ion-toolbar color="success">
-    <ion-title>Panel Cliente</ion-title>
+<ion-header translucent="true">
+  <ion-toolbar class="toolbar-ios">
+
+    <!-- 🔙 Botón de volver -->
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+
+    <!-- 🧾 Título -->
+    <ion-title class="titulo-header">Panel Cliente</ion-title>
+
+    <!-- 🚪 Botón cerrar sesión rojo (solo visual) -->
+    <ion-buttons slot="end">
+      <ion-button class="boton-rojo-header">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        <ion-label>Cerrar sesión</ion-label>
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
 
-  <h1>Bienvenido, {{ nombre }}</h1>
+<ion-content class="pagina-panel" fullscreen>
+  <div class="contenedor-panel">
 
-  <!-- Card de Rutinas -->
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>
-        <ion-icon name="barbell-outline"></ion-icon>
-        Panel Cliente
-      </ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-button expand="full" class="boton-rojo" routerLink="/mis-rutinas">
-        <ion-icon name="barbell-outline" slot="start"></ion-icon>
-        Mis Rutinas Semanales
-      </ion-button>
-    </ion-card-content>
-  </ion-card>
+    <div class="bienvenida-box">
+      <p class="saludo">¡Bienvenido!</p>
+      <div class="nombre-box">
+        <ion-icon name="person-circle-outline"></ion-icon>
+        <span class="nombre-usuario">{{ nombre }}</span>
+      </div>
+    </div>
 
-  <!-- Card Registra tu Progreso -->
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>
-        <ion-icon name="fitness-outline"></ion-icon>
-        Registra tu Progreso
-      </ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>Lleva un control de tu evolución física semana a semana. ¡Sube tu peso y fotos de progreso!</p>
-      <ion-button expand="full" class="boton-rojo" routerLink="/registrar-progreso">
-        <ion-icon name="add-circle-outline" slot="start"></ion-icon>
-        Registrar Progreso
-      </ion-button>
-    </ion-card-content>
-  </ion-card>
+    <!-- Rutinas -->
+    <ion-card class="card-opcion">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="barbell-outline"></ion-icon>
+          Mis Rutinas Semanales
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-button expand="block" class="boton-azul" routerLink="/mis-rutinas">
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          Ver Rutinas
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
 
-  <!-- Card Historial de Progreso -->
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>
-        <ion-icon name="time-outline"></ion-icon>
-        Historial de Progreso
-      </ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>Revisa tu historial de avances, incluyendo registros anteriores de peso, fotos y fechas.</p>
-      <ion-button expand="full" class="boton-rojo" routerLink="/historial-progreso">
-        <ion-icon name="list-outline" slot="start"></ion-icon>
-        Ver Historial
-      </ion-button>
-    </ion-card-content>
-  </ion-card>
+    <!-- Registrar progreso -->
+    <ion-card class="card-opcion">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="fitness-outline"></ion-icon>
+          Registra tu Progreso
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Lleva un control de tu evolución física semana a semana. ¡Sube tu peso y fotos!</p>
+        <ion-button expand="block" class="boton-azul" routerLink="/registrar-progreso">
+          <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+          Registrar Progreso
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
 
-  <!-- Foro de Opiniones -->
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>
-        <ion-icon name="chatbox-ellipses-outline"></ion-icon>
-        ¿Qué opinas de nuestro servicio?
-      </ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>¡Queremos conocer tu experiencia en nuestro box de CrossFit! Deja tu comentario o sugerencia para ayudarnos a mejorar.</p>
-      <ion-button expand="full" class="boton-rojo" (click)="mostrarComentario = !mostrarComentario">
-        <ion-icon [name]="mostrarComentario ? 'eye-off-outline' : 'chatbox-ellipses-outline'" slot="start"></ion-icon>
-        {{ mostrarComentario ? 'Ocultar Foro' : 'Foro de Opiniones' }}
-      </ion-button>
-    </ion-card-content>
-  </ion-card>
+    <!-- Historial progreso -->
+    <ion-card class="card-opcion">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="time-outline"></ion-icon>
+          Historial de Progreso
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Revisa tu historial de avances, incluyendo registros anteriores de peso y fotos.</p>
+        <ion-button expand="block" class="boton-azul" routerLink="/historial-progreso">
+          <ion-icon name="list-outline" slot="start"></ion-icon>
+          Ver Historial
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
 
-  <!-- Comentario -->
-  <ion-card *ngIf="mostrarComentario">
-    <ion-card-header>
-      <ion-card-title>
-        <ion-icon name="create-outline"></ion-icon>
-        Deja tu comentario
-      </ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-textarea
-        [(ngModel)]="comentario"
-        placeholder="Escribe tu comentario aquí...">
-      </ion-textarea>
+    <!-- Opiniones -->
+    <ion-card class="card-opcion">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+          Foro de Opiniones
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Queremos conocer tu experiencia. ¡Deja tu comentario o sugerencia!</p>
+        <ion-button expand="block" class="boton-azul" (click)="mostrarComentario = !mostrarComentario">
+          <ion-icon [name]="mostrarComentario ? 'eye-off-outline' : 'chatbox-ellipses-outline'" slot="start"></ion-icon>
+          {{ mostrarComentario ? 'Ocultar Foro' : 'Foro de Opiniones' }}
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
 
-      <ion-label>Puntúa el box:</ion-label>
-      <ion-row>
-        <ion-icon
-          *ngFor="let star of [1, 2, 3, 4, 5]"
-          name="star"
-          [class.star-activa]="puntuacion >= star"
-          class="estrella"
-          (click)="puntuacion = star">
-        </ion-icon>
-      </ion-row>
+    <!-- Comentario -->
+    <ion-card class="card-opcion" *ngIf="mostrarComentario">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="create-outline"></ion-icon>
+          Deja tu comentario
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-textarea [(ngModel)]="comentario" placeholder="Escribe tu comentario aquí..."></ion-textarea>
 
-      <ion-button expand="full" class="boton-rojo" (click)="enviarComentario()">
-        <ion-icon name="send-outline" slot="start"></ion-icon>
-        Enviar Comentario
-      </ion-button>
-    </ion-card-content>
-  </ion-card>
+        <ion-label>Puntúa el box:</ion-label>
+        <ion-row>
+          <ion-icon
+            *ngFor="let star of [1,2,3,4,5]"
+            name="star"
+            class="estrella"
+            [class.star-activa]="puntuacion >= star"
+            (click)="puntuacion = star">
+          </ion-icon>
+        </ion-row>
 
+        <ion-button expand="block" class="boton-azul" (click)="enviarComentario()">
+          <ion-icon name="send-outline" slot="start"></ion-icon>
+          Enviar Comentario
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
 </ion-content>

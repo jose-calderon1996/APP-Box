@@ -1,39 +1,81 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Registrar Entrenador</ion-title>
+<ion-header translucent="true">
+  <ion-toolbar class="toolbar-ios">
+
+    <!-- 🔙 Botón Volver -->
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin-panel"></ion-back-button>
+    </ion-buttons>
+
+    <!-- 🧾 Título centrado -->
+    <ion-title class="titulo-header">Registro Entrenador</ion-title>
+
+    <!-- 🚪 Botón Cerrar Sesión -->
+    <ion-buttons slot="end">
+      <ion-button class="boton-rojo-header">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        <ion-label>Cerrar sesión</ion-label>
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
 
-  <ion-card class="card-rojo">
-    <ion-card-header>
-      <ion-card-title class="titulo-rojo">Nuevo Entrenador</ion-card-title>
-    </ion-card-header>
 
-    <ion-card-content>
+<ion-content class="pagina-registro" fullscreen>
+
+  <div class="container">
+
+    
+    
+
+    <!-- Mensaje inicial -->
+    <div class="mensaje-inicial">
+      <h2>Nuevo Entrenador</h2>
+      <p>Registra un nuevo miembro del equipo de <span class="marca">Mi Coach</span>.</p>
+    </div>
+
+    <!-- Tarjeta del formulario -->
+    <ion-card class="form-card">
+
       <form (ngSubmit)="registrarEntrenador()">
-        <ion-item>
+
+        <!-- Nombre -->
+        <ion-item class="item-dark" lines="none">
+          <ion-icon name="person-outline" slot="start"></ion-icon>
           <ion-label position="floating">Nombre completo</ion-label>
-          <ion-input class="input-rojo" [(ngModel)]="nombre" name="nombre" required></ion-input>
+          <ion-input [(ngModel)]="nombre" name="nombre" required></ion-input>
         </ion-item>
 
-        <ion-item>
+        <!-- Correo -->
+        <ion-item class="item-dark" lines="none">
+          <ion-icon name="mail-outline" slot="start"></ion-icon>
           <ion-label position="floating">Correo electrónico</ion-label>
-          <ion-input class="input-rojo" [(ngModel)]="correo" name="correo" type="email" required></ion-input>
+          <ion-input [(ngModel)]="correo" name="correo" type="email" required></ion-input>
         </ion-item>
 
-        <ion-item>
+        <!-- Contraseña -->
+        <ion-item class="item-dark" lines="none">
+          <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
           <ion-label position="floating">Contraseña</ion-label>
-          <ion-input class="input-rojo" [(ngModel)]="password" name="password" type="password" required></ion-input>
+          <ion-input [(ngModel)]="password" name="password" type="password" required></ion-input>
         </ion-item>
 
-        <ion-button expand="full" class="boton-rojo" type="submit">
+        <!-- Botón Registrar -->
+        <ion-button expand="block" type="submit" class="boton-verde">
           <ion-icon name="person-add" slot="start"></ion-icon>
           Registrar Entrenador
         </ion-button>
+
       </form>
-    </ion-card-content>
-  </ion-card>
+
+    </ion-card>
+
+    <!-- Footer -->
+    <div class="footer-text">
+      Gestiona el acceso de tu equipo desde aquí.
+    </div>
+
+  </div>
 
 </ion-content>

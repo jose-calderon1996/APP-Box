@@ -1,14 +1,17 @@
-<ion-header>
-  <ion-toolbar color="dark">
-    <ion-title>Iniciar Sesión</ion-title>
+<ion-header translucent="true">
+  <ion-toolbar class="toolbar-ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="titulo-header">Iniciar Sesión</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding fondo-fitness">
+<ion-content class="pagina-login" fullscreen>
   <div class="container-bienvenida">
 
-    <!-- Icono animado -->
-    <ion-icon name="key-outline" class="icono-fitness"></ion-icon>
+    <!-- Ícono animado -->
+    <ion-icon name="key-outline" class="icono-azul"></ion-icon>
 
     <!-- Título -->
     <h2>Mi Coach Personal</h2>
@@ -16,29 +19,38 @@
       Plataforma para <strong>Dueños</strong>, <strong>Entrenadores</strong> y <strong>Clientes</strong>
     </p>
 
-    <!-- 🔴 Tarjeta envolvente -->
-    <div class="tarjeta-roja">
+    <!-- Tarjeta -->
+    <ion-card class="tarjeta-login">
+      <ion-card-content>
 
-      <!-- Inputs -->
-      <ion-item>
-        <ion-icon name="mail-outline" slot="start"></ion-icon>
-        <ion-label position="floating">Correo</ion-label>
-        <ion-input [(ngModel)]="correo" name="correo" type="email" required></ion-input>
-      </ion-item>
+        <!-- 📧 Correo -->
+        <ion-item class="item-dark">
+          <ion-icon name="mail-outline" slot="start" class="icono-input-azul"></ion-icon>
+          <ion-label position="floating">Correo electrónico</ion-label>
+          <ion-input [(ngModel)]="correo" name="correo" type="email" required></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
-        <ion-label position="floating">Contraseña</ion-label>
-        <ion-input [(ngModel)]="password" name="password" type="password" required></ion-input>
-      </ion-item>
+        <!-- 🔒 Contraseña -->
+        <ion-item class="item-dark">
+          <ion-icon name="lock-closed-outline" slot="start" class="icono-input-azul"></ion-icon>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input [(ngModel)]="password" name="password" type="password" required></ion-input>
+        </ion-item>
 
-      <!-- Botón -->
-      <ion-button expand="block" color="danger" class="boton-fitness" (click)="login()">
-        <ion-icon slot="start" name="log-in-outline"></ion-icon>
-        Iniciar sesión
-      </ion-button>
+        <!-- Botón Iniciar sesión -->
+        <ion-button expand="block" class="boton-login" (click)="login()">
+          <ion-icon slot="start" name="log-in-outline"></ion-icon>
+          Iniciar sesión
+        </ion-button>
 
-    </div>
-    
+        <!-- 🔵 Botón Ir al Home -->
+        <ion-button expand="block" fill="clear" class="boton-home" routerLink="/bienvenida">
+          <ion-icon slot="start" name="home-outline"></ion-icon>
+          Ir al inicio
+        </ion-button>
+
+      </ion-card-content>
+    </ion-card>
+
   </div>
 </ion-content>

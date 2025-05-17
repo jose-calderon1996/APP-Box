@@ -1,69 +1,104 @@
-ion-content {
-    background-color: #1a1a1a;
-    color: white;
-  }
-  
-  /* Estilo de las tarjetas */
-  ion-card {
-    border: 2px solid #b00020;
-    border-radius: 12px;
-    background-color: #121212;
-    color: white;
-    box-shadow: 0 4px 10px rgba(176, 0, 32, 0.2);
-    margin-bottom: 20px;
-  }
-  
-  /* Títulos dentro de las tarjetas */
-  ion-card-title {
-    color: #b00020;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 1.2rem;
-  }
-  
-  /* 🔠 Agrandar texto general dentro de la tarjeta */
-  ion-card-content,
-  ion-card-content p,
-  ion-card-content ion-label {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: white;
-  }
-  
-  /* Botones personalizados en rojo */
-  .boton-rojo {
-    --background: #b00020;
-    --color: white;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 1rem;
-    letter-spacing: 0.5px;
-    --box-shadow: 0 4px 10px rgba(176, 0, 32, 0.3);
-    margin-top: 10px;
-  }
-  
-  /* Estilo base de las estrellas */
-  .estrella {
-    font-size: 24px;
-    color: #555;
-    transition: color 0.2s ease;
-    cursor: pointer;
-  }
-  
-  /* Estrellas activas (seleccionadas) en rojo */
-  .star-activa {
-    color: #b00020;
-  }
-  
-  /* Textarea estilizado */
-  ion-textarea {
-    --color: white;
-    color: white;
-    background-color: #1e1e1e;
-    border-radius: 8px;
-    padding: 10px;
-    font-size: 1.1rem;
-  }
-  
+.pagina-panel {
+  --background: #ffffff;
+  font-family: 'Inter', sans-serif;
+  padding: 16px;
+}
+
+.toolbar-ios {
+  --background: #ffffff;
+  --color: #1e3a8a;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.titulo-header {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e3a8a;
+}
+
+/* Bienvenida destacada */
+.bienvenida-box {
+  background: #f0f8ff;
+  border: 1px solid #dbeafe;
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.06);
+}
+
+.saludo {
+  font-size: 18px;
+  font-weight: 500;
+  color: #1e3a8a;
+  margin-bottom: 8px;
+}
+
+.nombre-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #e0f2fe;
+  padding: 8px 16px;
+  border-radius: 20px;
+}
+
+.nombre-box ion-icon {
+  font-size: 20px;
+  color: #1e3a8a;
+}
+
+.nombre-usuario {
+  font-weight: 600;
+  font-size: 16px;
+  color: #1e3a8a;
+}
+
+/* Tarjetas */
+.card-opcion {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #dbeafe;
+  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.05);
+  margin-bottom: 16px;
+}
+
+.card-opcion ion-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e3a8a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-opcion p {
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 12px;
+}
+
+/* Botón azul principal */
+.boton-azul {
+  --background: #3b82f6;
+  --color: #ffffff;
+  border-radius: 8px;
+  font-weight: 500;
+  text-transform: none;
+}
+
+/* Estrellas */
+.estrella {
+  font-size: 22px;
+  color: #d1d5db;
+  cursor: pointer;
+  margin-right: 4px;
+}
+
+.star-activa {
+  color: #f59e0b;
+}
+.boton-rojo-header {
+  --color: #ef4444; /* Rojo elegante */
+  font-weight: 500;
+}

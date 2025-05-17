@@ -1,68 +1,100 @@
-<ion-header>
-  <ion-toolbar color="success">
-    <ion-title class="ion-text-center" style="width: 100%;">
-      Panel del Dueño
-    </ion-title>
+<ion-header translucent="true">
+  <ion-toolbar class="toolbar-ios">
+
+    <!-- 🔙 Botón Volver -->
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/bienvenida"></ion-back-button>
+    </ion-buttons>
+
+    <!-- 🧾 Título centrado -->
+    <ion-title class="titulo-header">Administrador</ion-title>
+
+    <!-- 🚪 Botón cerrar sesión -->
     <ion-buttons slot="end">
-      <ion-button fill="outline" color="light" [routerLink]="['/registro-entrenador']">
-        <ion-icon name="person-add" slot="start"></ion-icon>
-        <ion-label>Entrenador + </ion-label>
+      <ion-button class="boton-rojo-header" >
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        <ion-label>Cerrar sesión</ion-label>
       </ion-button>
     </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
+<ion-content class="pagina-panel fondo-blanco" fullscreen>
+  <div class="contenedor-panel">
 
+    <!-- ✅ Botón Entrenador afuera del toolbar -->
+    <ion-button expand="block" class="boton-azul" routerLink="/registro-entrenador">
+      <ion-icon name="person-add-outline" slot="start"></ion-icon>
+      Registrar Entrenador
+    </ion-button>
 
-<ion-content class="ion-padding">
+    <!-- ✅ Resumen General -->
+    <ion-card class="card-panel">
+      <ion-card-header>
+        <ion-card-title class="titulo-tarjeta">Resumen General</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6" class="resumen-box">
+              <ion-icon name="people-outline" class="icono-panel"></ion-icon>
+              <p class="etiqueta-panel">Entrenadores</p>
+              <h3>{{ totalEntrenadores }}</h3>
+            </ion-col>
+            <ion-col size="6" class="resumen-box">
+              <ion-icon name="person-circle-outline" class="icono-panel"></ion-icon>
+              <p class="etiqueta-panel">Clientes</p>
+              <h3>{{ totalClientes }}</h3>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
 
-  <!-- Resumen general -->
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Resumen general</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col size="6">
-            <ion-label>Entrenadores:</ion-label>
-            <p>{{ totalEntrenadores }}</p>
-          </ion-col>
-          <ion-col size="6">
-            <ion-label>Clientes:</ion-label>
-            <p>{{ totalClientes }}</p>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
+    <!-- ✅ Comentarios del Box -->
+    <ion-card class="card-panel comentarios">
+      <ion-card-header>
+        <ion-card-title class="titulo-tarjeta">Comentarios del Box</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
 
-  <!-- Comentarios -->
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Comentarios del Box</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list *ngIf="comentarios.length > 0; else sinComentarios">
-        <ion-item *ngFor="let c of comentarios">
-          <ion-label>
-            <h2>{{ c.nombre_cliente }}</h2>
-            <p>{{ c.comentario }}</p>
-            <ion-row>
-              <ion-icon 
-                *ngFor="let star of [1,2,3,4,5]" 
-                name="star" 
+        <div class="comentarios-container-scroll" *ngIf="comentarios.length > 0; else sinComentarios">
+          <div class="comentario-tarjeta" *ngFor="let c of mostrarTodos ? comentarios : (comentarios | slice:0:2)">
+            <div class="comentario-encabezado">
+              <div class="comentario-avatar">
+                <ion-icon name="person-circle-outline"></ion-icon>
+              </div>
+              <div class="comentario-info">
+                <span class="nombre-comentario">{{ c.nombre_cliente }}</span>
+                <span class="fecha-comentario">{{ c.fecha | date }}</span>
+              </div>
+            </div>
+
+            <p class="comentario-texto">{{ c.comentario }}</p>
+
+            <div class="comentario-estrellas">
+              <ion-icon
+                *ngFor="let star of [1,2,3,4,5]"
+                name="star"
                 [color]="c.puntuacion >= star ? 'warning' : 'medium'">
               </ion-icon>
-            </ion-row>
-            <small>{{ c.fecha | date }}</small>
-          </ion-label>
-        </ion-item>
-      </ion-list>
-      <ng-template #sinComentarios>
-        <p>No hay comentarios aún.</p>
-      </ng-template>
-    </ion-card-content>
-  </ion-card>
+            </div>
+          </div>
+        </div>
 
+        <div class="ver-mas-container" *ngIf="comentarios.length > 2">
+          <ion-button fill="clear" size="small" class="btn-ver-mas" (click)="mostrarTodos = !mostrarTodos">
+            {{ mostrarTodos ? 'Ver menos' : 'Ver todos los comentarios' }}
+          </ion-button>
+        </div>
+
+        <ng-template #sinComentarios>
+          <p class="sin-comentarios">No hay comentarios aún.</p>
+        </ng-template>
+
+      </ion-card-content>
+    </ion-card>
+
+  </div>
 </ion-content>

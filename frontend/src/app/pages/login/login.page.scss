@@ -1,62 +1,109 @@
-.fondo-fitness {
-    --background: linear-gradient(to bottom, #1e1e1e, #111);
-    color: white;
-  }
-  
-  .container-bienvenida {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    gap: 20px;
-    text-align: center;
-    padding-top: 30px;
-  }
-  
-  .icono-fitness {
-    font-size: 64px;
-    color: #ff0000;
-    animation: pulse 1.5s infinite;
-    display: inline-block;
-  }
-  
-  @keyframes pulse {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.1); opacity: 0.85; }
-    100% { transform: scale(1); opacity: 1; }
-  }
-  
-  h2 {
-    font-size: 28px;
-    font-weight: bold;
-    color: #fff;
-  }
-  
-  .eslogan {
-    font-size: 16px;
-    color: #ccc;
-    margin: 0 20px 30px;
-  }
-  
-  ion-button {
-    width: 100%;
-    max-width: 300px;
-  }
-  
-  .boton-fitness {
-    font-weight: bold;
-    margin-top: 20px;
-  }
-  /* Tarjeta con borde rojo y sombra */
-/* Tarjeta con borde rojo y sombra */
-.tarjeta-roja {
-  background: #1a1a1a;
-  border-radius: 16px;
-  box-shadow: 0 0 15px rgba(255, 82, 82, 0.4); /* 💥 borde/sombra roja */
-  padding: 20px;
-  width: 100%;
-  max-width: 340px;
-  margin-top: 10px;
+/* Fondo blanco y fuente base */
+.pagina-login {
+  --background: #ffffff;
+  color: #1e3a8a;
+  font-family: 'Inter', sans-serif;
+  padding: 16px;
 }
 
+/* Toolbar con estilo iOS */
+.toolbar-ios {
+  --background: #ffffff;
+  --color: #1e3a8a;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.titulo-header {
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  color: #1e3a8a;
+}
+
+/* Contenedor principal */
+.container-bienvenida {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 40px;
+  gap: 16px;
+}
+
+/* Ícono animado en azul */
+.icono-azul {
+  font-size: 60px;
+  color: #3b82f6;
+  animation: pulse 1.5s infinite;
+}
+
+/* Título principal */
+h2 {
+  font-size: 26px;
+  font-weight: bold;
+  color: #1e3a8a;
+  margin-top: 4px;
+}
+
+/* Subtítulo */
+.eslogan {
+  font-size: 14px;
+  color: #444;
+  margin: 0 20px 10px;
+}
+
+/* Tarjeta limpia */
+.tarjeta-login {
+  background: #f9f9f9;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 16px;
+  width: 100%;
+  max-width: 340px;
+}
+
+/* Inputs */
+ion-item.item-dark {
+  --background: #f1f5f9;
+  --color: #1e3a8a;
+  --highlight-color-focused: #3b82f6;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+ion-label {
+  color: #555 !important;
+}
+
+ion-input {
+  color: #1e3a8a !important;
+}
+
+/* Botón azul */
+.boton-login {
+  --background: #3b82f6;
+  --background-hover: #2563eb;
+  --color: #ffffff;
+  font-weight: 600;
+  border-radius: 12px;
+  height: 48px;
+  font-size: 16px;
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+}
+
+/* Animación ícono */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.85; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.icono-input-azul {
+  color: #3b82f6 !important;
+  font-size: 20px;
+}
+.boton-home {
+  color: #3b82f6;
+  font-weight: 500;
+  margin-top: 10px;
+  font-size: 15px;
+}

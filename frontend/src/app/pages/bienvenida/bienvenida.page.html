@@ -1,37 +1,40 @@
-<ion-header>
-  <ion-toolbar color="dark">
-    <ion-title>Bienvenido</ion-title>
+<ion-header translucent="true">
+  <ion-toolbar class="toolbar-ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="titulo-header">Bienvenido</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding fondo-fitness">
-
+<ion-content class="pagina-bienvenida" fullscreen>
   <div class="container-bienvenida">
-    <!-- Ícono o logo fitness -->
-    <ion-icon name="barbell-outline" class="fitness-icon"></ion-icon>
+
+    <!-- Ícono animado -->
+    <ion-icon name="barbell-outline" class="icono-fitness"></ion-icon>
 
     <h2>Mi Coach Personal</h2>
     <p class="eslogan">💥 Entrena. Mejora. Supera tus límites. 💥</p>
 
-    <!-- Botones -->
-    <ion-button expand="block" color="danger" routerLink="/login">
+    <!-- Botón Iniciar sesión -->
+    <ion-button expand="block" class="boton-azul" routerLink="/login">
       <ion-icon slot="start" name="log-in-outline"></ion-icon>
       Iniciar sesión
     </ion-button>
 
-    <ion-button expand="block" color="success" routerLink="/registro-dueno">
+    <!-- Botón Registro dueño -->
+    <ion-button expand="block" class="boton-verde" routerLink="/registro-dueno">
       <ion-icon slot="start" name="person-add-outline"></ion-icon>
       ¿Eres dueño de un Box? Regístrate aquí
     </ion-button>
 
-    <!-- 🔔 Nuevo botón para pagar -->
-    <ion-button expand="block" color="warning" routerLink="/pagar-transbank">
+    <!-- Botón Pagar -->
+    <ion-button expand="block" class="boton-amarillo" routerLink="/pagar-transbank">
       <ion-icon slot="start" name="card-outline"></ion-icon>
       Pagar Membresía
     </ion-button>
 
-    <!-- Versión o mensaje -->
+    <!-- Versión -->
     <p class="footer-version">Versión 1.0.0 | #StrongTogether</p>
   </div>
-
 </ion-content>

@@ -1,6 +1,31 @@
-<ion-content class="ion-padding">
+<ion-header translucent="true">
+  <ion-toolbar class="toolbar-ios">
+    
+    <!-- 🔙 Botón Volver -->
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/panel-cliente"></ion-back-button>
+    </ion-buttons>
 
-  <h2 class="titulo-seccion">Mis Rutinas Semanales</h2>
+    <!-- 🧾 Título centrado -->
+    <ion-title class="titulo-header">Mis Rutinas</ion-title>
+
+    <!-- 🚪 Botón Cerrar Sesión (visual) -->
+    <ion-buttons slot="end">
+      <ion-button class="boton-rojo-header">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        <ion-label>Cerrar sesión</ion-label>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<!-- ✅ Forzado de fondo blanco inline, además de clases -->
+<ion-content
+  class="pagina-panel fondo-blanco"
+  fullscreen
+  style="--background: #ffffff !important; background-color: #ffffff !important;"
+>
 
   <ion-list *ngIf="rutinas.length > 0; else noRutinas">
     <ion-card class="card-rojo" *ngFor="let rutina of rutinas">
@@ -10,7 +35,7 @@
       <ion-card-content>
         <p>Día asignado: <strong>{{ rutina.dia_entrenamiento || 'No asignado' }}</strong></p>
       </ion-card-content>
-      <ion-button expand="full" class="boton-rojo" (click)="verDetalleRutina(rutina.id_rutina)">
+      <ion-button expand="block" class="boton-rojo" (click)="verDetalleRutina(rutina.id_rutina)">
         <ion-icon name="barbell-outline" slot="start"></ion-icon>
         Ver Rutina Detallada
       </ion-button>

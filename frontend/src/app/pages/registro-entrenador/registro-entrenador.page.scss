@@ -1,33 +1,114 @@
-.card-rojo {
-    border: 2px solid #b00020;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(176, 0, 32, 0.2);
-    background-color: #121212; // fondo oscuro elegante
+/* 🎨 Fondo general tipo iOS */
+.pagina-registro {
+  --background: linear-gradient(to bottom, #ffffff, #f1f5f9);
+  background: linear-gradient(to bottom, #ffffff, #f1f5f9);
+  color: #1e3a8a;
+  padding: 16px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* 📦 Tarjeta del formulario */
+ion-card.form-card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  padding: 16px;
+}
+
+/* 🧾 Inputs con fondo blanco sin borde negro */
+ion-item.item-dark {
+  --background: #ffffff !important;
+  --color: #1e3a8a !important;
+  --highlight-color-focused: #3b82f6;
+  --padding-start: 10px;
+  --inner-border-width: 0 !important;
+  --border-color: transparent !important;
+  --min-height: 56px;
+
+  border: none !important;
+  border-radius: 12px;
+  margin: 12px 0;
+  background-color: #ffffff !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* 💡 Efecto al enfocar input */
+ion-item.item-dark:focus-within {
+  background-color: #e0ecff !important;
+}
+
+/* ✏️ Etiquetas del input */
+ion-label {
+  color: #1e3a8a !important;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* ✍ Input texto */
+ion-input {
+  color: #1e3a8a !important;
+  font-size: 15px;
+}
+
+/* 🔵 Íconos */
+ion-icon {
+  color: #3b82f6 !important;
+  font-size: 20px;
+}
+
+/* ✅ Botón de acción principal */
+.boton-verde {
+  --background: #3b82f6;
+  --color: #ffffff;
+  border-radius: 12px;
+  font-weight: 600;
+  margin-top: 24px;
+  height: 48px;
+  font-size: 16px;
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2);
+}
+
+/* ☀️ Compatibilidad con modo oscuro */
+@media (prefers-color-scheme: dark) {
+  ion-item.item-dark {
+    --background: #ffffff !important;
+    background-color: #ffffff !important;
+    --border-color: transparent !important;
   }
-  
-  .titulo-rojo {
-    color: #b00020;
-    font-weight: bold;
-    text-align: center;
+
+  ion-label, ion-input {
+    color: #1e3a8a !important;
   }
-  
-  .boton-rojo {
-    --background: #b00020;
-    --color: #ffffff;
-    margin-top: 16px;
-    border-radius: 8px;
-  }
-  
-  /* 🔴 Texto del input */
-  .input-rojo::part(native) {
-    color: #b00020 !important;
-    caret-color: #b00020 !important;
-  }
-  
-  /* 🔴 Línea inferior del input (borde inferior) */
-  ion-item {
-    --highlight-color-focused: #b00020;
-    --border-color: #b00020;
-    --color: #b00020;
-  }
-  
+}
+
+/* 🔵 Toolbar blanco */
+.toolbar-ios {
+  --background: #ffffff;
+  --color: #1e3a8a;
+  border-bottom: 1px solid #e5e7eb;
+  font-family: 'Inter', sans-serif;
+}
+
+/* 📛 Título centrado */
+.titulo-header {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e3a8a;
+  text-align: center;
+}
+
+/* 🚪 Botón rojo para cerrar sesión */
+.boton-rojo-header {
+  --color: #ef4444;
+  font-weight: 500;
+  font-size: 14px;
+  color: #ef4444 !important;
+}
+
+.boton-rojo-header ion-icon {
+  color: #ef4444 !important;
+}
+
+.boton-rojo-header ion-label {
+  color: #ef4444 !important;
+}

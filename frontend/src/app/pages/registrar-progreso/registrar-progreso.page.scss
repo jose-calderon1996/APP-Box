@@ -1,62 +1,104 @@
-.fondo-oscuro {
-  background-color: #121212;
-  color: white;
-  height: 100%;
+.pagina-panel {
+  --background: #ffffff;
+  font-family: 'Inter', sans-serif;
+  padding: 16px;
 }
 
-/* Reutilizamos el diseño rojo que ya tenías */
-.card-rojo {
-  border: 2px solid #b00020;
-  border-radius: 12px;
-  background-color: #121212;
-  color: white;
-  box-shadow: 0 4px 8px rgba(176, 0, 32, 0.2);
+/* HEADER */
+.toolbar-ios {
+  --background: #ffffff;
+  --color: #1e3a8a;
+  border-bottom: 1px solid #e5e7eb;
 }
 
-.titulo-rojo {
-  color: #b00020;
-  font-weight: bold;
+.titulo-header {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e3a8a;
   text-align: center;
 }
 
-.boton-rojo {
-  --background: #b00020;
+/* CARD PROGRESO */
+.card-progreso {
+  background: #ffffff;
+  border: 1px solid #dbeafe;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.05);
+  margin-top: 20px;
+  padding: 8px;
+}
+
+.titulo-tarjeta {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e3a8a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* INPUTS */
+ion-item {
+  --background: #ffffff;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+/* BOTÓN AZUL */
+.boton-azul {
+  --background: #3b82f6;
   --color: #ffffff;
   border-radius: 8px;
+  font-weight: 500;
   margin-top: 12px;
-  font-weight: bold;
   text-transform: none;
-  box-shadow: 0 4px 8px rgba(176, 0, 32, 0.3);
 }
 
-/* Subir foto */
-.custom-file-upload-rojo {
-  display: inline-block;
-  padding: 10px 20px;
-  cursor: pointer;
-  background-color: #b00020;
-  color: white;
-  border-radius: 10px;
-  font-weight: bold;
-  transition: 0.3s ease;
-  margin-top: 10px;
+/* FOTO */
+.subir-foto {
+  margin: 12px 0;
   text-align: center;
 }
 
-.custom-file-upload-rojo:hover {
-  background-color: #950018;
-}
-
-.nombre-archivo-rojo {
-  margin-top: 10px;
-  color: #b00020;
+.custom-file-upload {
+  background-color: #e0f2fe;
+  color: #1e3a8a;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
   font-weight: 500;
-  font-size: 14px;
+  display: inline-block;
+  transition: background 0.3s ease;
 }
 
-/* Estilo general del formulario */
-.formulario-progreso {
-  display: flex;
-  flex-direction: column;
+.custom-file-upload:hover {
+  background-color: #c7e6fc;
+}
+
+.nombre-archivo {
+  font-size: 13px;
+  color: #3b82f6;
+  margin-top: 6px;
+}
+ion-input {
+  --color: #1e3a8a; /* Azul fuerte como el resto de la app */
+  color: #1e3a8a;    /* Fallback por si acaso */
+  font-weight: 500;
+}
+ion-item {
+  --background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  margin: 16px 0;
   justify-content: center;
+}
+
+ion-input {
+  --padding-start: 0;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  color: #1e3a8a;
 }

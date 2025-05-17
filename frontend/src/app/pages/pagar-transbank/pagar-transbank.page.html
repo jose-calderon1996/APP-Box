@@ -1,88 +1,178 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Elige tu membresía</ion-title>
+<ion-header translucent="true">
+  <ion-toolbar class="toolbar-ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="titulo-header">Elige tu Membresía</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="pagina-membresia" fullscreen>
+  <div class="container-membresias">
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Opciones disponibles</ion-card-title>
-    </ion-card-header>
+    <!-- Intro -->
+    <p class="descripcion-intro">
+      Escoge el plan que más se adapte a ti y desbloquea todo tu potencial 💪
+    </p>
 
-    <ion-card-content>
-      
-      <!-- Membresía mensual -->
-      <ion-card color="light">
-        <ion-card-header>
-          <ion-card-subtitle>Membresía Mensual</ion-card-subtitle>
-          <ion-card-title>$10.000</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          - 1 rutina mensual personalizada<br>
-          - Seguimiento básico<br>
-          - Acceso al panel de cliente
-        </ion-card-content>
-        <ion-button expand="full" color="success" (click)="seleccionarMembresia(10000, 'mensual')">
-          Seleccionar Mensual
-        </ion-button>
-      </ion-card>
+    <!-- Cards de planes -->
+    <ion-card class="tarjeta-opciones">
+      <ion-card-header>
+        <ion-card-title class="titulo-tarjeta">Opciones disponibles</ion-card-title>
+      </ion-card-header>
 
-      <!-- Membresía trimestral -->
-      <ion-card color="light">
-        <ion-card-header>
-          <ion-card-subtitle>Membresía Trimestral</ion-card-subtitle>
-          <ion-card-title>$27.000</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          - 3 rutinas (1 por mes)<br>
-          - Subida de fotos<br>
-          - Estadísticas de progreso
-        </ion-card-content>
-        <ion-button expand="full" color="tertiary" (click)="seleccionarMembresia(27000, 'trimestral')">
-          Seleccionar Trimestral
-        </ion-button>
-      </ion-card>
+      <ion-card-content>
 
-      <!-- Membresía semestral -->
-      <ion-card color="light">
-        <ion-card-header>
-          <ion-card-subtitle>Membresía Semestral</ion-card-subtitle>
-          <ion-card-title>$50.000</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          - Modificación de rutina cada 2 semanas<br>
-          - Retroalimentación mensual<br>
-          - Todo lo anterior
-        </ion-card-content>
-        <ion-button expand="full" color="warning" (click)="seleccionarMembresia(50000, 'semestral')">
-          Seleccionar Semestral
-        </ion-button>
-      </ion-card>
+        <!-- Mensual -->
+        <ion-card class="tarjeta-plan" [ngClass]="{ 'selected': tipoSeleccionado === 'mensual' }">
+          <ion-card-header>
+            <ion-icon name="calendar-outline" class="icono-plan"></ion-icon>
+            <ion-card-subtitle>Membresía Mensual</ion-card-subtitle>
+            <ion-card-title>$10.000</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            - 1 rutina mensual personalizada<br>
+            - Seguimiento básico<br>
+            - Acceso al panel de cliente
+          </ion-card-content>
+          <ion-button expand="block" class="boton-verde" (click)="seleccionarMembresia(10000, 'mensual')">
+            Seleccionar Mensual
+            <ion-icon *ngIf="tipoSeleccionado === 'mensual'" name="checkmark-circle" slot="end"></ion-icon>
+          </ion-button>
+        </ion-card>
 
-      <!-- Membresía anual -->
-      <ion-card color="light">
-        <ion-card-header>
-          <ion-card-subtitle>Membresía Anual</ion-card-subtitle>
-          <ion-card-title>$90.000</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          - Rutinas ilimitadas<br>
-          - Acceso anticipado a funciones<br>
-          - Corrección técnica por video (futuro)
-        </ion-card-content>
-        <ion-button expand="full" color="danger" (click)="seleccionarMembresia(90000, 'anual')">
-          Seleccionar Anual
-        </ion-button>
-      </ion-card>
+        <!-- Trimestral -->
+        <ion-card class="tarjeta-plan" [ngClass]="{ 'selected': tipoSeleccionado === 'trimestral' }">
+          <ion-card-header>
+            <ion-icon name="trending-up-outline" class="icono-plan"></ion-icon>
+            <ion-card-subtitle>Membresía Trimestral</ion-card-subtitle>
+            <ion-card-title>$27.000</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            - 3 rutinas (1 por mes)<br>
+            - Subida de fotos<br>
+            - Estadísticas de progreso
+          </ion-card-content>
+          <ion-button expand="block" class="boton-azul" (click)="seleccionarMembresia(27000, 'trimestral')">
+            Seleccionar Trimestral
+            <ion-icon *ngIf="tipoSeleccionado === 'trimestral'" name="checkmark-circle" slot="end"></ion-icon>
+          </ion-button>
+        </ion-card>
 
-    </ion-card-content>
-  </ion-card>
+        <!-- Semestral -->
+        <ion-card class="tarjeta-plan" [ngClass]="{ 'selected': tipoSeleccionado === 'semestral' }">
+          <ion-card-header>
+            <ion-icon name="pulse-outline" class="icono-plan"></ion-icon>
+            <ion-card-subtitle>Membresía Semestral</ion-card-subtitle>
+            <ion-card-title>$50.000</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            - Modificación de rutina cada 2 semanas<br>
+            - Retroalimentación mensual<br>
+            - Todo lo anterior
+          </ion-card-content>
+          <ion-button expand="block" class="boton-amarillo" (click)="seleccionarMembresia(50000, 'semestral')">
+            Seleccionar Semestral
+            <ion-icon *ngIf="tipoSeleccionado === 'semestral'" name="checkmark-circle" slot="end"></ion-icon>
+          </ion-button>
+        </ion-card>
 
-  <!-- Botón para pagar -->
-  <ion-button expand="full" color="primary" [disabled]="!monto" (click)="iniciarPago()">
-    Pagar {{ tipoSeleccionado ? '(' + tipoSeleccionado + ')' : '' }}
-  </ion-button>
+        <!-- Anual -->
+        <ion-card class="tarjeta-plan popular" [ngClass]="{ 'selected': tipoSeleccionado === 'anual' }">
+          <ion-badge color="primary" class="badge-plan">Más Popular</ion-badge>
+          <ion-badge color="success" class="badge-descuento">🎁 1 mes extra</ion-badge>
+          <ion-card-header>
+            <ion-icon name="sparkles-outline" class="icono-plan"></ion-icon>
+            <ion-card-subtitle>Membresía Anual</ion-card-subtitle>
+            <ion-card-title>$90.000</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            - Rutinas ilimitadas<br>
+            - Acceso anticipado a funciones<br>
+            - Corrección técnica por video (futuro)
+          </ion-card-content>
+          <ion-button expand="block" class="boton-rojo" (click)="seleccionarMembresia(90000, 'anual')">
+            Seleccionar Anual
+            <ion-icon *ngIf="tipoSeleccionado === 'anual'" name="checkmark-circle" slot="end"></ion-icon>
+          </ion-button>
+        </ion-card>
 
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Resumen del plan seleccionado -->
+    <ion-card class="resumen-plan" *ngIf="tipoSeleccionado">
+      <ion-card-content>
+        <ion-label color="primary">
+          Has seleccionado: <strong>{{ tipoSeleccionado | titlecase }}</strong><br>
+          Monto: <strong>${{ monto | number }}</strong>
+        </ion-label>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="comparador-beneficios">
+  <ion-card-header>
+    <ion-card-title class="titulo-tarjeta">Comparación de Beneficios</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-grid>
+      <!-- Fila encabezado -->
+      <ion-row class="encabezado">
+        <ion-col><strong>Beneficio</strong></ion-col>
+        <ion-col class="celda-icono"><strong>Mensual</strong></ion-col>
+        <ion-col class="celda-icono"><strong>Trimestral</strong></ion-col>
+        <ion-col class="celda-icono"><strong>Semestral</strong></ion-col>
+        <ion-col class="celda-icono"><strong>Anual</strong></ion-col>
+      </ion-row>
+
+      <!-- Rutinas -->
+      <ion-row>
+        <ion-col>Rutinas personalizadas</ion-col>
+        <ion-col class="celda-icono"><ion-icon name="checkmark-outline" class="icono-ok"></ion-icon></ion-col>
+        <ion-col class="celda-icono"><ion-icon name="checkmark-outline" class="icono-ok"></ion-icon></ion-col>
+        <ion-col class="celda-icono"><ion-icon name="checkmark-outline" class="icono-ok"></ion-icon></ion-col>
+        <ion-col class="celda-icono"><ion-icon name="checkmark-outline" class="icono-ok"></ion-icon></ion-col>
+      </ion-row>
+
+      <!-- Seguimiento -->
+      <ion-row>
+        <ion-col>Seguimiento de progreso</ion-col>
+        <ion-col class="celda-icono"><ion-icon name="close-outline" class="icono-x"></ion-icon></ion-col>
+        <ion-col class="celda-icono"><ion-icon name="checkmark-outline" class="icono-ok"></ion-icon></ion-col>
+        <ion-col class="celda-icono"><ion-icon name="checkmark-outline" class="icono-ok"></ion-icon></ion-col>
+        <ion-col class="celda-icono"><ion-icon name="checkmark-outline" class="icono-ok"></ion-icon></ion-col>
+      </ion-row>
+
+      <!-- Estadísticas -->
+      <ion-row>
+        <ion-col>Estadísticas</ion-col>
+        <ion-col class="celda-icono"><ion-icon name="close-outline" class="icono-x"></ion-icon></ion-col>
+        <ion-col class="celda-icono"><ion-icon name="checkmark-outline" class="icono-ok"></ion-icon></ion-col>
+        <ion-col class="celda-icono"><ion-icon name="checkmark-outline" class="icono-ok"></ion-icon></ion-col>
+        <ion-col class="celda-icono"><ion-icon name="checkmark-outline" class="icono-ok"></ion-icon></ion-col>
+      </ion-row>
+
+      <!-- Corrección -->
+      <ion-row>
+        <ion-col>Corrección por video</ion-col>
+        <ion-col class="celda-icono"><ion-icon name="close-outline" class="icono-x"></ion-icon></ion-col>
+        <ion-col class="celda-icono"><ion-icon name="close-outline" class="icono-x"></ion-icon></ion-col>
+        <ion-col class="celda-icono"><ion-icon name="close-outline" class="icono-x"></ion-icon></ion-col>
+        <ion-col class="celda-icono"><ion-icon name="checkmark-outline" class="icono-ok"></ion-icon></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+
+
+
+
+    <!-- Botón de pagar con color fijo -->
+    <ion-button expand="block" color="primary" class="boton-pagar" [disabled]="!monto" (click)="iniciarPago()">
+      <ion-icon name="card-outline" slot="start"></ion-icon>
+      Pagar {{ tipoSeleccionado ? '(' + tipoSeleccionado + ')' : '' }}
+    </ion-button>
+
+  </div>
 </ion-content>

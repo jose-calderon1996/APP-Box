@@ -1,10 +1,26 @@
-<ion-header>
-  <ion-toolbar color="success">
-    <ion-title>Detalle de Rutina</ion-title>
+<ion-header translucent="true">
+  <ion-toolbar class="toolbar-ios">
+
+    <!-- Botón Volver -->
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/mis-rutinas"></ion-back-button>
+    </ion-buttons>
+
+    <!-- Título -->
+    <ion-title class="titulo-header">Detalle Rutina</ion-title>
+
+    <!-- Botón Cerrar sesión (visual) -->
+    <ion-buttons slot="end">
+      <ion-button class="boton-rojo-header">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        <ion-label>Cerrar sesión</ion-label>
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="pagina-panel fondo-blanco" fullscreen>
 
   <ion-card class="card-rojo">
     <ion-card-header>
@@ -13,8 +29,8 @@
     </ion-card-header>
   </ion-card>
 
-  <ion-list>
-    <ion-card *ngFor="let ejercicio of ejercicios" class="card-rojo ion-margin-bottom">
+  <ion-list class="fondo-blanco">
+    <ion-card *ngFor="let ejercicio of ejercicios" class="card-rojo">
       <ion-card-header>
         <ion-card-title class="titulo-rojo">{{ ejercicio.nombre_ejercicio }}</ion-card-title>
         <ion-card-subtitle class="subtitulo-rojo">
@@ -27,17 +43,15 @@
           <ion-row>
             <ion-col size="4">
               <ion-label position="stacked">Peso (kg)</ion-label>
-              <ion-input [(ngModel)]="ejercicio.peso" type="number" placeholder="Peso"></ion-input>
+              <ion-input [(ngModel)]="ejercicio.peso" type="number"></ion-input>
             </ion-col>
-
             <ion-col size="4">
               <ion-label position="stacked">Series hechas</ion-label>
-              <ion-input [(ngModel)]="ejercicio.series_realizadas" type="number" placeholder="Series"></ion-input>
+              <ion-input [(ngModel)]="ejercicio.series_realizadas" type="number"></ion-input>
             </ion-col>
-
             <ion-col size="4">
               <ion-label position="stacked">Reps hechas</ion-label>
-              <ion-input [(ngModel)]="ejercicio.repeticiones_realizadas" type="number" placeholder="Reps"></ion-input>
+              <ion-input [(ngModel)]="ejercicio.repeticiones_realizadas" type="number"></ion-input>
             </ion-col>
           </ion-row>
 
@@ -52,7 +66,8 @@
     </ion-card>
   </ion-list>
 
-  <ion-item class="ion-margin-top item-rojo">
+  <!-- ✅ Caja de comentario con estilo limpio -->
+  <ion-item class="item-textarea">
     <ion-label position="stacked">Comentario sobre la rutina (opcional)</ion-label>
     <ion-textarea
       [(ngModel)]="comentario"
@@ -60,15 +75,15 @@
     </ion-textarea>
   </ion-item>
 
-  <ion-button expand="full" class="boton-rojo ion-margin-top" (click)="marcarRutinaRealizada()">
+  <!-- Botones -->
+  <ion-button expand="block" class="boton-rojo ion-margin-top" (click)="marcarRutinaRealizada()">
     <ion-icon name="checkmark-done-outline" slot="start"></ion-icon>
     Rutina Realizada
   </ion-button>
 
-  <ion-button expand="full" class="boton-rojo ion-margin-top" (click)="guardarRegistroEjercicios()">
+  <ion-button expand="block" class="boton-rojo ion-margin-top" (click)="guardarRegistroEjercicios()">
     <ion-icon name="save-outline" slot="start"></ion-icon>
     Guardar Registro de Ejercicios
   </ion-button>
 
 </ion-content>
-/////

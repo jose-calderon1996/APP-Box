@@ -1,5 +1,8 @@
 <ion-header translucent="true">
-  <ion-toolbar color="dark">
+  <ion-toolbar class="toolbar-ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text="Volver"></ion-back-button>
+    </ion-buttons>
     <ion-title class="titulo-header">Registro de Dueño</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -7,31 +10,37 @@
 <ion-content class="pagina-registro" fullscreen>
   <div class="container">
 
+    <!-- Mensaje inicial -->
     <div class="mensaje-inicial">
       <h2><span class="marca">Mi Coach Personal</span></h2>
       <p>Regístrate como dueño para administrar tu Box y gestionar entrenadores y clientes.</p>
     </div>
 
+    <!-- Tarjeta del formulario -->
     <ion-card class="form-card">
       <ion-card-content>
         <form (ngSubmit)="registrarDueno()">
 
           <ion-item class="item-dark">
+            <ion-icon name="person-outline" slot="start"></ion-icon>
             <ion-label position="floating">Nombre completo</ion-label>
             <ion-input [(ngModel)]="nombre" name="nombre" required></ion-input>
           </ion-item>
 
           <ion-item class="item-dark">
+            <ion-icon name="mail-outline" slot="start"></ion-icon>
             <ion-label position="floating">Correo electrónico</ion-label>
             <ion-input [(ngModel)]="correo" name="correo" type="email" required></ion-input>
           </ion-item>
 
           <ion-item class="item-dark">
+            <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
             <ion-label position="floating">Contraseña</ion-label>
             <ion-input [(ngModel)]="password" name="password" type="password" required></ion-input>
           </ion-item>
 
           <ion-item class="item-dark">
+            <ion-icon name="home-outline" slot="start"></ion-icon>
             <ion-label position="floating">Nombre del Box</ion-label>
             <ion-input [(ngModel)]="nombreBox" name="nombreBox" required></ion-input>
           </ion-item>
@@ -44,6 +53,7 @@
       </ion-card-content>
     </ion-card>
 
+    <!-- Pie de página -->
     <div class="footer-text">
       <p>Versión 1.0.0 | #StrongTogether</p>
     </div>
