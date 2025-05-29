@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [IonicModule, FormsModule, CommonModule],
   templateUrl: './registro-entrenador.page.html',
-  styleUrls: ['./registro-entrenador.page.scss']  // 👈 Agrega esta línea
+  styleUrls: ['./registro-entrenador.page.scss']  
 })
 export class RegistroEntrenadorPage {
   nombre: string = '';
@@ -38,7 +38,7 @@ export class RegistroEntrenadorPage {
 
       this.router.navigate(['/panel-dueno']);
     } catch (error) {
-      console.error('❌ Error registrando entrenador:', error);
+      console.error(' Error registrando entrenador:', error);
     }
   }
 }

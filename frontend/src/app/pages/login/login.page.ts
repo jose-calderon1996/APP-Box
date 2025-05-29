@@ -63,59 +63,59 @@ export class LoginPage {
     try {
       console.log('📨 Iniciando sesión con:', this.correo);
 
-      // 🔐 Paso 1: Login con Firebase Authentication
+      //  Paso 1: Login con Firebase Authentication
       const userCredential = await this.authService.iniciarSesion(this.correo, this.password);
       const uid = userCredential.user?.uid;
 
-      // 📥 Paso 2: Obtener datos del usuario desde el backend
+      //  Paso 2: Obtener datos del usuario desde el backend
       const userData = await this.apiService.get(`usuarios/uid/${uid}`);
-      console.log('🧠 userData recibido:', userData);
+      console.log(' userData recibido:', userData);
 
-      // 💾 Paso 3: Guardar datos en localStorage
+      //  Paso 3: Guardar datos en localStorage
       localStorage.setItem('id_usuario', userData.id_usuario);
       localStorage.setItem('tipo_usuario', userData.tipo_usuario);
       localStorage.setItem('nombre', userData.nombre);
       localStorage.setItem('correo', userData.correo);
 
-      console.log('📌 Hasta acá llegó. Intentando registrar log y redirigir...');
+      console.log(' Hasta acá llegó. Intentando registrar log y redirigir...');
 
-      // 📝 Paso 4: Registrar log de acceso (NO bloquea el flujo)
+      //  Paso 4: Registrar log de acceso (NO bloquea el flujo)
       this.apiService.post('log-acceso/registrar', {
         id_usuario: userData.id_usuario
       }).then(() => {
-        console.log('📝 Log de acceso registrado');
+        console.log(' Log de acceso registrado');
       }).catch((err) => {
-        console.error('❌ Error registrando log de acceso:', err);
+        console.error(' Error registrando log de acceso:', err);
       });
 
-      // 🚀 Paso 5: Redireccionar al panel correspondiente
-      console.log('🎯 Tipo de usuario:', userData.tipo_usuario);
+      //  Paso 5: Redireccionar al panel correspondiente
+      console.log(' Tipo de usuario:', userData.tipo_usuario);
       switch (userData.tipo_usuario) {
         case 'cliente':
-          console.log('➡️ Redirigiendo a /panel-cliente');
+          console.log(' Redirigiendo a /panel-cliente');
           await this.router.navigate(['/panel-cliente']);
           break;
         case 'entrenador':
-          console.log('➡️ Redirigiendo a /panel-entrenador');
+          console.log(' Redirigiendo a /panel-entrenador');
           await this.router.navigate(['/panel-entrenador']);
           break;
         case 'dueño':
-          console.log('➡️ Redirigiendo a /panel-dueno');
+          console.log(' Redirigiendo a /panel-dueno');
           await this.router.navigate(['/panel-dueno']);
           break;
         default:
-          console.warn('❌ Tipo de usuario desconocido. Redirigiendo a login');
+          console.warn(' Tipo de usuario desconocido. Redirigiendo a login');
           await this.router.navigate(['/login']);
           break;
       }
 
-      console.log('✅ Redirección completada');
+      console.log(' Redirección completada');
 
       // Mostrar la notificación local después de login exitoso
       await this.showNotification();
 
     } catch (error) {
-      console.error('❌ Error en el login:', error);
+      console.error(' Error en el login:', error);
       alert('Correo o contraseña incorrectos o el usuario ha sido eliminado.');
     }
   }

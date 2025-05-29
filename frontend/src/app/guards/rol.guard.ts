@@ -12,12 +12,12 @@ export class RolGuard implements CanActivate {
     const tipoUsuario = localStorage.getItem('tipo_usuario');
     const tipoRequerido = route.data['tipo']; // existe solo en rutas protegidas
 
-    // 🔐 Rutas protegidas: valida tipo
+    //  Rutas protegidas: valida tipo
     if (tipoRequerido) {
       return tipoUsuario === tipoRequerido;
     }
 
-    // 🚀 Redirección automática desde /redirect
+    //  Redirección automática desde /redirect
     switch (tipoUsuario) {
       case 'cliente':
         this.router.navigate(['/panel-cliente']);

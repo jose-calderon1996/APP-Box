@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [IonicModule, FormsModule, CommonModule],
   templateUrl: './registro-dueno.page.html',
-  styleUrls: ['./registro-dueno.page.scss'], // ✅ aseguramos que el SCSS se aplique
-  encapsulation: ViewEncapsulation.None      // ✅ ¡esto hace que tu CSS funcione!
+  styleUrls: ['./registro-dueno.page.scss'], 
+  encapsulation: ViewEncapsulation.None      
 })
 export class RegistroDuenoPage {
   nombre: string = '';
@@ -25,25 +25,25 @@ export class RegistroDuenoPage {
     private apiService: ApiService,
     private router: Router,
     private toastController: ToastController,
-    private navCtrl: NavController // ✅ Agregado para redirigir correctamente
+    private navCtrl: NavController 
   ) {}
 
   async registrarDueno() {
     try {
-      // 🔹 1. Crear usuario en Firebase
+      //  1. Crear usuario en Firebase
       const userCredential = await this.authService.registrarConCorreo(this.correo, this.password);
       const uid = userCredential.user?.uid;
 
-      // 🔹 2. Guardar en tabla usuarios
+      //  2. Guardar en tabla usuarios
       const resUsuario = await this.apiService.post('usuarios', {
         uid_firebase: uid,
         nombre: this.nombre,
         correo: this.correo,
         tipo_usuario: 'dueño'
       });
-       // 🚀 Redirigir con NavController
+       //  Redirigir con NavController
        this.navCtrl.navigateRoot('/bienvenida'); 
-       // ✅ Mostrar Toast de éxito
+       //  Mostrar Toast de éxito
       const toast = await this.toastController.create({
         message: 'Usuario dueño creado, ahora puedes administrar tu propio box',
         duration: 2500,
@@ -54,18 +54,18 @@ export class RegistroDuenoPage {
       await toast.onDidDismiss(); // Esperar que desaparezca
 
       const id_usuario = resUsuario.id_usuario;
-      console.log('✅ ID recibido del usuario:', id_usuario);
+      console.log(' ID recibido del usuario:', id_usuario);
 
-      // 🔹 3. Guardar en tabla duenos_box
+      //  3. Guardar en tabla duenos_box
       try {
-        console.log('➡️ Enviando a duenos-box...');
+        console.log(' Enviando a duenos-box...');
         const resDueno = await this.apiService.post('duenos-box', {
           id_usuario: id_usuario,
           nombre_box: this.nombreBox
         });
-        console.log('📦 Dueño guardado:', resDueno);
+        console.log(' Dueño guardado:', resDueno);
       } catch (error: any) {
-        console.error('❌ Error guardando en duenos-box:', error);
+        console.error(' Error guardando en duenos-box:', error);
         await this.presentToast('Error al guardar en duenos-box.', 'danger');
         return;
       }
@@ -73,7 +73,7 @@ export class RegistroDuenoPage {
 
       
 
-      // 🔄 Limpiar formulario
+      //  Limpiar formulario
       this.nombre = '';
       this.correo = '';
       this.password = '';
@@ -82,8 +82,8 @@ export class RegistroDuenoPage {
       
 
     } catch (error: any) {
-      console.error('❌ Error en el registro del dueño:', error);
-      console.log('📛 Detalle completo del error:', JSON.stringify(error));
+      console.error(' Error en el registro del dueño:', error);
+      console.log(' Detalle completo del error:', JSON.stringify(error));
 
       if (error.code === 'auth/email-already-in-use') {
         await this.presentToast('Este correo ya está registrado. Intenta con otro.', 'danger');
@@ -93,7 +93,7 @@ export class RegistroDuenoPage {
     }
   }
 
-  // ✅ Método auxiliar para errores u otros mensajes
+  //  Método auxiliar para errores u otros mensajes
   async presentToast(message: string, color: 'success' | 'danger' = 'success') {
     const toast = await this.toastController.create({
       message,

@@ -1,4 +1,4 @@
-// exportamos lo necesario 
+
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
@@ -12,13 +12,13 @@ router.post('/crear-aviso-duenio', (req, res) => {
 
   db.query(query, values, (err, result) => {
     if (err) {
-      console.error('❌ Error al insertar el aviso:', err);
+      console.error(' Error al insertar el aviso:', err);
       return res.status(500).json({ error: 'Error al insertar el aviso' });
     }
 
-    res.json({ mensaje: '✅ Aviso creado correctamente' });
+    res.json({ mensaje: ' Aviso creado correctamente' });
   });
 });
 
-// exportamos el router para usarlo en app.js o server.js
+
 module.exports = router;

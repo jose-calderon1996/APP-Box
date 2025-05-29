@@ -88,11 +88,11 @@ const routes: Routes = [
   },
   {
     path: 'pagar-transbank',
-    component: PagarTransbankPage, // 👈 Importamos directamente porque es standalone
+    component: PagarTransbankPage, 
   },
   {
     path: 'pago-confirmado',
-    component: PagoConfirmadoPage, // 👈 standalone directo
+    component: PagoConfirmadoPage,
   },
   
   

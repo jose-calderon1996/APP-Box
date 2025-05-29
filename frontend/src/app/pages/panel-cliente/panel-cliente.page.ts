@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
-import { FormsModule } from '@angular/forms'; // ✅ Importa esto
+import { FormsModule } from '@angular/forms'; 
 
 @Component({
   selector: 'app-panel-cliente',
   standalone: true,
   templateUrl: './panel-cliente.page.html',
   styleUrls: ['./panel-cliente.page.scss'],
-  imports: [CommonModule, IonicModule, RouterModule, FormsModule] // ✅ Agrégalo aquí también
+  imports: [CommonModule, IonicModule, RouterModule, FormsModule] 
 })
 export class PanelClientePage implements OnInit {
 

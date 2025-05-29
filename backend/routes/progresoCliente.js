@@ -6,11 +6,11 @@ const cloudinary = require('../cloudinary');
 const multer = require('multer');
 const streamifier = require('streamifier');
 
-// Configurar multer para recibir archivos en memoria
+
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-// 🚀 SUBIR FOTO Y REGISTRAR PROGRESO (peso + foto en Cloudinary)
+//  SUBIR FOTO Y REGISTRAR PROGRESO (peso + foto en Cloudinary)
 router.post('/api/subir-foto-progreso', upload.single('imagen'), async (req, res) => {
   const { id_cliente, peso } = req.body;
   const archivo = req.file;
@@ -59,7 +59,7 @@ router.post('/api/subir-foto-progreso', upload.single('imagen'), async (req, res
   }
 });
 
-// 🚀 VER HISTORIAL DE PROGRESO
+//  VER HISTORIAL DE PROGRESO
 router.get('/api/historial-progreso/:id_cliente', async (req, res) => {
   const { id_cliente } = req.params;
 
@@ -85,7 +85,7 @@ router.get('/api/historial-progreso/:id_cliente', async (req, res) => {
   }
 });
 
-// 🚀 OBTENER PESO INICIAL
+//  OBTENER PESO INICIAL
 router.get('/api/peso-inicial/:id_cliente', async (req, res) => {
   const { id_cliente } = req.params;
 
@@ -109,7 +109,7 @@ router.get('/api/peso-inicial/:id_cliente', async (req, res) => {
   }
 });
 
-// 🚀 OBTENER PESO ACTUAL
+//  OBTENER PESO ACTUAL
 router.get('/api/peso-actual/:id_cliente', async (req, res) => {
   const { id_cliente } = req.params;
 

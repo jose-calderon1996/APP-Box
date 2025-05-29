@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 
-// 📥 Ruta para insertar usuarios (dueño, entrenador, cliente)
+//  Ruta para insertar usuarios (dueño, entrenador, cliente)
 router.post('/', async (req, res) => {
   const { uid_firebase, nombre, correo, tipo_usuario } = req.body;
 
@@ -18,12 +18,12 @@ router.post('/', async (req, res) => {
 
     res.status(201).send({ id_usuario: result.insertId });
   } catch (err) {
-    console.error('❌ Error al insertar usuario:', err);
+    console.error(' Error al insertar usuario:', err);
     res.status(500).send({ error: 'Error al insertar usuario', detalle: err });
   }
 });
 
-// 🔎 Ruta para obtener usuario por UID de Firebase
+//  Ruta para obtener usuario por UID de Firebase
 router.get('/uid/:uid', async (req, res) => {
   const { uid } = req.params;
 
@@ -42,12 +42,12 @@ router.get('/uid/:uid', async (req, res) => {
 
     res.send(results[0]);
   } catch (err) {
-    console.error('❌ Error en consulta UID:', err);
+    console.error(' Error en consulta UID:', err);
     res.status(500).send({ error: 'Error interno al buscar usuario' });
   }
 });
 
-// 🧩 Ruta para registrar cliente y asociarlo a un entrenador
+//  Ruta para registrar cliente y asociarlo a un entrenador
 router.post('/registrar-cliente', async (req, res) => {
   const { uid_firebase, nombre, correo, id_entrenador } = req.body;
 
@@ -74,18 +74,18 @@ router.post('/registrar-cliente', async (req, res) => {
     });
 
   } catch (err) {
-    console.error('❌ Error al registrar cliente:', err);
+    console.error(' Error al registrar cliente:', err);
     res.status(500).json({ error: 'Error interno al registrar cliente', detalle: err });
   }
 });
 
-// 🧾 Ruta para obtener todos los usuarios
+//  Ruta para obtener todos los usuarios
 router.get('/', async (req, res) => {
   try {
     const [rows] = await db.query('SELECT * FROM usuarios');
     res.json(rows);
   } catch (error) {
-    console.error('❌ Error al obtener usuarios:', error);
+    console.error(' Error al obtener usuarios:', error);
     res.status(500).json({ error: 'Error al obtener usuarios' });
   }
 });

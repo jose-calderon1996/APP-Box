@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms'; // ✅
   standalone: true,
   templateUrl: './detalle-rutina.page.html',
   styleUrls: ['./detalle-rutina.page.scss'],
-  imports: [CommonModule, IonicModule, RouterModule, FormsModule], // ✅
+  imports: [CommonModule, IonicModule, RouterModule, FormsModule], 
 })
 export class DetalleRutinaPage implements OnInit {
   idRutina!: number;
@@ -18,7 +18,7 @@ export class DetalleRutinaPage implements OnInit {
   diaEntrenamiento = '';
   ejercicios: any[] = [];
   idCliente = Number(localStorage.getItem('id_usuario'));
-  comentario: string = ''; // ✅ Comentario sobre la rutina
+  comentario: string = ''; 
 
   constructor(
     private route: ActivatedRoute,
@@ -59,17 +59,17 @@ export class DetalleRutinaPage implements OnInit {
         });
       }
 
-      alert('✅ Rutina marcada como realizada');
+      alert(' Rutina marcada como realizada');
       this.router.navigate(['/panel-cliente']); // vuelve al panel cliente o donde quieras
     } catch (error) {
-      console.error('❌ Error registrando rutina realizada o comentario:', error);
+      console.error(' Error registrando rutina realizada o comentario:', error);
       alert('Error al registrar rutina realizada o comentario');
     }
   }
 
-  // 🆕 FUNCIÓN CORREGIDA para guardar cada ejercicio uno a uno
+  //  FUNCIÓN CORREGIDA para guardar cada ejercicio uno a uno
 async guardarRegistroEjercicios() {
-  console.log('🛠️ Botón presionado, preparando envíos uno por uno...');
+  console.log(' Botón presionado, preparando envíos uno por uno...');
 
   for (const ejercicio of this.ejercicios) {
     const registro = {
@@ -84,13 +84,13 @@ async guardarRegistroEjercicios() {
     try {
       console.log('📤 Enviando registro:', registro);
       await this.apiService.post('rutinas/registro-ejercicios', registro);
-      console.log('✅ Registro guardado correctamente:', registro);
+      console.log(' Registro guardado correctamente:', registro);
     } catch (error) {
-      console.error('❌ Error guardando registro:', error);
+      console.error(' Error guardando registro:', error);
     }
   }
 
-  alert('✅ Todos los ejercicios registrados correctamente');
+  alert(' Todos los ejercicios registrados correctamente');
 }
 
   

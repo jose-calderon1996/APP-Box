@@ -1,4 +1,4 @@
-// 📦 Módulo para conexión con MySQL
+//  Módulo para conexión con MySQL
 const mysql = require('mysql2/promise');
 require('dotenv').config();  // Cargar las variables de entorno desde el archivo .env
 

@@ -24,7 +24,7 @@ export class CrearClientePage {
     private router: Router
   ) {}
 
-  // ✅ Función completa para registrar cliente y asociarlo
+  //  Función completa para registrar cliente y asociarlo
   async registrarCliente() {
     try {
       // 1. Crear usuario en Firebase
@@ -35,7 +35,7 @@ export class CrearClientePage {
       const idEntrenador = localStorage.getItem('id_usuario');
 
       if (!uid || !idEntrenador) {
-        alert('❌ Faltan datos para registrar al cliente');
+        alert(' Faltan datos para registrar al cliente');
         return;
       }
 
@@ -47,10 +47,10 @@ export class CrearClientePage {
         id_entrenador: idEntrenador
       });
 
-      alert('✅ Cliente registrado y asociado correctamente');
+      alert(' Cliente registrado y asociado correctamente');
       this.router.navigate(['/panel-entrenador']);
     } catch (error) {
-      console.error('❌ Error registrando cliente:', error);
+      console.error(' Error registrando cliente:', error);
       alert('Error al registrar cliente');
     }
   }

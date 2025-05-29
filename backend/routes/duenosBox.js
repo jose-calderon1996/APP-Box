@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 
-// 📥 POST /api/duenos-box
+//  POST /api/duenos-box
 router.post('/', (req, res) => {
   const { id_usuario, nombre_box } = req.body;
 
@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
         console.error('❌ Error en duenos_box:', err);
         return res.status(500).send({ error: 'Error en la base de datos' });
       }
-      // ✅ propiedad sin ñ
+      
       res.status(201).json({ id_dueno: result.insertId });
     }
   );

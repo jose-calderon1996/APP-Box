@@ -1,4 +1,4 @@
-// 🔰 Registramos los componentes de Chart.js
+//  Registramos los componentes de Chart.js
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
@@ -24,7 +24,7 @@ export class HistorialProgresoPage implements OnInit {
   imagenSeleccionada: string | null = null;
   @ViewChild(IonModal) modal!: IonModal;
 
-  // 📈 Configuración del gráfico de línea con colores azules
+  //  Configuración del gráfico de línea con colores azules
   lineChartData: ChartConfiguration['data'] = {
     labels: [],
     datasets: [
@@ -57,7 +57,7 @@ export class HistorialProgresoPage implements OnInit {
 
   lineChartType: ChartType = 'line';
 
-  // 🥧 Gráfico de pastel con colores azules
+  //  Gráfico de pastel con colores azules
   pieChartData: ChartConfiguration<'pie'>['data'] = {
     labels: ['Avance', 'Restante'],
     datasets: [{
@@ -87,7 +87,7 @@ export class HistorialProgresoPage implements OnInit {
     const id_usuario = localStorage.getItem('id_usuario');
     if (id_usuario) {
       this.idCliente = Number(id_usuario);
-      console.log('🟢 ID Cliente logueado:', this.idCliente);
+      console.log(' ID Cliente logueado:', this.idCliente);
       this.cargarHistorial();
       this.cargarPesos();
     } else {
@@ -98,13 +98,13 @@ export class HistorialProgresoPage implements OnInit {
   cargarHistorial() {
     this.apiService.get(`historial-progreso/${this.idCliente}`)
       .then((res) => {
-        console.log('📦 Historial recibido:', res);
+        console.log(' Historial recibido:', res);
         this.historial = res;
         this.lineChartData.labels = res.map((item: any) => this.formatearFecha(item.fecha));
         this.lineChartData.datasets[0].data = res.map((item: any) => item.peso);
       })
       .catch((err) => {
-        console.error('❌ Error cargando historial:', err);
+        console.error(' Error cargando historial:', err);
       });
   }
 
@@ -115,7 +115,7 @@ export class HistorialProgresoPage implements OnInit {
         this.verificarDatos();
       })
       .catch((err) => {
-        console.error('❌ Error obteniendo peso inicial:', err);
+        console.error(' Error obteniendo peso inicial:', err);
       });
 
     this.apiService.get(`peso-actual/${this.idCliente}`)
@@ -124,7 +124,7 @@ export class HistorialProgresoPage implements OnInit {
         this.verificarDatos();
       })
       .catch((err) => {
-        console.error('❌ Error obteniendo peso actual:', err);
+        console.error(' Error obteniendo peso actual:', err);
       });
   }
 

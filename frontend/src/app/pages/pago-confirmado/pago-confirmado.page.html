@@ -12,7 +12,7 @@
 
   <ion-card *ngIf="estado === 'aprobado'" color="success">
     <ion-card-header>
-      <ion-card-title class="ion-text-center">✅ ¡Pago aprobado!</ion-card-title>
+      <ion-card-title class="ion-text-center"> ¡Pago aprobado!</ion-card-title>
     </ion-card-header>
     <ion-card-content class="ion-text-center">
       <p>Gracias por tu compra. Tu suscripción ha sido activada correctamente.</p>
@@ -22,7 +22,7 @@
 
   <ion-card *ngIf="estado === 'rechazado'" color="danger">
     <ion-card-header>
-      <ion-card-title class="ion-text-center">❌ Pago rechazado</ion-card-title>
+      <ion-card-title class="ion-text-center"> Pago rechazado</ion-card-title>
     </ion-card-header>
     <ion-card-content class="ion-text-center">
       <p>Hubo un problema con el pago. Por favor, intenta nuevamente.</p>
@@ -32,7 +32,7 @@
 
   <ion-card *ngIf="estado === 'error'" color="warning">
     <ion-card-header>
-      <ion-card-title class="ion-text-center">⚠️ Error</ion-card-title>
+      <ion-card-title class="ion-text-center"> Error</ion-card-title>
     </ion-card-header>
     <ion-card-content class="ion-text-center">
       <p>No se pudo confirmar el pago.</p>

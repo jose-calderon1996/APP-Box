@@ -1,4 +1,3 @@
-// 📄 src/app/pages/crear-rutina/crear-rutina.page.ts
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -60,11 +59,11 @@ export class CrearRutinaPage implements OnInit {
         nombre_plantilla: this.plantillaSeleccionada,
         dia_entrenamiento: this.diaSeleccionado
       });
-      console.log('✅ Rutina asignada:', response);
+      console.log(' Rutina asignada:', response);
       alert('Rutina creada exitosamente');
       this.router.navigate(['/panel-entrenador']);
     } catch (error) {
-      console.error('❌ Error al asignar rutina:', error);
+      console.error(' Error al asignar rutina:', error);
       alert('Error al asignar rutina');
     }
   }

@@ -14,17 +14,17 @@ import { ApiService } from '../../services/api.service';
 })
 export class PagarTransbankPage {
   monto: number = 0;
-  tipoSeleccionado: string = ''; // 👈 Esto se mostrará en el botón final
+  tipoSeleccionado: string = ''; //  Esto se mostrará en el botón final
 
   constructor(private apiService: ApiService) {}
 
-  // ✅ Función para seleccionar membresía y asignar el tipo
+  //  Función para seleccionar membresía y asignar el tipo
   seleccionarMembresia(monto: number, tipo: string) {
     this.monto = monto;
     this.tipoSeleccionado = tipo;
   }
 
-  // ✅ Lógica de redirección a Transbank
+  //  Lógica de redirección a Transbank
   async iniciarPago() {
     try {
       const respuesta = await this.apiService.post('pagos/crear-transaccion', {
@@ -48,7 +48,7 @@ export class PagarTransbankPage {
       document.body.appendChild(form);
       form.submit();
     } catch (error) {
-      console.error('❌ Error al iniciar el pago:', error);
+      console.error(' Error al iniciar el pago:', error);
     }
   }
 }

@@ -1,7 +1,7 @@
 <ion-header translucent="true">
   <ion-toolbar class="toolbar-ios">
 
-    <!-- 🔙 Botón Volver -->
+    <!--  Botón Volver -->
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
@@ -9,7 +9,7 @@
     <!-- Título -->
     <ion-title class="titulo-header">Entrenador</ion-title>
 
-    <!-- 🚪 Botón Cerrar sesión -->
+    <!--  Botón Cerrar sesión -->
     <ion-buttons slot="end">
       <ion-button class="boton-rojo-header">
         <ion-icon name="log-out-outline" slot="start"></ion-icon>
@@ -61,17 +61,17 @@
     <div class="lista-clientes">
       <div *ngFor="let cliente of clientes" class="tarjeta-cliente">
         <h4>{{ cliente.nombre }}</h4>
-        <p>📧 {{ cliente.correo }}</p>
+        <p> {{ cliente.correo }}</p>
 
         <!-- Rutinas asignadas -->
         <div class="ion-padding">
           <div *ngIf="rutinasClientes && rutinasClientes[cliente.id_cliente] && rutinasClientes[cliente.id_cliente].length > 0; else noRutinas">
-            <strong class="texto-chico">📋 Rutinas asignadas:</strong>
+            <strong class="texto-chico"> Rutinas asignadas:</strong>
             <ion-list>
               <ion-item *ngFor="let rutina of rutinasClientes[cliente.id_cliente]">
                 <ion-label>
                   {{ rutina.nombre_rutina }} <br />
-                  <small>📅 Fecha: {{ rutina.fecha_asignada | date:'yyyy-MM-dd' }}</small>
+                  <small> Fecha: {{ rutina.fecha_asignada | date:'yyyy-MM-dd' }}</small>
                 </ion-label>
               </ion-item>
             </ion-list>

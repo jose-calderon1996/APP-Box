@@ -1,15 +1,15 @@
-// routes/pagos.js
+
 const express = require('express');
 const router = express.Router();
-const webpay = require('../transbank'); // 👈 Esta es la instancia correcta
+const webpay = require('../transbank'); 
 
-// ✅ Crear transacción
+//  Crear transacción
 router.post('/crear-transaccion', async (req, res) => {
   const { monto } = req.body;
 
   const buyOrder = 'orden_' + Math.floor(Math.random() * 1000000);
   const sessionId = 'sesion_' + Math.floor(Math.random() * 1000000);
-  const returnUrl = 'http://localhost:8100/pago-confirmado'; // Cambia si estás en producción
+  const returnUrl = 'http://localhost:8100/pago-confirmado'; 
 
   try {
     const response = await webpay.create(buyOrder, sessionId, monto, returnUrl);
@@ -24,7 +24,7 @@ router.post('/crear-transaccion', async (req, res) => {
   }
 });
 
-// ✅ Confirmar transacción
+//  Confirmar transacción
 router.post('/confirmar-transaccion', async (req, res) => {
   const { token_ws } = req.body;
 

@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db'); // o '../config/db'
+const db = require('../db'); 
 
-// ✅ GET - Mostrar todos los comentarios para el dueño
+// Mostrar todos los comentarios para el dueño
 router.get('/comentarios-box', async (req, res) => {
   try {
     const [comentarios] = await db.query(`
@@ -13,12 +13,12 @@ router.get('/comentarios-box', async (req, res) => {
     `);
     res.json(comentarios);
   } catch (error) {
-    console.error('❌ Error al obtener comentarios:', error);
+    console.error(' Error al obtener comentarios:', error);
     res.status(500).json({ error: 'No se pudo obtener comentarios' });
   }
 });
 
-// ✅ POST - Guardar nuevo comentario desde el cliente
+//  Guardar nuevo comentario desde el cliente
 router.post('/comentarios-box', async (req, res) => {
   const { id_usuario, comentario, puntuacion } = req.body;
 
@@ -30,7 +30,7 @@ router.post('/comentarios-box', async (req, res) => {
 
     res.status(200).json({ mensaje: 'Comentario guardado correctamente' });
   } catch (error) {
-    console.error('❌ Error al guardar comentario:', error);
+    console.error(' Error al guardar comentario:', error);
     res.status(500).json({ error: 'No se pudo guardar el comentario' });
   }
 });

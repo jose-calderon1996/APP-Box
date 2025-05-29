@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
-import { ApiService } from 'src/app/services/api.service'; // Asegúrate de que esta ruta sea correcta
+import { ApiService } from 'src/app/services/api.service'; 
 
 @Component({
   selector: 'app-panel-dueno',

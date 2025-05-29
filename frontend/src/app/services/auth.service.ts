@@ -32,7 +32,7 @@ export class AuthService {
     return this.afAuth.signOut();
   }
 
-  // ✅ Método para obtener el usuario actual desde localStorage
+  //  Método para obtener el usuario actual desde localStorage
   getUsuarioActual() {
     const usuario = localStorage.getItem('usuario');
     return usuario ? JSON.parse(usuario) : null;

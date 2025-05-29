@@ -1,4 +1,4 @@
-// 📚 backend/utils/plantillasRutinas.js
+
 
 const plantillasRutinas = {
     "Torso A": [

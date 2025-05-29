@@ -11,11 +11,11 @@ router.post('/registrar', (req, res) => {
 
   db.query(query, [id_usuario, 'login'], (err, result) => {
     if (err) {
-      console.error('❌ Error registrando login:', err);
+      console.error(' Error registrando login:', err);
       return res.status(500).json({ error: 'Error registrando login' });
     }
 
-    res.json({ message: '✅ Login registrado correctamente' });
+    res.json({ message: ' Login registrado correctamente' });
   });
 });
 
@@ -28,11 +28,11 @@ router.post('/registrar-logout', (req, res) => {
 
   db.query(query, [id_usuario, 'logout'], (err, result) => {
     if (err) {
-      console.error('❌ Error registrando logout:', err);
+      console.error(' Error registrando logout:', err);
       return res.status(500).json({ error: 'Error registrando logout' });
     }
 
-    res.json({ message: '✅ Logout registrado correctamente' });
+    res.json({ message: ' Logout registrado correctamente' });
   });
 });
 

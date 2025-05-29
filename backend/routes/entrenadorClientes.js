@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 
-// ✅ Ruta para contar clientes asociados
+//  Ruta para contar clientes asociados
 router.get('/contar-clientes/:id_entrenador', async (req, res) => {
   const { id_entrenador } = req.params;
 
@@ -21,7 +21,7 @@ router.get('/contar-clientes/:id_entrenador', async (req, res) => {
   }
 });
 
-// ✅ Ruta para obtener clientes asociados
+//  Ruta para obtener clientes asociados
 router.get('/clientes-asociados/:id_entrenador', async (req, res) => {
   const { id_entrenador } = req.params;
 
@@ -33,7 +33,7 @@ router.get('/clientes-asociados/:id_entrenador', async (req, res) => {
       WHERE ec.id_entrenador = ?
     `, [id_entrenador]);
 
-    console.log('📦 Clientes asociados enviados al frontend:', rows);
+    console.log(' Clientes asociados enviados al frontend:', rows);
     res.json(rows);
   } catch (err) {
     console.error('❌ Error obteniendo clientes asociados:', err);

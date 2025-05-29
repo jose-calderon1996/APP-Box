@@ -1,11 +1,11 @@
-/* 🛡️ Fondo blanco global forzado */
+/*  Fondo blanco global forzado */
 html, body, ion-app, ion-content {
   background-color: #ffffff !important;
   --background: #ffffff !important;
   color-scheme: light !important;
 }
 
-/* 💪 Solución contra el modo oscuro automático de navegadores */
+/*  Solución contra el modo oscuro automático de navegadores */
 @media (prefers-color-scheme: dark) {
   html, body, ion-app, ion-content {
     background-color: #ffffff !important;
@@ -19,7 +19,7 @@ html, body, ion-app, ion-content {
   }
 }
 
-/* 🎯 Estilo base de la vista */
+/*  Estilo base de la vista */
 .pagina-panel {
   --background: #ffffff !important;
   background-color: #ffffff !important;
@@ -27,20 +27,20 @@ html, body, ion-app, ion-content {
   padding: 16px;
 }
 
-/* 🧱 Apoyo adicional si aplicas una clase extra */
+/*  Apoyo adicional si aplicas una clase extra */
 .fondo-blanco {
   background-color: #ffffff !important;
   --background: #ffffff !important;
 }
 
-/* 🔷 Encabezado y barra */
+/*  Encabezado y barra */
 .toolbar-ios {
   --background: #ffffff;
   --color: #1e3a8a;
   border-bottom: 1px solid #e5e7eb;
 }
 
-/* 🧾 Título principal */
+/*  Título principal */
 .titulo-header {
   font-size: 20px;
   font-weight: 600;
@@ -48,13 +48,13 @@ html, body, ion-app, ion-content {
   text-align: center;
 }
 
-/* 🚪 Botón cerrar sesión */
+/*  Botón cerrar sesión */
 .boton-rojo-header {
   --color: #ef4444;
   font-weight: 500;
 }
 
-/* 🧾 Tarjetas limpias */
+/*  Tarjetas limpias */
 .card-rojo {
   background: #ffffff !important;
   border: 1px solid #e5e7eb;
@@ -63,7 +63,7 @@ html, body, ion-app, ion-content {
   margin-bottom: 20px;
 }
 
-/* 🔵 Título dentro de tarjeta */
+/*  Título dentro de tarjeta */
 .titulo-rojo {
   font-size: 18px;
   font-weight: 600;
@@ -71,7 +71,7 @@ html, body, ion-app, ion-content {
   text-align: center;
 }
 
-/* 🔘 Botón principal azul */
+/*  Botón principal azul */
 .boton-rojo {
   --background: #3b82f6;
   --color: #ffffff;
@@ -81,7 +81,7 @@ html, body, ion-app, ion-content {
   text-transform: none;
 }
 
-/* 📭 Texto sin rutinas */
+/*  Texto sin rutinas */
 .texto-vacio {
   font-size: 15px;
   color: #6b7280;

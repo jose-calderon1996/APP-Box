@@ -36,7 +36,7 @@ export class CalculoImcPage {
     series: [0],
     chart: {
       type: 'radialBar',
-      height: 300, // 👈 evita que se corte el gráfico
+      height: 300, 
       offsetY: -20,
       sparkline: { enabled: true }
     },

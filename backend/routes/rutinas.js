@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db'); // conexión a MySQL (pool)
+const db = require('../db'); 
 const plantillasRutinas = require('./plantillasRutinas');
 
-// ✅ Crear rutina y ejercicios desde plantilla
+//  Crear rutina y ejercicios desde plantilla
 router.post('/crear-desde-plantilla', async (req, res) => {
   const { id_cliente, nombre_plantilla, dia_entrenamiento } = req.body;
 
@@ -44,14 +44,14 @@ router.post('/crear-desde-plantilla', async (req, res) => {
 
     await Promise.all(inserts);
 
-    res.status(201).json({ message: '✅ Rutina y ejercicios creados exitosamente' });
+    res.status(201).json({ message: ' Rutina y ejercicios creados exitosamente' });
   } catch (error) {
-    console.error('❌ Error creando rutina y ejercicios:', error);
+    console.error(' Error creando rutina y ejercicios:', error);
     res.status(500).json({ error: 'Error creando rutina o ejercicios' });
   }
 });
 
-// ✅ Obtener rutinas por cliente
+//  Obtener rutinas por cliente
 router.get('/cliente/:id_cliente', async (req, res) => {
   const { id_cliente } = req.params;
 
@@ -65,12 +65,12 @@ router.get('/cliente/:id_cliente', async (req, res) => {
 
     res.json(result);
   } catch (error) {
-    console.error('❌ Error obteniendo rutinas:', error);
+    console.error(' Error obteniendo rutinas:', error);
     res.status(500).json({ error: 'Error obteniendo rutinas' });
   }
 });
 
-// ✅ Obtener detalle de rutina
+//  Obtener detalle de rutina
 router.get('/detalle/:id_rutina', async (req, res) => {
   const { id_rutina } = req.params;
 
@@ -99,12 +99,12 @@ router.get('/detalle/:id_rutina', async (req, res) => {
       ejercicios: resultEjercicios,
     });
   } catch (error) {
-    console.error('❌ Error obteniendo detalle de rutina:', error);
+    console.error(' Error obteniendo detalle de rutina:', error);
     res.status(500).json({ error: 'Error obteniendo detalle de rutina' });
   }
 });
 
-// ✅ Registrar rutina realizada
+//  Registrar rutina realizada
 router.post('/rutina-realizada', async (req, res) => {
   const { id_cliente, id_rutina } = req.body;
 
@@ -122,14 +122,14 @@ router.post('/rutina-realizada', async (req, res) => {
       [id_cliente, id_rutina, fechaRealizacion, completada]
     );
 
-    res.status(201).json({ message: '✅ Rutina realizada registrada' });
+    res.status(201).json({ message: ' Rutina realizada registrada' });
   } catch (error) {
-    console.error('❌ Error registrando rutina realizada:', error);
+    console.error(' Error registrando rutina realizada:', error);
     res.status(500).json({ error: 'Error registrando rutina realizada' });
   }
 });
 
-// ✅ Agregar comentario a rutina
+//  Agregar comentario a rutina
 router.post('/comentarios/agregar', async (req, res) => {
   const { id_cliente, id_rutina, comentario } = req.body;
 
@@ -144,14 +144,14 @@ router.post('/comentarios/agregar', async (req, res) => {
       [id_cliente, id_rutina, comentario]
     );
 
-    res.status(201).json({ message: '✅ Comentario guardado correctamente' });
+    res.status(201).json({ message: ' Comentario guardado correctamente' });
   } catch (error) {
-    console.error('❌ Error insertando comentario:', error);
+    console.error(' Error insertando comentario:', error);
     res.status(500).json({ error: 'Error insertando comentario' });
   }
 });
 
-// ✅ Registrar ejercicio individual
+//  Registrar ejercicio individual
 router.post('/registro-ejercicios', async (req, res) => {
   const { id_cliente, nombre_ejercicio, peso, series_realizadas, repeticiones_realizadas, fecha } = req.body;
 
@@ -166,9 +166,9 @@ router.post('/registro-ejercicios', async (req, res) => {
       [id_cliente, nombre_ejercicio, peso, series_realizadas, repeticiones_realizadas, fecha]
     );
 
-    res.status(201).json({ mensaje: '✅ Registro guardado correctamente' });
+    res.status(201).json({ mensaje: ' Registro guardado correctamente' });
   } catch (error) {
-    console.error('❌ Error guardando registro de ejercicio:', error);
+    console.error(' Error guardando registro de ejercicio:', error);
     res.status(500).json({ error: 'Error al guardar registro de ejercicio' });
   }
 });
