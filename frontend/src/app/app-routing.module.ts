@@ -94,9 +94,12 @@ const routes: Routes = [
     path: 'pago-confirmado',
     component: PagoConfirmadoPage,
   },
-  
-  
-  
+  {
+  path: 'reset-password',
+  loadComponent: () => import('./pages/reset-password/reset-password.page').then(m => m.ResetPasswordPage)
+}
+
+
   
   
   

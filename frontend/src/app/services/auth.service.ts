@@ -41,5 +41,8 @@ export class AuthService {
     const usuario = this.getUsuarioActual();
     return usuario?.id_usuario ?? null;
   }
-  
+  resetPassword(email: string) {
+  return this.afAuth.sendPasswordResetEmail(email);
+}
+
 }
